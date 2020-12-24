@@ -1,8 +1,15 @@
 .grid-container {
     margin-top: 10px;
     display: grid;
-    grid-template-columns: repeat(5, minmax(auto, auto));
+    grid-template-columns: repeat(6, minmax(auto, auto));
     grid-gap: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: repeat(3, minmax(auto, auto));
+
+    }
 }
 .grid-item {
     padding: 10px 10px 0;
