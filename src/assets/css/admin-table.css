@@ -1,0 +1,48 @@
+table {
+    width: 100%;
+    padding: 10px;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 20px 0px;
+}
+th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    font-size: 30px;
+    background-color: #111111;
+}
+td {
+    padding: 20px 10px;
+    font-size: 18px;
+    overflow: hidden;
+}
+tr {
+    font-family: Arial, sans-serif;
+    color: #ebebeb;
+    background-color: #111111;
+}
+tr:hover {
+    background-color: #5a5a5a;
+}
+.table-users-info {
+    text-align: center;
+}
+.table-users-info > input {
+    width: 80px;
+}
+.btn-search-field, .btn-send-field {
+    padding: 10px;
+    background-color: #333336;
+}
+.btn-search {
+    background: white url(../images/search-icon.svg) no-repeat right center;
+    height: 32px;
+    font-size: 20px;
+}
+.btn-send {
+    padding: 10px 20px;
+    font-size: 20px;
+}

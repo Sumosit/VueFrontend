@@ -1,0 +1,145 @@
+<template>
+  <div>
+    <div class="register">
+      <form class="reg-field" @submit.prevent="handleLogin">
+        <div class="title"><h1>Login</h1></div>
+        <label>
+          <input
+            placeholder="Username"
+            v-model="user.username"
+            v-validate="'required'"
+            type="text"
+            name="username">
+        </label>
+        <div
+          v-if="errors.has('username')"
+          class="alert alert-danger"
+          role="alert">
+          Username is required!
+        </div>
+        <label>
+          <input
+            placeholder="Password"
+            v-model="user.password"
+            v-validate="'required'"
+            type="password"
+            class="form-control"
+            name="password">
+        </label>
+        <div
+          v-if="errors.has('password')"
+          class="alert alert-danger"
+          role="alert"
+        >Password is required!</div>
+        <div class="reg-btn-field">
+          <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+          <button class="reg-btn" type="submit">Submit</button>
+        </div>
+        <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
+      </form>
+    </div>
+    <!--    <div class="card card-container">-->
+    <!--      <img-->
+    <!--        id="profile-img"-->
+    <!--        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"-->
+    <!--        class="profile-img-card"-->
+    <!--      />-->
+    <!--      <form name="form" @submit.prevent="handleLogin">-->
+    <!--        <div class="form-group">-->
+    <!--          <label for="username">Username</label>-->
+    <!--          <input-->
+    <!--            v-model="user.username"-->
+    <!--            v-validate="'required'"-->
+    <!--            type="text"-->
+    <!--            class="form-control"-->
+    <!--            name="username"-->
+    <!--          />-->
+    <!--          <div-->
+    <!--            v-if="errors.has('username')"-->
+    <!--            class="alert alert-danger"-->
+    <!--            role="alert"-->
+    <!--          >Username is required!</div>-->
+    <!--        </div>-->
+    <!--        <div class="form-group">-->
+    <!--          <label for="password">Password</label>-->
+    <!--          <input-->
+    <!--            v-model="user.password"-->
+    <!--            v-validate="'required'"-->
+    <!--            type="password"-->
+    <!--            class="form-control"-->
+    <!--            name="password"-->
+    <!--          />-->
+    <!--          <div-->
+    <!--            v-if="errors.has('password')"-->
+    <!--            class="alert alert-danger"-->
+    <!--            role="alert"-->
+    <!--          >Password is required!</div>-->
+    <!--        </div>-->
+    <!--        <div class="form-group">-->
+    <!--          <button class="btn btn-primary btn-block" :disabled="loading">-->
+    <!--            <span v-show="loading" class="spinner-border spinner-border-sm"></span>-->
+    <!--            <span>Login</span>-->
+    <!--          </button>-->
+    <!--        </div>-->
+    <!--        <div class="form-group">-->
+    <!--          <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>-->
+    <!--        </div>-->
+    <!--      </form>-->
+    <!--    </div>-->
+  </div>
+</template>
+
+<script>
+  import User from '../models/user';
+
+  export default {
+    name: 'Login',
+    data() {
+      return {
+        user: new User('', ''),
+        loading: false,
+        message: ''
+      };
+    },
+    computed: {
+      loggedIn() {
+        return this.$store.state.auth.status.loggedIn;
+      }
+    },
+    created() {
+      if (this.loggedIn) {
+        this.$router.push('/profile');
+      }
+    },
+    methods: {
+      handleLogin() {
+        this.loading = true;
+        this.$validator.validateAll().then(isValid => {
+          if (!isValid) {
+            this.loading = false;
+            return;
+          }
+
+          if (this.user.username && this.user.password) {
+            this.$store.dispatch('auth/login', this.user).then(
+                () => {
+                  this.$router.push('/profile');
+                },
+                error => {
+                  this.loading = false;
+                  this.message =
+                      (error.response && error.response.data) ||
+                      error.message ||
+                      error.toString();
+                }
+            );
+          }
+        });
+      }
+    }
+  };
+</script>
+
+<style scoped>
+  @import '../assets/css/register-login.css';
+</style>

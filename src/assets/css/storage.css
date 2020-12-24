@@ -1,0 +1,25 @@
+.grid-container {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(auto, 1fr));
+    grid-gap: 10px;
+}
+.grid-item {
+    padding: 10px 10px 0;
+    border: 1px solid #fff;
+    font-size: 30px;
+}
+.grid-item > a {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.grid-item > .filename {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    overflow: hidden;
+}
+.grid-container > .grid-item > a > img {
+    width: 100%;
+}
