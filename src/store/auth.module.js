@@ -1,4 +1,6 @@
 import AuthService from '../services/auth.service';
+import backendUrl from "./backendUrl";
+import authHeader from "../services/auth-header";
 
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
@@ -36,6 +38,19 @@ export const auth = {
             return Promise.reject(error);
           }
       );
+    },
+    async fetchUserSalaries(ctx, userId) {
+      await fetch(backendUrl() + 'user/salaries/'+userId,
+          {
+            headers: authHeader()
+          })
+          .then(response => response.json())
+          .then(json => {
+            setTimeout(() => {
+              const userSalaries = json;
+              ctx.commit('updateUserSalaries', userSalaries);
+            }, 1000)
+          });
     }
   },
   mutations: {
@@ -57,8 +72,8 @@ export const auth = {
     registerFailure(state) {
       state.user = false;
     },
-    addFileDB(state, payload) {
-      state.user.fileDB = payload;
+    updateUserSalaries(state, userSalaries) {
+      state.user.salaries = userSalaries;
     }
   },
   getters: {

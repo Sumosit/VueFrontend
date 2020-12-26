@@ -71,6 +71,7 @@
           'Content-Type': 'multipart/form-data'
         }).then(res => {
           console.log(res);
+          this.$store.dispatch('fetchStorageFiles');
         }).catch(err => {
           console.log(err.response);
         });

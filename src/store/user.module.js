@@ -18,12 +18,13 @@ export const user = {
               ctx.commit('updateStorageFiles', storageFiles);
             }, 1000)
           });
-    },
+    }
+
   },
   mutations: {
     updateStorageFiles(state, payload) {
       state.storageFiles = payload;
-    }
+    },
   },
   getters: {
     allStorageFiles(state) {

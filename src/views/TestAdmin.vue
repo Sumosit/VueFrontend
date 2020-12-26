@@ -59,43 +59,27 @@
     methods: {
       sendOneSalary() {
         let date = new Date();
+        let formData = new FormData();
         date = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 
         for (let i = 0; i < this.items.length; i++) {
           if (this.items[i] > 0) {
-            let fd = new FormData();
-            fd.set("userid", this.allUsers[i].id);
-            fd.set("amount", this.items[i]);
-            fd.set("date", date);
-
-            axios.post(backendUrl() + 'api/admin/add/invoices', fd, {
-                headers: authHeader()
-              }).then(res => {
-                let salary = {id: null, amount: this.items[i], date: date};
-                if (this.allUsers[i].id === this.currentUser.id) {
-                  this.$store.state.auth.user.salaries.push(salary);
-                }
-                console.log(res);
-              }).catch(err => {
-                console.log(err.response);
-              });
-
-            // axios.post(backendUrl() + 'api/admin/add/invoices', fd, {
-            //   // axios.post('http://localhost:43392/api/admin/add/invoices', fd, {
-            //   headers: authHeader()
-            // }).then(res => {
-            //   let salary = {id: null, amount: this.items[i], date: date};
-            //   if (this.allUsers[i].id === this.currentUser.id) {
-            //     this.$store.state.auth.user.salaries.push(salary);
-            //   }
-            //   console.log(res);
-            // }).catch(err => {
-            //   console.log(err.response);
-            // });
-            // fd = new FormData();
-            // console.log(this.items[i]);
+            let salary = {
+              id: this.allUsers[i].id,
+              amount: this.items[i],
+              date: date
+            };
+            formData.append("salaries", JSON.stringify(salary));
           }
         }
+        axios.post(backendUrl() + 'api/admin/add/invoices', formData, {
+          headers: authHeader()
+        }).then(res => {
+          this.$store.dispatch('auth/fetchUserSalaries', this.currentUser.id);
+          console.log(res);
+        }).catch(err => {
+          console.log(err.response);
+        });
       }
     },
   }
