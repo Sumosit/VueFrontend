@@ -28,10 +28,14 @@
                class="nav-bar">
             <router-link to="/register">Register</router-link>
           </div>
-          <div v-if="loggedIn" class="nav-bar">
-            <router-link to="/profile">Profile</router-link>
+          <div v-if="loggedIn"
+               class="nav-bar-username">
+            <router-link class="link-username" to="/profile">{{currentUser.username}}</router-link>
           </div>
-          <div v-if="isUser" class="nav-bar">
+          <div v-if="isUser && isAdmin" class="nav-bar">
+            <router-link to="/user/test">Admin, User</router-link>
+          </div>
+          <div v-else-if="isUser" class="nav-bar">
             <router-link to="/user/test">User</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
@@ -39,9 +43,6 @@
           </div>
           <div v-if="isUser" class="nav-bar">
             <router-link to="/user/storage">Storage</router-link>
-          </div>
-          <div v-if="isAdmin" class="nav-bar">
-            <router-link to="/admin/test">Admin</router-link>
           </div>
           <div v-if="isModerator" class="nav-bar">
             <router-link to="/moderator/test">Moderator</router-link>
@@ -70,9 +71,6 @@
       return {
         hover: false,
         show: false,
-        user: false,
-        admin: false,
-        moderator: false
       }
     },
     mounted() {
@@ -103,6 +101,9 @@
         if (this.$store.state.auth.status.loggedIn) {
           return this.$store.state.auth.user.roles.includes('ROLE_MODERATOR')
         }
+      },
+      currentUser() {
+        return this.$store.state.auth.user;
       }
     },
     methods: {

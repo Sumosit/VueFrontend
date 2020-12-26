@@ -10,7 +10,8 @@
            v-for="(file, index) in allStorageFiles()"
            :key="index"
            v-if="file.type==='image/jpeg' ||
-                  file.type==='image/png'">
+                  file.type==='image/png' ||
+                   file.type==='image/gif'">
         <a :href="file.url">
           <img :src="file.url">
         </a>

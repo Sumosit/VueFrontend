@@ -41,6 +41,10 @@ export const router = new Router({
         {
           path: '/admin/test',
           component: () => import('./views/TestAdmin'),
+        },
+        {
+          path: '/admin/salaries/give',
+          component: () => import('./views/AdminGiveSalaries'),
         }
       ]
     },

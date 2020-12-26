@@ -1,7 +1,7 @@
 .nav-pull {
     z-index: 9999;
     position: absolute;
-    width: 350px;
+    width: 500px;
     height: 100vh;
     left: 0;
     top: 0;
@@ -14,12 +14,12 @@
 }
 
 .fade-leave-active {
-    transform: translateX(-350px);
+    transform: translateX(-500px);
     transition: .5s;
 }
 
 .fade-enter {
-    transform: translateX(-350px);
+    transform: translateX(-500px);
 }
 
 .fade-leave-to /* .fade-leave-active below version 2.1.8 */
@@ -48,26 +48,32 @@
     font-size: 36px;
     color: white;
 }
-
+.nav-bar-username {
+    margin-top: 10px;
+    padding: 10px 0;
+    border-bottom: 2px solid #ff4c51;
+}
+.link-username {
+    color: #ff4c51;
+}
 .nav-bar {
     margin-top: 10px;
     padding: 10px 0;
-    /*border-top: 2px solid #ffffff;*/
     border-bottom: 2px solid #ffffff;
 }
-.nav-bar:hover {
+.nav-bar:hover, .nav-bar-username:hover {
     transition: all 0.3s;
     background-color: #5a5a5a;
 }
-.nav-bar:active {
+.nav-bar:active, .nav-bar-username:active {
     transition: all 0.3s;
-    background-color: #292929;
+    background-color: rgba(0, 0, 0, 0);
 }
-.nav-bar-over {
+.nav-bar-over, .nav-bar-username-over {
     transition: all 0.3s;
     border-radius: 0;
 }
-.nav-bar-leave {
+.nav-bar-leave, .nav-bar-username-leave {
     transition: all 0.3s;
     border-radius: 40%;
 }

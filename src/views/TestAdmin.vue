@@ -1,90 +1,49 @@
 <template>
-  <div>
-    <div class="btn-search-field">
-      <input class="btn-search" type="text" v-model="search">
-    </div>
-    <table>
-      <tr>
-        <th>Id</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th></th>
-      </tr>
-      <tr
-        v-for="(user, index) in filteredList"
-        :key="index">
-        <!--        v-if="user.username !== $store.state.auth.user.username">-->
-        <td class="table-users-info">{{user.id}}</td>
-        <td class="table-users-info">{{user.username}}</td>
-        <td class="table-users-info">{{user.email}}</td>
-        <td class="table-users-info">
-          <input v-model="items[index]" type="number">
-        </td>
-      </tr>
-    </table>
-    <div class="btn-send-field">
-      <button class="btn-send" v-on:click="sendOneSalary">Send</button>
+  <div class="main-info">
+    <div class="userNav-grid-container">
+      <div class="userNav-grid-item">
+        <router-link to="/profile">
+          <img src="../assets/images/user.svg">
+        </router-link>
+      </div>
+      <div class="userNav-grid-item">
+        <router-link to="/user/storage">
+          <img src="../assets/images/box.svg">
+        </router-link>
+      </div>
+      <div class="userNav-grid-item">
+        <router-link to="/user/salaries">
+          <img src="../assets/images/salaries.svg">
+        </router-link>
+      </div>
+      <div class="userNav-grid-item">
+        <router-link to="/admin/salaries/give">
+          <img src="../assets/images/giveSalaries.svg">
+        </router-link>
+      </div>
+      <div class="userNav-grid-item">
+        <a href @click.prevent="logOut">
+          <img src="../assets/images/logout.svg">
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {mapActions, mapGetters} from 'vuex'
-  import axios from 'axios';
-  import authHeader from "../services/auth-header";
-  import backendUrl from "../store/backendUrl";
+  import UserService from "../services/user.service";
 
   export default {
-    name: "AdminTest",
-    data() {
-      return {
-        search: '',
-        items: []
-      }
-    },
-    async mounted() {
-      await this.$store.dispatch('fetchUsers');
-    },
-    computed: {
-      ...mapGetters(['allUsers']),
-      filteredList: function () {
-        return this.allUsers.filter((user) => {
-          return user.username.match(this.search);
-        })
-      },
-      currentUser() {
-        return this.$store.state.auth.user;
-      }
-    },
+    name: "UserTest",
     methods: {
-      sendOneSalary() {
-        let date = new Date();
-        let formData = new FormData();
-        date = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-
-        for (let i = 0; i < this.items.length; i++) {
-          if (this.items[i] > 0) {
-            let salary = {
-              id: this.allUsers[i].id,
-              amount: this.items[i],
-              date: date
-            };
-            formData.append("salaries", JSON.stringify(salary));
-          }
-        }
-        axios.post(backendUrl() + 'api/admin/add/invoices', formData, {
-          headers: authHeader()
-        }).then(res => {
-          this.$store.dispatch('auth/fetchUserSalaries', this.currentUser.id);
-          console.log(res);
-        }).catch(err => {
-          console.log(err.response);
-        });
+      logOut() {
+        this.$store.dispatch('auth/logout');
+        this.$router.push('/login');
       }
-    },
+    }
   }
 </script>
 
 <style scoped>
-  @import '../assets/css/admin-table.css';
+  @import '../assets/css/userNav.css';
 </style>

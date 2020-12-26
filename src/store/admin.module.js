@@ -16,10 +16,6 @@ export const admin = {
               return users;
             }, 1000)
           });
-    },
-    async sendOneSalary(ctx) {
-      let fd = new FormData();
-      fd.set()
     }
   },
   mutations: {
