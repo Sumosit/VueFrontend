@@ -39,19 +39,6 @@ export const auth = {
           }
       );
     },
-    async fetchUserSalaries(ctx, userId) {
-      await fetch(backendUrl() + 'user/salaries/'+userId,
-          {
-            headers: authHeader()
-          })
-          .then(response => response.json())
-          .then(json => {
-            setTimeout(() => {
-              const userSalaries = json;
-              ctx.commit('updateUserSalaries', userSalaries);
-            }, 1000)
-          });
-    }
   },
   mutations: {
     loginSuccess(state, user) {
@@ -71,9 +58,6 @@ export const auth = {
     },
     registerFailure(state) {
       state.user = false;
-    },
-    updateUserSalaries(state, userSalaries) {
-      state.user.salaries = userSalaries;
     }
   },
   getters: {

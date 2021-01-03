@@ -16,7 +16,8 @@
         <div
           v-if="submitted && errors.has('username')"
           class="alert-danger"
-        >{{errors.first('username')}}</div>
+        >{{errors.first('username')}}
+        </div>
         <label>
           <input
             placeholder="Email"
@@ -28,7 +29,8 @@
         <div
           v-if="submitted && errors.has('email')"
           class="alert-danger"
-        >{{errors.first('email')}}</div>
+        >{{errors.first('email')}}
+        </div>
         <label>
           <input
             placeholder="Password"
@@ -41,14 +43,16 @@
         <div
           v-if="submitted && errors.has('password')"
           class="alert-danger"
-        >{{errors.first('password')}}</div>
+        >{{errors.first('password')}}
+        </div>
         <div class="reg-btn-field">
           <button class="reg-btn" type="submit">Submit</button>
-          <div
-            v-if="message"
-            class="alert"
-            :class="successful ? 'alert-success' : 'alert-danger'"
-          >{{message}}</div>
+        </div>
+        <div
+          v-if="message"
+          class="alert"
+          :class="successful ? 'alert-success' : 'alert-danger'"
+        >{{message}}
         </div>
       </form>
     </div>

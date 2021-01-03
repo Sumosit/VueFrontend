@@ -47,12 +47,6 @@
           <div v-if="isModerator" class="nav-bar">
             <router-link to="/moderator/test">Moderator</router-link>
           </div>
-          <!--          <div v-if="user" class="nav-bar">-->
-          <!--            <a href="http://localhost:8080/">Order Home</a>-->
-          <!--          </div>-->
-          <!--          <div v-if="user" class="nav-bar">-->
-          <!--            <a href="http://localhost:8080/orders">Orders</a>-->
-          <!--          </div>-->
           <div class="nav-bar">
             <a href @click.prevent="logOut">
               Exit
@@ -74,14 +68,6 @@
       }
     },
     mounted() {
-      if (this.$store.state.auth.status.loggedIn) {
-        this.user = true;
-        if (this.$store.state.auth.user.roles.includes('ROLE_ADMIN')) {
-          this.admin = true;
-        } else if (this.$store.state.auth.user.roles.includes('ROLE_MODERATOR')) {
-          this.moderator = true;
-        }
-      }
     },
     computed: {
       loggedIn() {

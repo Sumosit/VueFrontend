@@ -36,11 +36,11 @@ export const router = new Router({
       path: '/admin',
       name: 'admin',
       // lazy-loaded
-      component: () => import('./views/BoardAdmin.vue'),
+      component: () => import('./views/AdminBoard.vue'),
       children: [
         {
           path: '/admin/test',
-          component: () => import('./views/TestAdmin'),
+          component: () => import('./views/AdminTest'),
         },
         {
           path: '/admin/salaries/give',
@@ -64,11 +64,11 @@ export const router = new Router({
       path: '/user',
       name: 'user',
       // lazy-loaded
-      component: () => import('./views/BoardUser.vue'),
+      component: () => import('./views/UserBoard.vue'),
       children: [
         {
           path: '/user/test',
-          component: () => import('./views/TestUser'),
+          component: () => import('./views/UserTest'),
         },
         {
           path: '/user/salaries',

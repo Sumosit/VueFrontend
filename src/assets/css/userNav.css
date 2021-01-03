@@ -1,7 +1,7 @@
 .userNav-grid-container {
     margin-top: 10px;
     display: grid;
-    grid-template-columns: repeat(22, minmax(auto, auto));
+    grid-template-columns: repeat(12, minmax(auto, auto));
     grid-template-rows: repeat(1, minmax(auto, auto));
     grid-gap: 10px;
 }

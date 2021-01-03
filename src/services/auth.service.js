@@ -1,7 +1,6 @@
 import axios from 'axios';
 import backendUrl from "../store/backendUrl";
 
-// const API_URL = 'http://localhost:43392/api/auth/';
 const API_URL = backendUrl()+'api/auth/';
 
 class AuthService {
@@ -12,7 +11,7 @@ class AuthService {
           password: user.password
         })
         .then(response => {
-          console.log(JSON.stringify(response.data));
+          // console.log(JSON.stringify(response.data));
           if (response.data.accessToken) {
             localStorage.setItem('user', JSON.stringify(response.data));
           }

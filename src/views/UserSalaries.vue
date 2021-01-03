@@ -7,7 +7,7 @@
         <th>Date</th>
       </tr>
       <tr
-        v-for="(salaries, index) in even()"
+        v-for="(salaries, index) in getUserSalaries()"
         :key="index">
         <td class="table-users-info">{{salaries.id}}</td>
         <td class="table-users-info">{{salaries.amount}} tenge</td>
@@ -18,19 +18,21 @@
 </template>
 
 <script>
+  import sortById from "../js/sortById"
+
   export default {
     name: "UserSalaries",
+    mounted() {
+      this.$store.dispatch('fetchUserSalaries', this.$store.state.auth.user.id);
+    },
     computed: {
       currentUser() {
         return this.$store.state.auth.user;
       }
     },
     methods: {
-      even: function () {
-        // Set slice() to avoid to generate an infinite loop!
-        return this.currentUser.salaries.slice().sort(function (a, b) {
-          return b.id - a.id;
-        });
+      getUserSalaries() {
+        return this.$store.state.auth.user.salaries
       }
     }
 
