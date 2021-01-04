@@ -40,11 +40,11 @@ export const router = new Router({
       children: [
         {
           path: '/admin/test',
-          component: () => import('./views/AdminTest'),
+          component: () => import('./views/AdminTest.vue'),
         },
         {
           path: '/admin/salaries/give',
-          component: () => import('./views/AdminGiveSalaries'),
+          component: () => import('./views/AdminGiveSalaries.vue'),
         }
       ]
     },
@@ -56,7 +56,7 @@ export const router = new Router({
       children: [
         {
           path: '/moderator/test',
-          component: () => import('./views/TestModerator'),
+          component: () => import('./views/TestModerator.vue'),
         }
       ]
     },
@@ -68,16 +68,16 @@ export const router = new Router({
       children: [
         {
           path: '/user/test',
-          component: () => import('./views/UserTest'),
+          component: () => import('./views/UserTest.vue'),
         },
         {
           path: '/user/salaries',
-          component: () => import('./views/UserSalaries'),
+          component: () => import('./views/UserSalaries.vue'),
         },
         {
           path: '/user/storage',
-          component: () => import('./views/UserStorage')
-        }
+          component: () => import('./views/UserStorage.vue')
+        },
       ]
     }
   ]

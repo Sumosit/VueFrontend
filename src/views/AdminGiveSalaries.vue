@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="title">
+      <span>Admin</span>
+    </div>
     <div class="btn-search-field">
       <input class="btn-search" type="text" v-model="search">
     </div>

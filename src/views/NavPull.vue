@@ -41,6 +41,9 @@
           <div v-if="loggedIn" class="nav-bar">
             <router-link to="/user/salaries">Salaries</router-link>
           </div>
+          <div v-if="loggedIn" class="nav-bar">
+            <router-link to="/admin/salaries/give">Give Salaries</router-link>
+          </div>
           <div v-if="isUser" class="nav-bar">
             <router-link to="/user/storage">Storage</router-link>
           </div>
