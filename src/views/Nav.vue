@@ -12,8 +12,8 @@
     <div v-if="loggedIn">
       <router-link class="link-username" to="/profile">{{currentUser.username}}</router-link>
     </div>
-    <div v-if="isUser && isAdmin">
-      <router-link to="/user/test">Admin/User</router-link>
+    <div v-if="isAdmin">
+      <router-link to="/admin/test">Admin</router-link>
     </div>
     <div v-else-if="isUser">
       <router-link to="/user/test">User</router-link>

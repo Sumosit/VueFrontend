@@ -45,7 +45,7 @@ export const router = new Router({
         {
           path: '/admin/salaries/give',
           component: () => import('./views/AdminGiveSalaries.vue'),
-        }
+        },
       ]
     },
     {

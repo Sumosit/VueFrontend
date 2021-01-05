@@ -3,7 +3,7 @@
     <div class="title">
       <span>Admin</span>
     </div>
-    <div class="user-info">
+    <div>
       <router-view v-if="show"/>
       <div v-else>
         Admin Page Forbidden

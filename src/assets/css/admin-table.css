@@ -10,7 +10,7 @@ th, td {
 th {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 30px;
     font-size: 30px;
     background-color: #111111;
 }
@@ -25,6 +25,7 @@ tr {
     background-color: #111111;
 }
 tr:hover {
+    transition: 0.2s;
     background-color: #5a5a5a;
 }
 .table-users-info {

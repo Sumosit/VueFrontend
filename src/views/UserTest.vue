@@ -16,11 +16,6 @@
           <img src="../assets/images/salaries.svg">
         </router-link>
       </div>
-      <div v-if="isAdmin" class="userNav-grid-item">
-        <router-link to="/admin/salaries/give">
-          <img src="../assets/images/giveSalaries.svg">
-        </router-link>
-      </div>
       <div class="userNav-grid-item">
         <a href @click.prevent="logOut">
           <img src="../assets/images/logout.svg">
