@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <div>
+    <AfkBackground v-show="!afkBackground"/>
+    <div v-show="afkBackground">
       <NavPull v-show="windowWidth <= 958"/>
       <Nav v-show="windowWidth > 958"/>
     </div>
-    <div class="main" >
+    <div v-show="afkBackground" class="main" >
+      {{ messageStr }}
       <router-view :class="{'main-nav': windowWidth > 958,
                   'main-nav-pull': windowWidth <= 958}"/>
     </div>
@@ -14,11 +16,13 @@
 <script>
   import Nav from './views/Nav';
   import NavPull from './views/NavPull';
+  import AfkBackground from './components/AfkBackground';
 
   export default {
     data() {
       return {
-        windowWidth: window.innerWidth
+        windowWidth: window.innerWidth,
+        afkBackground: false
       }
     },
     mounted() {
@@ -27,7 +31,14 @@
       }
     },
     components: {
-      Nav, NavPull
+      Nav, NavPull,
+      AfkBackground
+    },
+    onIdle() {
+      this.afkBackground = false
+    },
+    onActive() {
+      this.afkBackground = true
     },
     computed: {
       currentUser() {

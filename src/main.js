@@ -15,12 +15,19 @@ import {
   faSignInAlt,
   faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
+import IdleVue from 'idle-vue'
 
 library.add(faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt);
 
 Vue.config.productionTip = false;
+const eventsHub = new Vue();
 
 Vue.use(VeeValidate);
+Vue.use(IdleVue, {
+  eventEmitter: eventsHub,
+  idleTime: 10000
+});
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.use(Vuex);
