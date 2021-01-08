@@ -87,6 +87,7 @@
 <script>
 import SockJS from "sockjs-client";
 import Stomp from "webstomp-client";
+import backendUrl from "../store/backendUrl";
 
 export default {
   name: "websocketdemo",
@@ -110,7 +111,7 @@ export default {
     },
     connect() {
 
-      this.socket = new SockJS("http://localhost:8080/gs-guide-websocket");
+      this.socket = new SockJS(backendUrl()+"gs-guide-websocket");
       this.stompClient = Stomp.over(this.socket);
 
       this.stompClient.connect(
