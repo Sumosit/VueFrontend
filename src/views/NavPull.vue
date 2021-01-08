@@ -33,7 +33,7 @@
             <router-link class="link-username" to="/profile">{{currentUser.username}}</router-link>
           </div>
           <div v-if="isAdmin" class="nav-bar">
-            <router-link to="/admin/test">Admin, User</router-link>
+            <router-link to="/admin/test">Admin</router-link>
           </div>
           <div v-else-if="isUser" class="nav-bar">
             <router-link to="/user/test">User</router-link>

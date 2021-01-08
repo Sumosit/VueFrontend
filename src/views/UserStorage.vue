@@ -69,7 +69,7 @@
         axios.post(backendUrl() + 'user/storage/upload', formData, {
           headers:
               authHeader(),
-          'Content-Type': 'multipart/form-data'
+              'Content-Type': 'multipart/form-data'
         }).then(res => {
           console.log(res);
           this.$store.dispatch('fetchStorageFiles');

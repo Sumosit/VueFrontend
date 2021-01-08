@@ -4,11 +4,15 @@
       <span>Profile</span>
     </div>
     <div class="wrapper">
-      <div v-if="currentUser.fileDB"
+      <div v-if="currentUser.fileDB && !editProfilePhoto"
            class="profile-image">
         <img :src="backendUrl + 'files/' +$store.state.auth.user.fileDB.id">
+        <div class="change-photo-activator">
+          <img :src="editProfilePhotoIcon"
+                v-on:click="editProfilePhoto = !editProfilePhoto">
+        </div>
       </div>
-      <div v-else
+      <div v-if="!currentUser.fileDB || editProfilePhoto"
            class="profile-image">
         <input type="file" @change="onFileChanged"/>
         <button @click="onUpload">Upload</button>
@@ -32,12 +36,16 @@
   import User from "../models/user";
   import {mapMutations} from "vuex";
 
+  import editProfilePhotoIcon from '../assets/images/edit-profile-photo-icon.svg';
+
   export default {
     name: 'Profile',
     data() {
       return {
         selectedFile: null,
-        backendUrl: ''
+        backendUrl: '',
+        editProfilePhoto: false,
+        editProfilePhotoIcon
       }
     },
     mounted() {

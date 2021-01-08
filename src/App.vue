@@ -6,7 +6,6 @@
       <Nav v-show="windowWidth > 958"/>
     </div>
     <div v-show="afkBackground" class="main" >
-      {{ messageStr }}
       <router-view :class="{'main-nav': windowWidth > 958,
                   'main-nav-pull': windowWidth <= 958}"/>
     </div>

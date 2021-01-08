@@ -1,7 +1,12 @@
 <template>
+  <div>
     <div class="title">
       <span>Home</span>
     </div>
+    <div>
+      <router-view/>
+    </div>
+  </div>
 </template>
 
 <script>
