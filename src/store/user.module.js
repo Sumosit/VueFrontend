@@ -3,9 +3,23 @@ import authHeader from "../services/auth-header";
 
 export const user = {
   state: {
-    storageFiles: []
+    storageFiles: [],
+    news: []
   },
   actions: {
+    async fetchNews(ctx) {
+      await fetch(backendUrl() + 'news',
+          {
+            headers: authHeader()
+          })
+          .then(response => response.json())
+          .then(json => {
+            setTimeout(() => {
+              const news = json;
+              ctx.commit('updateNews', news);
+            }, 1000)
+          });
+    },
     async fetchStorageFiles(ctx) {
       await fetch(backendUrl() + 'user/storage',
           {
@@ -34,6 +48,9 @@ export const user = {
     }
   },
   mutations: {
+    updateNews(state, payload) {
+      state.news = payload.reverse();
+    },
     updateStorageFiles(state, payload) {
       state.storageFiles = payload;
     },
@@ -44,6 +61,9 @@ export const user = {
     }
   },
   getters: {
+    allNews(state) {
+      return state.news;
+    },
     allStorageFiles(state) {
       return state.storageFiles;
     }

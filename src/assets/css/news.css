@@ -1,0 +1,42 @@
+.main {
+    padding: 5px;
+}
+.news {
+    padding: 10px;
+    border: 2px solid #a8a8a8;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    margin-bottom: 5px;
+}
+.news-title-field {
+    display: flex;
+    /*background-color: red;*/
+}
+.news-title-author-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: yellow;*/
+}
+.news-title-author-avatar > img {
+    width: 50px;
+    border-radius: 10px;
+}
+.news-title {
+    width: 100%;
+    padding: 5px;
+    font-family: "Segoe UI", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    /*background-color: blue;*/
+}
+.news-title > p {
+    font-weight: normal;
+    margin: 0;
+}
+.news-content-field {
+    font-family: Arial, sans-serif;
+    margin-top: 10px;
+    font-size: 16px;
+}

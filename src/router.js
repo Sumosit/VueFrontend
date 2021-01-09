@@ -11,21 +11,22 @@ export const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import('./views/Home.vue')
-    },
-    {
-      path: '/home',
-      component: Home,
+      component: () => import('./views/Home.vue'),
       children: [
         {
-          path: '/home/chat',
+          path: '/chat',
           component: () => import('./components/WebsocketGreetings'),
         },
+      ]
+    },
+    {
+      path: '/news',
+      component: () => import('./views/News'),
+      children: [
         {
-          path: '/home/news',
+          path: '/',
           component: () => import('./components/WebsocketNews'),
-        }
+        },
       ]
     },
     {
@@ -55,6 +56,10 @@ export const router = new Router({
         {
           path: '/admin/salaries/give',
           component: () => import('./views/AdminGiveSalaries.vue'),
+        },
+        {
+          path: '/admin/news',
+          component: () => import('./components/AdminWebsocketNews'),
         },
       ]
     },

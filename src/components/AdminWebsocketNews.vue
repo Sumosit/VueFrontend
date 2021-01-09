@@ -1,21 +1,66 @@
 <template>
   <div>
-    <div class="news"
-         v-for="item in received_messages"
-         :key="item">
-      <div class="news-title-field">
-        <div class="news-title-author-avatar">
-          <img src="../assets/images/ivsio.jpg">
-        </div>
-        <div class="news-title">
-          {{item.title}}
-          <p>by Mikhail Sabyanin - Tuesday, 15 December 2020, 3:26 PM</p>
-        </div>
-      </div>
-      <div class="news-content-field">
-        {{item.content}}
-      </div>
-    </div>
+    <form class="form-inline">
+      <label for="connect">WebSocket connection:</label>
+      <button
+        id="connect"
+        class="btn btn-default"
+        type="submit"
+        :disabled="connected === true"
+        @click.prevent="connect"
+      >Connect
+      </button>
+      <button
+        id="disconnect"
+        class="btn btn-default"
+        type="submit"
+        :disabled="connected === false"
+        @click.prevent="disconnect"
+      >Disconnect
+      </button>
+    </form>
+    <form class="form-inline">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        v-model="send_title"
+        placeholder="Title"
+      >
+      <label for="content">Content</label>
+      <textarea
+        id="content"
+        class="form-control"
+        v-model="send_content"
+        placeholder="Content"
+      ></textarea>
+      <button
+        id="send"
+        class="btn btn-default"
+        type="submit"
+        @click.prevent="send"
+      >Send
+      </button>
+    </form>
+    <table id="conversation"
+           class="table table-striped">
+      <thead>
+      <tr>
+        <th>News</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr
+        v-for="item in received_messages"
+        :key="item"
+      >
+        <td>{{ item.id }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.content }}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -58,7 +103,6 @@
               console.log(frame);
               this.stompClient.subscribe("/topic/news", tick => {
                 console.log(tick);
-                console.log(this.received_messages.lastItem.content);
                 this.received_messages.unshift(JSON.parse(tick.body));
               });
             },
@@ -80,12 +124,10 @@
     },
     mounted() {
       this.connect();
-      this.$store.dispatch("fetchNews");
-      this.received_messages = this.$store.getters.allNews;
+      this.$store.dispatch("fetchNews")
     }
   };
 </script>
 
 <style scoped>
-  @import '../assets/css/news.css';
 </style>
