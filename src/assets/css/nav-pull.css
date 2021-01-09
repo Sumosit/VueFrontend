@@ -1,6 +1,6 @@
 .nav-pull {
     z-index: 9999;
-    position: absolute;
+    position: fixed;
     width: 500px;
     height: 100vh;
     left: 0;
@@ -28,7 +28,7 @@
 
 [class*="btn-nav-pull"] {
     z-index: 9999;
-    position: absolute;
+    position: fixed;
     top: 10px;
     left: 10px;
     width: 35px;
