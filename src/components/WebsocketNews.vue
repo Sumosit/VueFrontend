@@ -35,17 +35,6 @@
       };
     },
     methods: {
-      send() {
-        console.log("Send message:" + this.send_title);
-        if (this.stompClient && this.stompClient.connected) {
-          const msg = {
-            title: this.send_title,
-            content: this.send_content
-          };
-          console.log(JSON.stringify(msg));
-          this.stompClient.send("/app/news", JSON.stringify(msg), {});
-        }
-      },
       connect() {
 
         this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
@@ -58,7 +47,6 @@
               console.log(frame);
               this.stompClient.subscribe("/topic/news", tick => {
                 console.log(tick);
-                console.log(this.received_messages.lastItem.content);
                 this.received_messages.unshift(JSON.parse(tick.body));
               });
             },
