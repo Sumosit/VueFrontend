@@ -5,11 +5,12 @@
          :key="item">
       <div class="news-title-field">
         <div class="news-title-author-avatar">
-          <img src="../assets/images/ivsio.jpg">
+          <img :src="item.authorAvatar">
         </div>
         <div class="news-title">
           {{item.title}}
-          <p>by Mikhail Sabyanin - Tuesday, 15 December 2020, 3:26 PM</p>
+<!--          <p>by Mikhail Sabyanin - Tuesday, 15 December 2020, 3:26 PM</p>-->
+          <p>by {{item.authorUsername}}, {{item.date}}</p>
         </div>
       </div>
       <div class="news-content-field">
@@ -36,10 +37,8 @@
     },
     methods: {
       connect() {
-
         this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
         this.stompClient = Stomp.over(this.socket);
-
         this.stompClient.connect(
             {},
             frame => {

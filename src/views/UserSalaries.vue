@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import sortById from "../js/sortById"
+  import sortById from "../js/getTimestampDate"
 
   export default {
     name: "UserSalaries",

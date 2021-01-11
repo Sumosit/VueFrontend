@@ -68,6 +68,7 @@
   import SockJS from "sockjs-client";
   import Stomp from "webstomp-client";
   import backendUrl from "../store/backendUrl";
+  import getTimestampDate from "../js/getTimestampDate";
 
   export default {
     name: "websocketdemo",
@@ -84,18 +85,20 @@
         console.log("Send message:" + this.send_title);
         if (this.stompClient && this.stompClient.connected) {
           const msg = {
+            authorId: this.$store.state.auth.user.id,
+            authorUsername: this.$store.state.auth.user.username,
+            authorAvatar: backendUrl() + 'files/' + this.$store.state.auth.user.fileDB.id,
             title: this.send_title,
-            content: this.send_content
+            content: this.send_content,
+            date: getTimestampDate()
           };
           console.log(JSON.stringify(msg));
           this.stompClient.send("/app/news", JSON.stringify(msg), {});
         }
       },
       connect() {
-
         this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
         this.stompClient = Stomp.over(this.socket);
-
         this.stompClient.connect(
             {},
             frame => {
