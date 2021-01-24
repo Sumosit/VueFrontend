@@ -1,0 +1,96 @@
+.main {
+    min-width: 900px;
+}
+
+.wrapper > div {
+    background-color: #0e0e10;
+    font-family: Arial, sans-serif;
+}
+
+@media (min-width: 300px) {
+    .wrapper {
+        min-height: 645px;
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        grid-template-areas: "id2-list message-field";
+        grid-gap: 5px;
+    }
+}
+
+.id2-list {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    padding: 0;
+}
+
+.id2-list > div:hover {
+    background-color: #292930;
+}
+
+.id2-list > div {
+    display: block;
+}
+
+.message-field {
+    position: relative;
+    background-color: red;
+}
+
+.btn-search-field, .btn-send-field {
+    padding: 10px;
+    background-color: #333336;
+}
+
+.btn-search {
+    background: white url(../images/search-icon.svg) no-repeat right center;
+    height: 32px;
+    font-size: 20px;
+}
+
+@media (min-width: 300px) {
+    .profile-image {
+        display: grid;
+        grid-template-columns: 50px 3fr;
+        grid-template-areas: "pi-avatar pi-info";
+        grid-gap: 5px;
+        padding: 10px;
+    }
+}
+
+.profile-image > div {
+
+}
+
+.profile-image > div > img {
+    width: auto;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.pi-avatar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-info {
+    padding: 10px;
+    overflow: hidden;
+}
+
+.profile-info > span {
+    display: block;
+    margin-top: 5px;
+}
+
+.profile-info > .username {
+    font-size: 18px;
+    color: #fff;
+}
+
+.profile-info > .email {
+    font-size: 14px;
+    color: #aaa;
+}

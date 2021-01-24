@@ -1,0 +1,29 @@
+@media (min-width: 1400px) {
+    .wrapper-nav-ls {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        grid-template-areas: "nav-ls wrapper" "nav-ls wrapper" "nav-ls wrapper" "nav-ls wrapper";
+        grid-gap: 5px;
+    }
+}
+
+.wrapper-nav-ls > div {
+}
+
+.nav-ls {
+    font-family: Arial, sans-serif;
+    background-color: #181818;
+    padding: 5px;
+}
+
+.nav-ls-link {
+    padding: 10px 15px;
+}
+
+.nav-ls-link > a {
+    color: #e8e8e8;
+}
+
+.nav-ls-link:hover {
+    background-color: #575757;
+}

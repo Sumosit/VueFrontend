@@ -1,19 +1,83 @@
 nav {
     z-index: 9999;
     position: fixed;
+    height: 50px;
     width: 100%;
     top: 0;
     left: 0;
     font-family: Arial, serif;
     font-size: 18px;
     color: #ffffff;
-    background-color: rgba(0,0,0,1);
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 20%, rgba(38,38,38,1) 91%, rgba(255,255,255,1) 100%);
+    display: flex;
+}
+.iitu-logo > img{
+    width: 50px;
+    height: auto;
 }
 nav > div {
+    display: flex;
+    width: 900px;
+    margin-left: 0;
+    margin-right: auto;
+}
+nav > div > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    position: relative;
+}
+.nav-username-dropdown {
+    position: relative;
+    display: inline-block;
+}
+.nav-username-dropdown-btn {
+    background-color: rgba(0,0,0,0);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.nav-username-dropdown .nav-username-dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #090909;
+    min-width: 280px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 10px 10px;
+    z-index: 1;
+}
+.nav-username-dropdown-content {
+    display: block;
+    position: absolute;
+    min-width: 400px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 2%, rgba(0,0,0,1) 98%, rgba(255,255,255,1) 100%);
+}
+.nav-link:hover {
+    transition: all 1s;
+    background-color: #5a5a5a;
+}
+.nav-link-leave {
+    transition: all 1s;
+    opacity: 0;
+}
+.nav-link {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+nav > div > .iitu-logo {
     display: inline-block;
     padding: 10px 10px;
 }
-nav > div:hover {
+nav > div > .iitu-logo:hover {
     background-color: rgba(255, 255, 255, 0.5);
 }
 a {

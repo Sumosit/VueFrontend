@@ -1,10 +1,7 @@
 <template>
   <div>
-    <div class="title">
-      <span>Moderator</span>
-    </div>
     <div class="user-info">
-      <router-view v-if="show"/>
+      <router-view class="main" v-if="show"/>
       <div v-else>
         Moderator Page Forbidden
       </div>
@@ -40,6 +37,6 @@
   };
 </script>
 
-<style>
+<style scoped>
   @import '../assets/css/main.css';
 </style>

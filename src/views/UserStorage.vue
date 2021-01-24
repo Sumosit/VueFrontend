@@ -1,5 +1,5 @@
 <template>
-  <div class="main-info">
+  <div>
     <input id="files" ref="files" type="file" multiple @change="handleFileUploads"/>
     <label for="files">Choose file</label>
     <button @click="submitFiles()">Upload</button>

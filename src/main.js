@@ -14,7 +14,7 @@ const eventsHub = new Vue();
 Vue.use(VeeValidate);
 Vue.use(IdleVue, {
   eventEmitter: eventsHub,
-  idleTime: 600000
+  idleTime: 1000000
 });
 
 Vue.use(Vuex);

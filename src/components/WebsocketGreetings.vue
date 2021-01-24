@@ -94,7 +94,7 @@ export default {
       if (this.stompClient && this.stompClient.connected) {
         const msg = { name: this.send_message };
         console.log(JSON.stringify(msg));
-        this.stompClient.send("/app/hello", JSON.stringify(msg), {});
+        this.stompClient.send("/app/hello/1", JSON.stringify(msg), {});
       }
     },
     connect() {
@@ -107,7 +107,7 @@ export default {
           frame => {
           this.connected = true;
           console.log(frame);
-          this.stompClient.subscribe("/topic/greetings", tick => {
+          this.stompClient.subscribe("/topic/greetings/1", tick => {
             console.log(tick);
             this.received_messages.push(JSON.parse(tick.body).content);
           });

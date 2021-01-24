@@ -1,9 +1,7 @@
 <template>
   <div>
-    <div class="title">
-      <span>User</span>
-    </div>
-    <div>
+    <div class="main wrapper-nav-ls">
+      <NavLeftSide/>
       <router-view v-if="show"/>
       <div v-else>
         User Page Forbidden
@@ -14,6 +12,7 @@
 
 <script>
   import UserService from '../services/user.service';
+  import NavLeftSide from "./NavLeftSide";
 
   export default {
     name: 'User',
@@ -22,6 +21,9 @@
         content: '',
         show: false
       };
+    },
+    components: {
+      NavLeftSide
     },
     mounted() {
       UserService.getUserBoard().then(

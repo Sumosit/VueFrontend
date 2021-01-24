@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <div class="title">
       <span>News</span>
     </div>
@@ -35,6 +35,6 @@
   };
 </script>
 
-<style>
+<style scoped>
   @import '../assets/css/main.css';
 </style>

@@ -1,10 +1,7 @@
 <template>
   <div>
-    <div class="title">
-      <span>Admin</span>
-    </div>
     <div>
-      <router-view v-if="show"/>
+      <router-view class="main" v-if="show"/>
       <div v-else>
         Admin Page Forbidden
       </div>
@@ -46,6 +43,6 @@
     }
   };
 </script>
-<style>
+<style scoped>
   @import '../assets/css/main.css';
 </style>

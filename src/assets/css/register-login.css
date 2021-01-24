@@ -2,6 +2,10 @@ body {
     overflow-y: hidden;
 }
 
+.main {
+
+}
+
 .register {
     position: relative;
     width: 100%;

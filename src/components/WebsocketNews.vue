@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="news-content-field">
-        {{item.content}}
+        <p style="white-space: pre-line" v-html="item.content"></p>
       </div>
     </div>
   </div>

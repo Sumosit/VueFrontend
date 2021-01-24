@@ -30,7 +30,7 @@
           </div>
           <div v-if="loggedIn"
                class="nav-bar-username">
-            <router-link class="link-username" to="/profile">{{currentUser.username}}</router-link>
+            <router-link class="link-username" to="/user/profile">{{currentUser.username}}</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
             <router-link to="/chat">Chat</router-link>
@@ -41,12 +41,6 @@
           <div v-if="isAdmin" class="nav-bar">
             <router-link to="/admin/news">Admin News</router-link>
           </div>
-          <div v-if="isAdmin" class="nav-bar">
-            <router-link to="/admin/test">Admin</router-link>
-          </div>
-          <div v-else-if="isUser" class="nav-bar">
-            <router-link to="/user/test">User</router-link>
-          </div>
           <div v-if="loggedIn" class="nav-bar">
             <router-link to="/user/salaries">Salaries</router-link>
           </div>
@@ -55,9 +49,6 @@
           </div>
           <div v-if="isUser" class="nav-bar">
             <router-link to="/user/storage">Storage</router-link>
-          </div>
-          <div v-if="isModerator" class="nav-bar">
-            <router-link to="/moderator/test">Moderator</router-link>
           </div>
           <div class="nav-bar">
             <a href @click.prevent="logOut">

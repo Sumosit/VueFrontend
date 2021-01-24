@@ -1,11 +1,6 @@
 <template>
   <div>
-    <div class="title">
-      <span>Home</span>
-    </div>
-    <div>
-      <router-view/>
-    </div>
+    <router-view/>
   </div>
 </template>
 

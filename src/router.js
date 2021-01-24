@@ -17,31 +17,25 @@ export const router = new Router({
           path: '/chat',
           component: () => import('./components/WebsocketGreetings'),
         },
-      ]
-    },
-    {
-      path: '/news',
-      component: () => import('./views/News'),
-      children: [
         {
-          path: '/',
-          component: () => import('./components/WebsocketNews'),
+          path: '/login',
+          component: Login
+        },
+        {
+          path: '/register',
+          component: Register
+        },
+        {
+          path: '/news',
+          component: () => import('./views/News'),
+          children: [
+            {
+              path: '/',
+              component: () => import('./components/WebsocketNews'),
+            },
+          ]
         },
       ]
-    },
-    {
-      path: '/login',
-      component: Login
-    },
-    {
-      path: '/register',
-      component: Register
-    },
-    {
-      path: '/profile',
-      name: 'profile',
-      // lazy-loaded
-      component: () => import('./views/Profile.vue')
     },
     {
       path: '/admin',
@@ -49,10 +43,6 @@ export const router = new Router({
       // lazy-loaded
       component: () => import('./views/AdminBoard.vue'),
       children: [
-        {
-          path: '/admin/test',
-          component: () => import('./views/AdminTest.vue'),
-        },
         {
           path: '/admin/salaries/give',
           component: () => import('./views/AdminGiveSalaries.vue'),
@@ -82,10 +72,6 @@ export const router = new Router({
       component: () => import('./views/UserBoard.vue'),
       children: [
         {
-          path: '/user/test',
-          component: () => import('./views/UserTest.vue'),
-        },
-        {
           path: '/user/salaries',
           component: () => import('./views/UserSalaries.vue'),
         },
@@ -93,6 +79,26 @@ export const router = new Router({
           path: '/user/storage',
           component: () => import('./views/UserStorage.vue')
         },
+        {
+          path: '/user/profile',
+          component: () => import('./views/Profile.vue')
+        },
+        {
+          path: '/user/workers',
+          component: () => import('./views/Workers')
+        },
+        {
+          path: '/user/chat',
+          component: () => import('./components/Chat'),
+        },
+        {
+          path: '/user/chat/:chatId/:recipientId',
+          component: () => import('./components/Chat'),
+        },
+        {
+          path: '/user/chat/with/:chatId/:recipientId',
+          component: () => import('./components/ChatWith')
+        }
       ]
     }
   ]

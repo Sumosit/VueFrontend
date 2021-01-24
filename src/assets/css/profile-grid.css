@@ -1,15 +1,30 @@
-.wrapper {
-    display: grid;
-    grid-template-columns: minmax(10%, 20%) 80%;
-    grid-gap: 5px;
+@media (min-width: 1400px) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-areas: "profile-image profile-info" "profile-image profile-info" "profile-image profile-info" "profile-image profile-info";
+        grid-gap: 5px;
+    }
 }
+
 .wrapper > div {
-    background-color: #333336;
+    background-color: #0e0e10;
     font-family: Arial, sans-serif;
 }
+
 .profile-image {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
+}
+
+.profile-image > img {
+    width: 300px;
+    height: auto;
+    border: 2px white solid;
+    border-radius: 5px;
 }
 
 .change-photo-activator {
@@ -21,7 +36,15 @@
     border-radius: 5px;
     background-color: white;
 }
-.change-photo-activator > img {
+.edit-profile-info {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.change-photo-activator, .edit-profile-info > img {
     cursor: pointer;
 }
 
@@ -29,15 +52,75 @@
     padding: 20px;
     overflow: hidden;
 }
+
+.profile-info > span {
+    display: block;
+    margin-top: 10px;
+}
+
 .profile-info > .username {
     font-size: 32px;
     color: #fff;
 }
+
 .profile-info > .email {
     font-size: 18px;
     color: #aaa;
 }
+
+.profile-info > .resume {
+    position: relative;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #aaa;
+}
+
+.resume > span {
+    display: block;
+}
+
+.resume > div > textarea, button {
+    display: block;
+}
+
+textarea {
+    max-width: 99%;
+}
+
+button {
+    margin-top: 4px;
+    padding: 7px 10px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
 img {
     width: 100%;
     height: auto;
 }
+
+.profile-avatar-upload {
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    display: block;
+}
+
+.profile-avatar-upload > span {
+    margin-top: 7px;
+    display: block;
+    word-break: break-word;
+}
+
+.upload-btn {
+    padding: 20px;
+    border: 2px solid white;
+    border-radius: 4px;
+    font-size: 20px;
+}
+
+.upload-error {
+    color: #d50000;
+    background-color: #d0d0d0;
+    padding: 5px;
+}
+

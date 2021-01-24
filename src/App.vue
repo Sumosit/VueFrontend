@@ -5,7 +5,7 @@
       <NavPull v-show="windowWidth <= 958"/>
       <Nav v-show="windowWidth > 958"/>
     </div>
-    <div v-show="afkBackground" class="main" >
+    <div v-show="afkBackground" >
       <router-view :class="{'main-nav': windowWidth > 958,
                   'main-nav-pull': windowWidth <= 958}"/>
     </div>
@@ -21,7 +21,7 @@
     data() {
       return {
         windowWidth: window.innerWidth,
-        afkBackground: false
+        afkBackground: true
       }
     },
     mounted() {

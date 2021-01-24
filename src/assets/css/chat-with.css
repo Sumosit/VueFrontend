@@ -1,0 +1,64 @@
+.mf-history {
+    max-height: 590px;
+    min-height: 590px;
+    word-break: break-word;
+    overflow-y: scroll;
+    padding: 30px;
+}
+.mf-message {
+    position: absolute;
+    bottom: 0;
+}
+.recipient {
+    position: relative;
+    min-height: 50px;
+    text-align: left;
+}
+.sender {
+    position: relative;
+    min-height: 50px;
+    text-align: right;
+}
+@media (min-width: 300px) {
+    .wrapper-chat-with-sen {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 10fr 1fr;
+        grid-template-areas: "sen-pi-avatar message";
+        grid-gap: 5px;
+    }
+    .wrapper-chat-with-rec {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 1fr 15fr;
+        grid-template-areas: "message rec-pi-avatar";
+        grid-gap: 5px;
+    }
+}
+.rec-pi-avatar {
+    position: relative;
+    left: 0;
+}
+
+.sen-pi-avatar {
+    position: relative;
+    right: 0;
+}
+
+.rec-pi-avatar > img, .sen-pi-avatar > img {
+    width: auto;
+    height: 50px;
+    border-radius: 5px;
+}
+.message-sen, .message-rec {
+    background-color: #333336;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 16px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+.message-sen > span, .message-rec > span  {
+}

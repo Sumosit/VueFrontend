@@ -60,8 +60,8 @@
       sendOneSalary() {
         let date = new Date();
         let formData = new FormData();
-        date = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()+" "+
-            date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
+        date = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + " " +
+            date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear();
 
         for (let i = 0; i < this.items.length; i++) {
           if (this.items[i] > 0) {
