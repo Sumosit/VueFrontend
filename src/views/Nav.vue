@@ -6,25 +6,39 @@
       </router-link>
       <div>
         <div class="nav-username-dropdown"
-             @mouseover="username = true"
-             @mouseleave="username = false">
+             @mouseover="dropdown = true"
+             @mouseleave="dropdown = false">
           <button class="nav-username-dropdown-btn">
             {{$store.state.auth.user.username}}
           </button>
           <div class="nav-username-dropdown-content"
-               v-show="username === true">
+               v-show="dropdown === true">
             <div class="nav-link">
               <router-link to="/user/profile">
                 Profile
               </router-link>
             </div>
             <div class="nav-link">
-              <router-link to="/user/profile">
+              <router-link to="/user/hri">
                 Human Resources information
               </router-link>
             </div>
+            <div class="nav-link">
+              <router-link to="/user/workers">
+                Workers
+              </router-link>
+            </div>
+            <div class="nav-link">
+              <router-link to="/user/chat">
+                Chat
+              </router-link>
+            </div>
+            <div class="nav-link">
+              <a href @click.prevent="logOut">
+                Exit
+              </a>
+            </div>
           </div>
-          </transition>
         </div>
       </div>
       <!--      <div v-if="!loggedIn">-->
@@ -56,7 +70,7 @@
     name: "Nav",
     data() {
       return {
-        username: false,
+        dropdown: false,
       }
     },
     computed: {

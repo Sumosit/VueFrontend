@@ -6,3 +6,107 @@ body {
     background-size: cover;
     background-color: #464646;
 }
+.button-instrument {
+    z-index: 3333;
+    position: absolute;
+    margin-top: 0;
+    top: 0;
+    right: 5px;
+}
+
+.content-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content-left {
+    width: 100%;
+}
+
+.button {
+    color: white;
+    display: table;
+    /*margin-top: 10px;*/
+    /*margin-right: 5px;*/
+    font-size: 18px;
+    margin: 10px;
+    padding: 10px 15px;
+    border: 1px solid white;
+    cursor: pointer;
+    background-color: black;
+}
+
+.button-inline-block {
+    display: inline-block;
+}
+
+.button-90per {
+    width: 85%;
+}
+
+.button-hover:hover {
+    transition: all 0.5s;
+    color: black;
+    background-color: #ffffff;
+}
+.button-leave {
+    transition: all 0.5s;
+    color: white;
+    background-color: black;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.absolute-top-left {
+    top: 0;
+    right: 0;
+}
+
+textarea {
+    transition: all;
+    padding: 7px;
+    background-color: black;
+    color: #f6f6f6;
+    font-size: 14px;
+}
+
+input {
+    transition: all;
+    background-color: black;
+    border: 1px solid #f6f6f6;
+    color: #f6f6f6;
+    font-size: 14px;
+}
+
+::selection {
+    color: white;
+    background-color: #a00000;
+}
+
+.text-indent {
+    text-indent: 1.5em;
+    text-align: justify;
+    word-break: break-word;
+}
+
+.button-link:hover {
+    background-color: #ffffff;
+}
+
+.button-link-mouseleave {
+    transition: all 0.5s;
+    color: white;
+    background-color: black;
+}
+
+.button-link:hover, .button-link:hover > a {
+    transition: all 0.5s;
+    color: black;
+}
+.backgroundColor-padding5 {
+    padding: 5px;
+    background-color: #0e0e10;
+    font-family: Arial, sans-serif;
+}

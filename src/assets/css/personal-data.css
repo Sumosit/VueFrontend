@@ -1,0 +1,40 @@
+
+.i-form {
+    position: relative;
+}
+.i-form > form > label {
+    display: block;
+    padding: 15px 20px;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+}
+.i-form > form > label > input {
+    height: 30px;
+    width: 400px;
+    padding: 5px;
+    font-size: 18px;
+}
+.iin-input::-webkit-outer-spin-button,
+.iin-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.button-left-bottom {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.p-d-nav-field {
+    position: relative;
+    margin-top: 10px;
+}
+
+.p-d-router-view {
+    margin-top: 10px;
+}
+
+.p-d-table-field {
+    margin-top: 10px;
+}
+
+

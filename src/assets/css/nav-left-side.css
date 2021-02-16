@@ -8,22 +8,45 @@
 }
 
 .wrapper-nav-ls > div {
+
 }
 
 .nav-ls {
     font-family: Arial, sans-serif;
-    background-color: #181818;
+    background-color: #000000;
     padding: 5px;
+    border: 0.01vw solid #f6f6f6;
 }
 
 .nav-ls-link {
+    position: relative;
     padding: 10px 15px;
 }
 
-.nav-ls-link > a {
-    color: #e8e8e8;
+.nav-ls-link:hover, .nav-ls-link:hover > a {
+    transition: all 0.5s;
+    color: black;
+}
+.nav-ls-link:hover {
+    background-color: #ffffff;
 }
 
-.nav-ls-link:hover {
-    background-color: #575757;
+.nav-ls-link-mouseleave {
+    transition: all 0.5s;
+    color: white;
+    background-color: black;
+}
+.nav-hri-dropdown-content {
+    z-index: 6666;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: #b8b8b8;
+}
+.nav-link:hover, .nav-link > a:hover {
+    color: #242424;
+}
+.nav-link:hover {
+    background-color: #d9d9d9;
 }

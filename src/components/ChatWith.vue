@@ -2,7 +2,8 @@
   <div>
     <div class="mf-history">
       <div v-for="(item, index) in received_messages">
-        <div v-if="item.userId!==$store.state.auth.user.id"
+        <div
+          v-if="item.userId!==$store.state.auth.user.id"
              class="recipient wrapper-chat-with-rec">
           <div class="rec-pi-avatar">
             <img v-if="recipient.fileDB"
@@ -14,35 +15,48 @@
           </div>
         </div>
         <div v-if="item.userId===$store.state.auth.user.id"
-             class="recipient wrapper-chat-with-rec">
-          <div class="rec-pi-avatar">
+          :class="{'sender wrapper-chat-with-sen': changeView === false,
+          'recipient wrapper-chat-with-rec': changeView === true}">
+          <div v-if="changeView === false"
+            class="message-sen">
+            <span>{{ item.content }}</span>
+          </div>
+          <div
+            :class="{'sen-pi-avatar': changeView === false,
+            'rec-pi-avatar': changeView === true}">
             <img v-if="$store.state.auth.user.fileDB"
                  :src="backendUrl + 'files/' + $store.state.auth.user.fileDB.id">
             <img v-else src="../assets/images/user.svg">
           </div>
-          <div class="message-rec">
+          <div v-if="changeView === true"
+               class="message-rec">
             <span>{{ item.content }}</span>
           </div>
         </div>
       </div>
     </div>
 
-    <form>
+    <form class="form-mf-message">
       <div class="mf-message">
-        <input
-          type="text"
-          id="name"
-          class="form-control"
-          v-model="send_message"
-          placeholder="Your name here..."
-        >
-        <button
-          id="send"
-          class="btn btn-default"
-          type="submit"
-          @click.prevent="send"
-        >Send
-        </button>
+        <label class="label-text">
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            v-model="send_message"
+            placeholder="Your message"
+          >
+        </label>
+        <label class="label-send"
+          for="send">
+          <button
+            id="send"
+            class="btn btn-default"
+            type="submit"
+            @click.prevent="send"
+          >
+          </button>
+        </label>
       </div>
     </form>
   </div>
@@ -66,6 +80,7 @@
         chat: []
       };
     },
+    props: ['changeView'],
     methods: {
       send() {
         console.log("Send message:" + this.send_message);

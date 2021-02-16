@@ -1,22 +1,25 @@
 <template>
   <div>
-    <div class="btn-search-field">
-      <input class="btn-search" type="text" v-model="search">
+    <div class="workers-btn-search-field">
+      <input class="workers-btn-search" type="text" v-model="search">
     </div>
     <div v-for="(user, index) in filteredList"
          :key="index">
-      <div class="wrapper">
+      <div class="workers-wrapper">
         <div v-if="user.fileDB"
-             class="profile-image">
+             class="workers-profile-image">
           <img :src="backendUrl + 'files/' + user.fileDB.id">
         </div>
-        <div class="profile-info">
+        <div v-else
+             class="workers-profile-image">
+          <img src="src/assets/images/user.svg">
+        </div>
+        <div class="workers-profile-info">
           <span class="username">{{user.username}}</span>
           <span class="email">{{user.email}}</span>
           <button v-on:click="createChat(user.id)">send message</button>
         </div>
       </div>
-      <hr>
     </div>
   </div>
 </template>

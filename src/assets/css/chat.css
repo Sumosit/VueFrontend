@@ -2,13 +2,13 @@
     min-width: 900px;
 }
 
-.wrapper > div {
+.c-wrapper > div {
     background-color: #0e0e10;
     font-family: Arial, sans-serif;
 }
 
 @media (min-width: 300px) {
-    .wrapper {
+    .c-wrapper {
         min-height: 645px;
         display: grid;
         grid-template-columns: 1fr 4fr;
@@ -17,39 +17,51 @@
     }
 }
 
-.id2-list {
+.c-id2-list {
     cursor: pointer;
     position: relative;
     display: block;
     padding: 0;
 }
 
-.id2-list > div:hover {
+.c-id2-list > div:hover {
     background-color: #292930;
 }
 
-.id2-list > div {
+.c-id2-list > div {
     display: block;
 }
 
-.message-field {
+.c-message-field {
     position: relative;
     background-color: red;
 }
 
-.btn-search-field, .btn-send-field {
+.c-btn-search-field, .c-btn-send-field {
+    position: relative;
     padding: 10px;
     background-color: #333336;
 }
 
-.btn-search {
+.c-btn-search-field > img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    width: 20px;
+    height: auto;
+}
+
+.c-btn-search {
     background: white url(../images/search-icon.svg) no-repeat right center;
     height: 32px;
     font-size: 20px;
 }
 
 @media (min-width: 300px) {
-    .profile-image {
+    .c-profile-image {
         display: grid;
         grid-template-columns: 50px 3fr;
         grid-template-areas: "pi-avatar pi-info";
@@ -62,35 +74,35 @@
 
 }
 
-.profile-image > div > img {
+.c-profile-image > div > img {
     width: auto;
     height: 50px;
     border-radius: 5px;
 }
 
-.pi-avatar {
+.c-pi-avatar {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.profile-info {
+.c-profile-info {
     padding: 10px;
     overflow: hidden;
 }
 
-.profile-info > span {
+.c-profile-info > span {
     display: block;
     margin-top: 5px;
 }
 
-.profile-info > .username {
+.c-profile-info > .username {
     font-size: 18px;
     color: #fff;
 }
 
-.profile-info > .email {
+.c-profile-info > .email {
     font-size: 14px;
     color: #aaa;
 }

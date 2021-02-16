@@ -1,21 +1,23 @@
 <template>
   <div>
-    <div class="btn-search-field">
-      <input class="btn-search" type="text" v-model="search">
+    <div class="c-btn-search-field">
+      <input class="c-btn-search" type="text" v-model="search">
+      <img v-on:click="changeView = !changeView"
+        src="../assets/images/change-chatWith.png">
     </div>
-    <div class="wrapper">
-      <div class="id2-list">
+    <div class="c-wrapper">
+      <div class="c-id2-list">
         <div v-for="(chat, index) in getChat"
              :key="index"
         v-on:click="setUrlParameters(chat.id, chat.recipientId.id)">
-          <div class="profile-image">
-            <div class="pi-avatar" >
+          <div class="c-profile-image">
+            <div class="c-pi-avatar" >
               <img v-if="chat.recipientId.fileDB"
                    :src="backendUrl + 'files/' + chat.recipientId.fileDB.id">
               <img v-else src="../assets/images/user.svg">
             </div>
             <div class="pi-info">
-              <div class="profile-info">
+              <div class="c-profile-info">
                 <span class="username">{{chat.recipientId.username}}</span>
                 <span class="email">{{chat.recipientId.email}}</span>
               </div>
@@ -23,8 +25,9 @@
           </div>
         </div>
       </div>
-      <div class="message-field">
-        <ChatWith v-if="openChat"/>
+      <div class="c-message-field">
+        <ChatWith v-if="openChat"
+        :change-view="changeView"/>
       </div>
     </div>
   </div>
@@ -52,7 +55,8 @@
       return {
         search: '',
         backendUrl: '',
-        openChat: false
+        openChat: false,
+        changeView: false
       }
     },
     methods: {

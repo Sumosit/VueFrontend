@@ -45,8 +45,14 @@
           class="alert-danger"
         >{{errors.first('password')}}
         </div>
-        <div class="reg-btn-field">
-          <button class="reg-btn" type="submit">Submit</button>
+        <div class="reg-btn-field content-center">
+          <button
+            class="button button-90per"
+            type="submit"
+            :class="{'button-hover': !buttonHover,
+                  'button-leave': buttonHover}"
+            @mouseover="buttonHover = false"
+            @mouseleave="buttonHover = true">Sign up</button>
         </div>
         <div
           v-if="message"
@@ -69,7 +75,8 @@
         user: new User('', '', ''),
         submitted: false,
         successful: false,
-        message: ''
+        message: '',
+        buttonHover: false,
       };
     },
     computed: {

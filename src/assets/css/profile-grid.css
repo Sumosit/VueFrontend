@@ -23,7 +23,6 @@
 .profile-image > img {
     width: 300px;
     height: auto;
-    border: 2px white solid;
     border-radius: 5px;
 }
 
@@ -44,11 +43,23 @@
     background-color: white;
 }
 
+.edit-profile-info-resume {
+    font-family: Arial, sans-serif;
+    margin-top: 15px;
+    /*position: relative;*/
+    border-radius: 5px;
+}
+
+.edit-profile-info-resume > span {
+}
+
 .change-photo-activator, .edit-profile-info > img {
     cursor: pointer;
 }
 
 .profile-info {
+    background-color: #0e0e10;
+    position: relative;
     padding: 20px;
     overflow: hidden;
 }
@@ -83,8 +94,10 @@
     display: block;
 }
 
-textarea {
+.resume > div > textarea {
     max-width: 99%;
+    min-width: 99%;
+    min-height: 100px;
 }
 
 button {

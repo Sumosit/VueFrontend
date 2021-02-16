@@ -33,19 +33,13 @@
             <router-link class="link-username" to="/user/profile">{{currentUser.username}}</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
-            <router-link to="/chat">Chat</router-link>
+            <router-link to="/user/chat">Chat</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
             <router-link to="/news">News</router-link>
           </div>
           <div v-if="isAdmin" class="nav-bar">
             <router-link to="/admin/news">Admin News</router-link>
-          </div>
-          <div v-if="loggedIn" class="nav-bar">
-            <router-link to="/user/salaries">Salaries</router-link>
-          </div>
-          <div v-if="loggedIn" class="nav-bar">
-            <router-link to="/admin/salaries/give">Give Salaries</router-link>
           </div>
           <div v-if="isUser" class="nav-bar">
             <router-link to="/user/storage">Storage</router-link>

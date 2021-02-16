@@ -5,9 +5,22 @@
     overflow-y: scroll;
     padding: 30px;
 }
+.form-mf-message {
+}
 .mf-message {
     position: absolute;
+    width: 100%;
     bottom: 0;
+}
+.mf-message > .label-send > button {
+    display: none;
+}
+.mf-message > .label-text {
+    position: relative;
+}
+.mf-message > .label-text > input {
+    height: 35px;
+    width: 96%;
 }
 .recipient {
     position: relative;

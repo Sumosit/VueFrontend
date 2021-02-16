@@ -3,6 +3,27 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
+import News from './views/News'
+import WebsocketNews from "./components/WebsocketNews";
+import AdminBoard from "./views/AdminBoard";
+import AdminWebsocketNews from "./components/AdminWebsocketNews";
+import BoardModerator from "./views/BoardModerator";
+import TestModerator from "./views/TestModerator";
+import UserBoard from "./views/UserBoard";
+import UserSalaries from "./views/UserSalaries";
+import UserStorage from "./views/UserStorage";
+import Profile from "./views/Profile";
+import PersonalData from "./components/PersonalData";
+import QualificationDocuments from "./components/QualificationDocuments";
+import AcademicDegree from "./components/qualification_components/AcademicDegree";
+import AcademicTitle from "./components/qualification_components/AcademicTitle";
+import Education from "./components/qualification_components/Education";
+import Training from "./components/qualification_components/Training";
+import HRI from "./views/HRI";
+import Workers from "./components/Workers";
+import Chat from "./components/Chat";
+import ChatWith from "./components/ChatWith";
+import Lessons from "./components/Lessons/Lessons";
 
 Vue.use(Router);
 
@@ -11,11 +32,11 @@ export const router = new Router({
   routes: [
     {
       path: '/',
-      component: () => import('./views/Home.vue'),
+      component: Home,
       children: [
         {
           path: '/chat',
-          component: () => import('./components/WebsocketGreetings'),
+          component: Chat,
         },
         {
           path: '/login',
@@ -27,11 +48,11 @@ export const router = new Router({
         },
         {
           path: '/news',
-          component: () => import('./views/News'),
+          component: News,
           children: [
             {
               path: '/',
-              component: () => import('./components/WebsocketNews'),
+              component: WebsocketNews,
             },
           ]
         },
@@ -41,7 +62,7 @@ export const router = new Router({
       path: '/admin',
       name: 'admin',
       // lazy-loaded
-      component: () => import('./views/AdminBoard.vue'),
+      component: AdminBoard,
       children: [
         {
           path: '/admin/salaries/give',
@@ -49,7 +70,7 @@ export const router = new Router({
         },
         {
           path: '/admin/news',
-          component: () => import('./components/AdminWebsocketNews'),
+          component: AdminWebsocketNews,
         },
       ]
     },
@@ -57,11 +78,11 @@ export const router = new Router({
       path: '/mod',
       name: 'moderator',
       // lazy-loaded
-      component: () => import('./views/BoardModerator.vue'),
+      component: BoardModerator,
       children: [
         {
           path: '/moderator/test',
-          component: () => import('./views/TestModerator.vue'),
+          component: TestModerator,
         }
       ]
     },
@@ -69,35 +90,69 @@ export const router = new Router({
       path: '/user',
       name: 'user',
       // lazy-loaded
-      component: () => import('./views/UserBoard.vue'),
+      component: UserBoard,
       children: [
         {
           path: '/user/salaries',
-          component: () => import('./views/UserSalaries.vue'),
+          component: UserSalaries,
         },
         {
           path: '/user/storage',
-          component: () => import('./views/UserStorage.vue')
+          component: UserStorage
         },
         {
           path: '/user/profile',
-          component: () => import('./views/Profile.vue')
+          component: Profile
+        },
+        {
+          path: '/user/personal-data',
+          component: PersonalData
+        },
+        {
+          path: '/user/qualification-documents',
+          component: QualificationDocuments,
+          children: [
+            {
+              path: '/user/qualification-documents/academic-degree',
+              component: AcademicDegree,
+            },
+            {
+              path: '/user/qualification-documents/academic-title',
+              component: AcademicTitle,
+            },
+            {
+              path: '/user/qualification/education',
+              component: Education,
+            },
+            {
+              path: '/user/qualification/training',
+              component: Training,
+            },
+          ]
+        },
+        {
+          path: '/user/hri',
+          component: () => HRI
         },
         {
           path: '/user/workers',
-          component: () => import('./views/Workers')
+          component: Workers
         },
         {
           path: '/user/chat',
-          component: () => import('./components/Chat'),
+          component: Chat,
         },
         {
           path: '/user/chat/:chatId/:recipientId',
-          component: () => import('./components/Chat'),
+          component: Chat,
         },
         {
           path: '/user/chat/with/:chatId/:recipientId',
-          component: () => import('./components/ChatWith')
+          component: ChatWith
+        },
+        {
+          path: '/user/lessons',
+          component: Lessons
         }
       ]
     }

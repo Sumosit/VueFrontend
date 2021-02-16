@@ -31,9 +31,15 @@
           class="alert alert-danger"
           role="alert"
         >Password is required!</div>
-        <div class="reg-btn-field">
+        <div class="reg-btn-field content-center">
           <span v-show="loading" class="spinner-border spinner-border-sm"></span>
-          <button class="reg-btn" type="submit">Submit</button>
+          <button
+            class="button button-90per"
+            type="submit"
+            :class="{'button-hover': !buttonHover,
+                  'button-leave': buttonHover}"
+            @mouseover="buttonHover = false"
+            @mouseleave="buttonHover = true">Sign in</button>
         </div>
         <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
       </form>
@@ -98,7 +104,8 @@
       return {
         user: new User('', ''),
         loading: false,
-        message: ''
+        message: '',
+        buttonHover: false,
       };
     },
     computed: {

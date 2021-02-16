@@ -9,12 +9,13 @@ html {
 
 .main-nav-pull {
     transition: 0.3s;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .main {
     width: 97%;
     height: 100%;
+    min-height: 90vh;
     top: 0;
     left: 0;
     position: relative;

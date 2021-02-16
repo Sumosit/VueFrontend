@@ -32,24 +32,38 @@
         <button @click="onUpload">Upload</button>
       </div>
       <div class="profile-info">
+        <span class="button button-instrument"
+              :class="{'button-hover': !buttonHover,
+                'button-leave': buttonHover}"
+              @mouseover="buttonHover = false"
+              @mouseleave="buttonHover = true"
+              v-on:click="EditProfileResume">
+            add/edit resume
+        </span>
         <span class="username">
           {{currentUser.username}}
         </span>
         <span class="email">
           {{currentUser.email}}
         </span>
-        <div class="edit-profile-info">
-          <img :src="editProfilePhotoIcon"
-               v-on:click="editProfileResume = !editProfileResume">
+        <div class="edit-profile-info-resume">
+          <!--          <img :src="editProfilePhotoIcon"-->
+          <!--               v-on:click="editProfileResume = !editProfileResume">-->
         </div>
         <span class="resume">
-          <div v-show="editProfileResume">
+          <div id="resumeSave"
+               v-show="editProfileResume">
             <textarea v-model="currentUser.resume"></textarea>
-            <button @click="sendUserResume">Save resume</button>
+            <span class="button"
+                  :class="{'button-hover': !buttonHover,
+                  'button-leave': buttonHover}"
+                  @mouseover="buttonHover = false"
+                  @mouseleave="buttonHover = true"
+                  @click="sendUserResume">Save resume</span>
           </div>
         </span>
         <span v-if="currentUser.resume && !editProfileResume" class="resume">
-          <span v-for="(resume, index) in currentUser.resume.split('\n')"
+          <span class="text-indent" v-for="(resume, index) in currentUser.resume.split('\n')"
                 :key="index">
             {{resume}}
           </span>
@@ -78,6 +92,7 @@
         backendUrl: '',
         editProfilePhoto: false,
         editProfileResume: false,
+        buttonHover: false,
         editProfilePhotoIcon,
         uploadError: false,
         uploadStatus: 'Выберите файл',
@@ -87,6 +102,9 @@
     components: {
       NavLeftSide
     },
+    created() {
+      document.title = "Profile";
+    },
     mounted() {
       if (!this.currentUser) {
         this.$router.push('/login');
@@ -94,11 +112,19 @@
       this.backendUrl = backendUrl();
     },
     methods: {
+      EditProfileResume() {
+        this.editProfileResume = !this.editProfileResume;
+        this.$nextTick(() => {
+          let element = document.getElementById("resumeSave");
+          element.scrollIntoView({behavior: "smooth"});
+        })
+      },
       sendUserResume() {
         let fd = new FormData();
         fd.append('userId', this.currentUser.id,);
-        fd.append('resume', this.resume);
-        axios.post(backendUrl() + "api/user/send", fd, {
+        fd.append('resume', this.currentUser.resume);
+        console.log(this.resume);
+        axios.post(backendUrl() + "api/user/send-resume", fd, {
           headers: authHeader()
         }).then(res => {
           localStorage.setItem('user', JSON.stringify(this.currentUser));
