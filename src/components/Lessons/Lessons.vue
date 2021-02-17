@@ -1,11 +1,10 @@
 <template>
-  <div class="backgroundColor-padding5">
-    {{$store.getters.getLessons}}
+  <div class="lesson-main">
     <ul>
       <li>
         <form @submit.prevent>
           <label for="lessonName">
-            Lesson Name
+            Lesson name
             <input id="lessonName"
                    v-model="lessonName">
           </label>
@@ -13,11 +12,18 @@
             class="button button-hover"
             v-on:click="saveLesson">Save lesson
           </button>
+          <ErrorTooShortText
+            :errorText="errorTooShortText"
+            v-if="error === 1"/>
+          <ErrorTooShortText
+            :errorText="errorTooLongText"
+            v-if="error === 2"/>
         </form>
       </li>
-      <li v-for="(lesson, index) in sortedLessons"
+      <li class="li-block"
+          v-for="(lesson, index) in sortedLessons"
           :key="index">
-        {{lesson}}
+        {{lesson.name}}
       </li>
     </ul>
   </div>
@@ -27,13 +33,20 @@
   import axios from "axios";
   import backendUrl from "../../store/backendUrl";
   import authHeader from "../../services/auth-header";
+  import ErrorTooShortText from "../Errors/ErrorTooShortText";
 
   export default {
     name: "Lessons",
     data() {
       return {
-        lessonName: ''
+        lessonName: '',
+        error: 0,
+        errorTooShortText: 'Too short text',
+        errorTooLongText: 'Too long text'
       }
+    },
+    components: {
+      ErrorTooShortText
     },
     async mounted() {
       await this.$store.dispatch('fetchLessons', this.$store.state.auth.user.id);
@@ -43,22 +56,30 @@
 
     methods: {
       saveLesson() {
-        let fd = new FormData();
-        fd.append("userId", this.$store.state.auth.user.id);
-        fd.append("lessonName", this.lessonName);
-        console.log(fd);
+        if (this.lessonName === "") {
+          this.error = 1;
+        } else if (this.lessonName.length > 40) {
+          this.error = 2;
+        }
+        else {
+          this.error = 0;
+          let fd = new FormData();
+          fd.append("userId", this.$store.state.auth.user.id);
+          fd.append("lessonName", this.lessonName);
+          console.log(fd);
 
-        axios.post(backendUrl() + "api/user/lessons/save", fd, {
-          headers: authHeader()
-        }).then(res => {
-          // console.log(res.data);
-          // this.currentUser.lessonsSet.push(res.data);
-          this.currentUser.lessonsSet = this.$store.dispatch('fetchLessons', this.currentUser.id);
-          localStorage.setItem('user', JSON.stringify(this.currentUser));
-          console.log(res);
-        }).catch(err => {
-          console.log(err.response);
-        });
+          axios.post(backendUrl() + "api/user/lessons/save", fd, {
+            headers: authHeader()
+          }).then(res => {
+            // console.log(res.data);
+            // this.currentUser.lessonsSet.push(res.data);
+            this.currentUser.lessonsSet = this.$store.dispatch('fetchLessons', this.currentUser.id);
+            localStorage.setItem('user', JSON.stringify(this.currentUser));
+            console.log(res);
+          }).catch(err => {
+            console.log(err.response);
+          });
+        }
       }
     },
     computed: {
@@ -81,5 +102,6 @@
 </script>
 
 <style scoped>
-
+  @import '../../assets/css/default-ul-li.css';
+  @import '../../assets/css/lesson.css';
 </style>

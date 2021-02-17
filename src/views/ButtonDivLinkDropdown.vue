@@ -39,7 +39,7 @@
   .nav-ls-link-mouseleave-dp {
     transition: all 0.5s;
     color: white;
-    background-color: #686868;
+    background-color: #3d3d3d;
   }
   .nav-ls-link {
     background: #686868;

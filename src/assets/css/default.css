@@ -105,7 +105,7 @@ input {
     transition: all 0.5s;
     color: black;
 }
-.backgroundColor-padding5 {
+.backgroundColor-paddingAll5-font {
     padding: 5px;
     background-color: #0e0e10;
     font-family: Arial, sans-serif;

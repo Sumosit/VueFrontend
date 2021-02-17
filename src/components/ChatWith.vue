@@ -39,7 +39,7 @@
     <form class="form-mf-message">
       <div class="mf-message">
         <label class="label-text">
-          <input
+            <input
             type="text"
             id="name"
             class="form-control"

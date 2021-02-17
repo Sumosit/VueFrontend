@@ -1,0 +1,10 @@
+ul {
+    padding: 5px;
+    list-style-type: none;
+}
+
+.li-block {
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #222222;
+}

@@ -1,0 +1,16 @@
+label {
+    width: 300px;
+    display: inline-block;
+}
+label > input {
+    margin-top: 3px;
+    padding: 8px;
+}
+.button {
+    margin: 10px 0 0;
+}
+.lesson-main {
+    padding: 5px;
+    background-color: #090909;
+    font-family: Arial, sans-serif;
+}
