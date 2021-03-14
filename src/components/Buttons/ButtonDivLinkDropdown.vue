@@ -1,12 +1,14 @@
 <template>
-  <div
-    class="nav-ls-link-dp"
-    :class="{'nav-ls-link-dp nav-ls-link-dp > a': !buttonHover,
+  <div>
+    <router-link
+      tag="div"
+      :to="NavLeftSideButton.link"
+      class="nav-ls-link-dp"
+      :class="{'nav-ls-link-dp nav-ls-link-dp > a': !buttonHover,
                   'nav-ls-link-mouseleave-dp': buttonHover}"
-    @mouseover="buttonHover = false, dropdown = true"
-    @mouseleave="buttonHover = true, dropdown = false"
-  >
-    <router-link :to="NavLeftSideButton.link">
+      @mouseover="buttonHover = false, dropdown = true"
+      @mouseleave="buttonHover = true, dropdown = false"
+    >
       {{NavLeftSideButton.name}}
     </router-link>
   </div>
@@ -14,7 +16,7 @@
 
 <script>
   export default {
-    name: "button",
+    name: "ButtonDivLinkDropdown",
     props: ['NavLeftSideButton'],
     data() {
       return {
@@ -26,6 +28,7 @@
 
 <style scoped>
   .nav-ls-link-dp {
+    cursor: pointer;
     position: relative;
     padding: 10px 15px;
   }

@@ -60,7 +60,7 @@
   import axios from "axios";
   import backendUrl from "../../store/backendUrl";
   import authHeader from "../../services/auth-header";
-  import Button from "../../views/ButtonDiv";
+  import Button from "../Buttons/ButtonDiv";
 
   export default {
     name: "Training",

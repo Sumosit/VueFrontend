@@ -24,6 +24,10 @@ import Workers from "./components/Workers";
 import Chat from "./components/Chat";
 import ChatWith from "./components/ChatWith";
 import Lessons from "./components/Lessons/Lessons";
+import LessonTasks from "./components/Lessons/LessonTasks";
+import Tasks from "./components/Lessons/Task";
+import Calendar from "./components/Calendar/Calendar";
+import Month from "./components/Calendar/Month";
 
 Vue.use(Router);
 
@@ -153,6 +157,26 @@ export const router = new Router({
         {
           path: '/user/lessons',
           component: Lessons
+        },
+        {
+          path:'/user/lessons/:lessonId',
+          component: LessonTasks
+        },
+        {
+          path:'/user/lessons/tasks/:lessonId/:taskId',
+          component: Tasks,
+        },
+        {
+          path:'/user/calendar',
+          component: Calendar,
+        },
+        {
+          path:'/user/calendar/:monthId',
+          component: Month,
+        },
+        {
+          path:'/user/calendar/:monthId/:year',
+          component: Month,
         }
       ]
     }

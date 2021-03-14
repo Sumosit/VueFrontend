@@ -50,7 +50,7 @@ body {
 }
 .reg-btn-field {
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 .reg-btn-field > .reg-btn {
     /*margin-left: 280px;*/

@@ -1,5 +1,5 @@
 <template>
-  <div class="error">
+  <div class="error content-center">
     {{errorText}}
   </div>
 </template>
@@ -13,11 +13,9 @@
 
 <style scoped>
   .error {
-    margin-top: 8px;
-    padding: 10px;
-    background: #230000;
-    border: 1px solid #ef00c8;
     font-family: Arial, sans-serif;
     font-size: 18px;
+    background: red;
+    border: 1px solid #f6f6f6;
   }
 </style>

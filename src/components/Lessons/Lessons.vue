@@ -1,29 +1,35 @@
 <template>
   <div class="lesson-main">
+    <form @submit.prevent class="lessons-form">
+      <input id="lessonName"
+             placeholder="Lesson name"
+             v-model="lessonName">
+      <ButtonDiv
+        v-on:click="saveLesson"
+        :ButtonName="{name: 'Save lesson'}"/>
+      <ErrorTooShortText
+        :errorText="errorTooShortText"
+        v-if="error === 1"/>
+      <ErrorTooShortText
+        :errorText="errorTooLongText"
+        v-if="error === 2"/>
+    </form>
     <ul>
-      <li>
-        <form @submit.prevent>
-          <label for="lessonName">
-            Lesson name
-            <input id="lessonName"
-                   v-model="lessonName">
-          </label>
-          <button
-            class="button button-hover"
-            v-on:click="saveLesson">Save lesson
-          </button>
-          <ErrorTooShortText
-            :errorText="errorTooShortText"
-            v-if="error === 1"/>
-          <ErrorTooShortText
-            :errorText="errorTooLongText"
-            v-if="error === 2"/>
-        </form>
-      </li>
       <li class="li-block"
           v-for="(lesson, index) in sortedLessons"
           :key="index">
-        {{lesson.name}}
+        <div class="lessons-wrapper">
+          <div>
+            <ButtonRouterLink
+              :ButtonNameAndLink="{
+          name: lesson.name,
+          link: '/user/lessons/'+lesson.id
+        }"/>
+          </div>
+          <div v-on:click="deleteLesson(lesson.id)">
+            <ButtonDelete/>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
@@ -34,6 +40,9 @@
   import backendUrl from "../../store/backendUrl";
   import authHeader from "../../services/auth-header";
   import ErrorTooShortText from "../Errors/ErrorTooShortText";
+  import ButtonRouterLink from "../Buttons/ButtonRouterLink";
+  import ButtonDiv from "../Buttons/ButtonDiv";
+  import ButtonDelete from "../Buttons/ButtonDelete";
 
   export default {
     name: "Lessons",
@@ -42,11 +51,16 @@
         lessonName: '',
         error: 0,
         errorTooShortText: 'Too short text',
-        errorTooLongText: 'Too long text'
+        errorTooLongText: 'Too long text',
+        buttonSaveLesson: "Save lesson",
+        deleteLinkForButton: "http://localhost:8081/api/user/lessons/delete/"
       }
     },
     components: {
-      ErrorTooShortText
+      ErrorTooShortText,
+      ButtonRouterLink,
+      ButtonDiv,
+      ButtonDelete
     },
     async mounted() {
       await this.$store.dispatch('fetchLessons', this.$store.state.auth.user.id);
@@ -55,13 +69,23 @@
     },
 
     methods: {
+      deleteLesson(lessonId) {
+        axios.get(backendUrl() + "api/user/lessons/delete/"+this.$store.state.auth.user.id+"/"+lessonId, {
+          headers: authHeader()
+        }).then(res => {
+          this.currentUser.lessonsSet = this.$store.dispatch('fetchLessons', this.currentUser.id);
+          localStorage.setItem('user', JSON.stringify(this.currentUser));
+          console.log(res);
+        }).catch(err => {
+          console.log(err.response);
+        });
+      },
       saveLesson() {
-        if (this.lessonName === "") {
+        if (this.lessonName <= 1) {
           this.error = 1;
         } else if (this.lessonName.length > 40) {
           this.error = 2;
-        }
-        else {
+        } else {
           this.error = 0;
           let fd = new FormData();
           fd.append("userId", this.$store.state.auth.user.id);

@@ -1,16 +1,51 @@
-label {
-    width: 300px;
-    display: inline-block;
-}
-label > input {
-    margin-top: 3px;
-    padding: 8px;
-}
-.button {
-    margin: 10px 0 0;
-}
+
 .lesson-main {
-    padding: 5px;
+    position: relative;
     background-color: #090909;
     font-family: Arial, sans-serif;
 }
+
+.no-display {
+    display: none;
+}
+
+.lessons-form > .input-file {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    border: 1px solid #f6f6f6;
+    font-size: 18px;
+}
+
+.lessons-form > .input-file > img {
+    display: block;
+    height: 53px;
+    background-color: #f6f6f6;
+}
+
+.lessons-form {
+    position: relative;
+    display: block;
+    margin-top: 3px;
+}
+.lessons-form > input {
+    display: inline-block;
+    width: 200px;
+    padding: 15px 10px;
+    margin: 0;
+    font-size: 18px;
+}
+
+@media (min-width: 700px) {
+    .lessons-wrapper {
+        display: grid;
+        grid-template-columns: 4fr auto;
+        grid-template-areas: "profile-image profile-info" "profile-image profile-info" "profile-image profile-info" "profile-image profile-info";
+    }
+}
+
+.lessons-wrapper > div {
+    background-color: #0e0e10;
+    font-family: Arial, sans-serif;
+}
+

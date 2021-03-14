@@ -1,18 +1,11 @@
 <template>
   <div class="nav-ls">
     <div>
-      <div
-        class="nav-ls-link"
-        :class="{'nav-ls-link nav-ls-link > a': !buttonHover,
-                  'nav-ls-link-mouseleave': buttonHover}"
-        @mouseover="buttonHover = false"
-        @mouseleave="buttonHover = true">
-        <router-link to="/user/profile">Private office</router-link>
-      </div>
+      <ButtonDivLink :ButtonNameAndLink="buttonProfile" :lighter="false"/>
       <div style="position: relative"
         @mouseover="dropdown = true"
         @mouseleave="dropdown = false">
-        <ButtonDivLink :NavLeftSideButton="buttonHRI"/>
+        <ButtonDivLink :ButtonNameAndLink="buttonHRI" :lighter="false"/>
         <div
           class="nav-hri-dropdown-content"
           v-show="dropdown === true">
@@ -24,21 +17,26 @@
           <ButtonDivLinkDropdown :NavLeftSideButton="buttonAwards"/>
         </div>
       </div>
-      <ButtonDivLink :NavLeftSideButton="buttonWorkers"/>
-      <ButtonDivLink :NavLeftSideButton="buttonChat"/>
-      <ButtonDivLink :NavLeftSideButton="buttonLessons"/>
+      <ButtonDivLink :ButtonNameAndLink="buttonWorkers" :lighter="false"/>
+      <ButtonDivLink :ButtonNameAndLink="buttonChat" :lighter="false"/>
+      <ButtonDivLink :ButtonNameAndLink="buttonLessons" :lighter="false"/>
+      <ButtonDivLink :ButtonNameAndLink="{name: 'Calendar', link: '/user/calendar'}" :lighter="false"/>
     </div>
   </div>
 </template>
 
 <script>
-  import ButtonDivLink from "../views/ButtonDivLink";
-  import ButtonDivLinkDropdown from "../views/ButtonDivLinkDropdown";
+  import ButtonDivLink from "../components/Buttons/ButtonRouterLink";
+  import ButtonDivLinkDropdown from "../components/Buttons/ButtonDivLinkDropdown";
 
   export default {
     name: "NavLeftSide",
     data() {
       return {
+        buttonProfile: {
+          name: "Profile",
+          link: "/user/profile"
+        },
         buttonHRI: {
           name: "Human Resources Information",
           link: "/user/hri"

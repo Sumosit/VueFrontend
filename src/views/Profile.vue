@@ -54,12 +54,11 @@
           <div id="resumeSave"
                v-show="editProfileResume">
             <textarea v-model="currentUser.resume"></textarea>
-            <span class="button"
-                  :class="{'button-hover': !buttonHover,
-                  'button-leave': buttonHover}"
-                  @mouseover="buttonHover = false"
-                  @mouseleave="buttonHover = true"
-                  @click="sendUserResume">Save resume</span>
+            <ButtonDiv
+              @click="sendUserResume"
+              :ButtonName="{name: 'Save user resume'}"
+              :lighter="true"
+              :isButton="true"/>
           </div>
         </span>
         <span v-if="currentUser.resume && !editProfileResume" class="resume">
@@ -77,9 +76,9 @@
   import axios from 'axios';
   import authHeader from "../services/auth-header";
   import backendUrl from "../store/backendUrl";
-  import User from "../models/user";
   import {mapMutations} from "vuex";
   import NavLeftSide from "./NavLeftSide";
+  import ButtonDiv from "../components/Buttons/ButtonDiv";
 
   import editProfilePhotoIcon from '../assets/images/edit-profile-photo-icon.svg';
 
@@ -100,7 +99,8 @@
       }
     },
     components: {
-      NavLeftSide
+      NavLeftSide,
+      ButtonDiv
     },
     created() {
       document.title = "Profile";
