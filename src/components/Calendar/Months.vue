@@ -21,7 +21,7 @@
   import Days from "./Days";
 
   export default {
-    name: "Month",
+    name: "Months",
     props: ['month'],
     components: {
       Days

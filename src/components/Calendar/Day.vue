@@ -1,22 +1,20 @@
 <template>
   <div>
-    <div class="calendar-interface content-left" id="calendar-interface">
-      <a>
-        <div class="c-i-img">
-          <img
-            src="../../assets/images/left-arrow.png" alt="">
-        </div>
-      </a>
-    </div>
     <div class="day content-center">
       <span class="day-title">{{day}}/{{month}}/{{year}}</span>
     </div>
+    <Notes/>
   </div>
 </template>
 
 <script>
+  import Notes from "./Notes"
+
   export default {
     name: "Day",
+    components: {
+      Notes
+    },
     data() {
       return {
         year: Number.parseInt(this.$route.params.year),

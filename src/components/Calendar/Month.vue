@@ -1,21 +1,5 @@
 <template>
-  <div class="calendar">
-    <div class="calendar-interface-field">
-      <div class="calendar-interface" id="calendar-interface">
-        <a>
-          <div class="c-i-img">
-            <img
-              src="../../assets/images/left-arrow.png" alt="">
-          </div>
-        </a>
-        <a>
-          <div class="c-i-img">
-            <img
-              src="../../assets/images/right-arrow.png" alt="">
-          </div>
-        </a>
-      </div>
-    </div>
+  <div>
     <span class="month-title">{{month}}, {{getMonthName()}}, {{year}}</span>
     <div class="days-wrapper">
       <Days v-for="index in getDaysCount()"
