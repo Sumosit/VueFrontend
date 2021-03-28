@@ -1,11 +1,18 @@
 <template>
   <div>
-    <span class="month-title">{{month.id}}, {{month.name}}</span>
+    <router-link tag="span"
+                 :to="'/user/calendar/'+
+                 month.year+'/'+month.id"
+                 class="month-title">{{month.id}}, {{month.name}}
+    </router-link>
     <div class="days-wrapper">
       <Days v-for="index in getDaysCount()"
-           :key="index"
-           :day="{id: index}"/>
-<!--      <Day v-for="index in 35 - getDaysCount()"/>-->
+            :key="index"
+            :day="{
+             id: index,
+             month: month.id,
+             year: month.year
+             }"/>
     </div>
   </div>
 </template>
@@ -21,7 +28,7 @@
     },
     methods: {
       getDaysCount() {
-        return new Date(2021, this.month.id, 0).getDate();
+        return new Date(this.month.year, this.month.id, 0).getDate();
       }
     }
   }

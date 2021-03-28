@@ -7,6 +7,7 @@
 @media (min-width: 487px) {
 
 }
+
 .months-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -19,7 +20,7 @@
 }
 
 .days-wrapper {
-    margin-top: 5px;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 1px;
@@ -30,26 +31,18 @@
     outline: 1px solid #f6f6f6;
     /*border: 1px solid #f6f6f6;*/
 }
-.day-btn {
-    cursor: pointer;
-}
-
-.day-btn:hover {
-    transition: all 0.5s;
-    background-color: #ffffff;
-    color: black;
-}
-
-.day-btn-mouseleave {
-    transition: all 0.5s;
-    color: white;
-    background-color: black;
-}
 
 .month-title {
+    cursor: pointer;
     font-family: Arial, sans-serif;
 }
 
-.btn-calendar-slides {
-    display: block;
+.calendar-year {
+    margin-top: 10px;
 }
+
+.calendar-year > span {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+

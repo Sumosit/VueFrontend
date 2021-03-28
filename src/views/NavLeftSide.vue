@@ -20,7 +20,7 @@
       <ButtonDivLink :ButtonNameAndLink="buttonWorkers" :lighter="false"/>
       <ButtonDivLink :ButtonNameAndLink="buttonChat" :lighter="false"/>
       <ButtonDivLink :ButtonNameAndLink="buttonLessons" :lighter="false"/>
-      <ButtonDivLink :ButtonNameAndLink="{name: 'Calendar', link: '/user/calendar'}" :lighter="false"/>
+      <ButtonDivLink :ButtonNameAndLink="{name: 'Calendar', link: '/user/calendar/  '+new Date().getFullYear()}" :lighter="false"/>
     </div>
   </div>
 </template>

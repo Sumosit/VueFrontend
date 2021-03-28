@@ -1,0 +1,61 @@
+#calendar-interface {
+    display: flex;
+    position: relative;
+    width: 100%;
+    color: black;
+}
+
+#calendar-interface > a {
+    list-style: none;
+}
+
+.calendar-interface-field {
+    margin-bottom: 10px;
+    background-color: #202020;
+}
+
+.calendar-interface {
+    position: relative;
+    padding: 10px;
+}
+
+.calendar-interface > a {
+    z-index: 3333;
+    position: relative;
+    cursor: pointer;
+    display: inline-flex;
+    margin-right: 5px;
+    clear: both;
+}
+
+.c-i-img:hover, .c-i-text > span:hover {
+    background-color: #aeaeae;
+}
+
+.c-i-img {
+    padding: 10px;
+    background-color: #ededed;
+    border-radius: 50%;
+}
+.c-i-img > img {
+    width: 30px;
+    height: auto;
+}
+
+.c-i-text {
+}
+.c-i-text > span {
+    position: relative;
+    vertical-align: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: 7px;
+    background-color: #ededed;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #000000;
+}
+
+img {
+    display: block;
+}

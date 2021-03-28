@@ -28,6 +28,7 @@ import LessonTasks from "./components/Lessons/LessonTasks";
 import Tasks from "./components/Lessons/Task";
 import Calendar from "./components/Calendar/Calendar";
 import Month from "./components/Calendar/Month";
+import Day from "./components/Calendar/Day";
 
 Vue.use(Router);
 
@@ -167,17 +168,17 @@ export const router = new Router({
           component: Tasks,
         },
         {
-          path:'/user/calendar',
+          path:'/user/calendar/:year',
           component: Calendar,
         },
         {
-          path:'/user/calendar/:monthId',
+          path:'/user/calendar/:year/:month',
           component: Month,
         },
         {
-          path:'/user/calendar/:monthId/:year',
-          component: Month,
-        }
+          path:'/user/calendar/:year/:month/:day',
+          component: Day,
+        },
       ]
     }
   ]

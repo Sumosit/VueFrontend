@@ -1,5 +1,6 @@
 export default function getMonth(id) {
   var months = [
+    {id: 0, name: 'None'},
     {id: 1, name: 'January'},
     {id: 2, name: 'February'},
     {id: 3, name: 'March'},

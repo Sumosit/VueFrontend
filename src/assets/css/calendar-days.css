@@ -1,0 +1,27 @@
+.day-btn {
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+.day-btn:hover, .day-btn-current-date:hover{
+    transition: all 0.5s;
+    background-color: #ffffff;
+    color: black;
+}
+
+.day-btn-current-date {
+    background-color: #830000;
+    color: white;
+}
+
+.day-btn-mouseleave {
+    transition: all 0.5s;
+    color: white;
+    background-color: black;
+}
+
+.day-btn-mouseleave-current-date {
+    transition: all 0.5s;
+    color: white;;
+    background-color: #830000;
+}

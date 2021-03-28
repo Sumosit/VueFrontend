@@ -1,0 +1,9 @@
+.day {
+    padding: 8px;
+    background-color: #050004;
+    color: #f6f6f6;
+}
+.day-title {
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+}
