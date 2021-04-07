@@ -1,0 +1,23 @@
+.c-notes-list-wrapper {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.c-notes-list-wrapper > .note {
+    position: relative;
+    word-break: break-all;
+    padding: 5px;
+    border: 1px solid #f6f6f6;
+    border-radius: 5px;
+}
+
+.note > span {
+    display: flex;
+}
+
+.c-notes-list {
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+}

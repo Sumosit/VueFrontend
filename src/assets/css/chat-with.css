@@ -1,9 +1,13 @@
+body {
+    overflow-x: hidden;
+}
 .mf-history {
-    max-height: 590px;
+    max-height: 775px;
     min-height: 590px;
     word-break: break-word;
     overflow-y: scroll;
     padding: 30px;
+    margin-bottom: 20px;
 }
 .form-mf-message {
 }

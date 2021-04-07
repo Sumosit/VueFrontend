@@ -4,22 +4,22 @@
       <div v-for="(item, index) in received_messages">
         <div
           v-if="item.userId!==$store.state.auth.user.id"
-             class="recipient wrapper-chat-with-rec">
+          class="recipient wrapper-chat-with-rec">
           <div class="rec-pi-avatar">
             <img v-if="recipient.fileDB"
                  :src="backendUrl + 'files/' + recipient.fileDB.id">
             <img v-else src="../assets/images/user.svg">
           </div>
           <div class="message-rec">
-            <span>{{ item.content }}</span>
+            <span>{{ item.message }}</span>
           </div>
         </div>
         <div v-if="item.userId===$store.state.auth.user.id"
-          :class="{'sender wrapper-chat-with-sen': changeView === false,
+             :class="{'sender wrapper-chat-with-sen': changeView === false,
           'recipient wrapper-chat-with-rec': changeView === true}">
           <div v-if="changeView === false"
-            class="message-sen">
-            <span>{{ item.content }}</span>
+               class="message-sen">
+            <span>{{ item.message }}</span>
           </div>
           <div
             :class="{'sen-pi-avatar': changeView === false,
@@ -30,16 +30,17 @@
           </div>
           <div v-if="changeView === true"
                class="message-rec">
-            <span>{{ item.content }}</span>
+            <span>{{ item.message }}</span>
           </div>
         </div>
       </div>
+      <div id="bottom"></div>
     </div>
 
     <form class="form-mf-message">
       <div class="mf-message">
         <label class="label-text">
-            <input
+          <input
             type="text"
             id="name"
             class="form-control"
@@ -48,7 +49,7 @@
           >
         </label>
         <label class="label-send"
-          for="send">
+               for="send">
           <button
             id="send"
             class="btn btn-default"
@@ -77,11 +78,17 @@
         connected: false,
         backendUrl: '',
         recipient: null,
-        chat: []
+        chat: [],
+        r_m:''
       };
     },
     props: ['changeView'],
     methods: {
+      scrollToEnd() {
+        var container = document.querySelector(".mf-history");
+        var scrollHeight = container.scrollHeight;
+        container.scrollTop = scrollHeight;
+      },
       send() {
         console.log("Send message:" + this.send_message);
         if (this.stompClient && this.stompClient.connected) {
@@ -129,10 +136,34 @@
     async mounted() {
       this.connect();
       this.backendUrl = backendUrl();
+      this.r_m = await axios.get(backendUrl() + 'api/chat/one/' + this.$route.params.chatId,
+          {headers: authHeader()});
+      console.log(this.r_m.data);
+      this.received_messages = this.sortedChatMessages;
       const recData = await axios.get(backendUrl() + 'api/user/one/' + this.$route.params.recipientId,
           {headers: authHeader()});
       this.recipient = recData.data;
       console.log(this.recipient);
+      var container = document.querySelector(".wrapper-nav-ls");
+      var scrollHeight = container.scrollHeight;
+      container.scrollTop = scrollHeight;
+      this.scrollToEnd();
+    },
+    updated() {
+      this.scrollToEnd();
+    },
+    computed: {
+      sortedChatMessages: function() {
+        function compare(a, b) {
+          if (a.id < b.id)
+            return -1;
+          if (a.id > b.id)
+            return 1;
+          return 0;
+        }
+
+        return this.r_m.data.sort(compare);
+      }
     }
   };</script>
 

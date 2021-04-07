@@ -5,9 +5,18 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-color: #464646;
-    margin: 0;
-    padding: 0;
 }
+
+html,body{
+    padding: 0;
+    margin: -0.24%;
+    height: 100%;
+    overflow-x: hidden;
+}
+* {
+    box-sizing: border-box;
+}
+
 .button-instrument {
     z-index: 3333;
     position: absolute;

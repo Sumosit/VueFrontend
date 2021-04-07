@@ -1,0 +1,54 @@
+.notes {
+    position: relative;
+    min-height: 30px;
+}
+
+.add-notes-field {
+    position: relative;
+    background-color: #202020;
+}
+
+.add-notes-field {
+}
+
+.add-notes {
+    position: relative;
+    padding: 10px;
+}
+
+.add-notes > input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+.add-notes > label {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 24px;
+}
+
+.add-notes-on-off {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid white;
+    background-color: black;
+    font-size: 20px;
+    color: white;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.add-notes > button {
+    padding: 8px 15px;
+    font-size: 18px;
+}

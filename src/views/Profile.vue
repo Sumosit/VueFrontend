@@ -77,7 +77,6 @@
   import authHeader from "../services/auth-header";
   import backendUrl from "../store/backendUrl";
   import {mapMutations} from "vuex";
-  import NavLeftSide from "./NavLeftSide";
   import ButtonDiv from "../components/Buttons/ButtonDiv";
 
   import editProfilePhotoIcon from '../assets/images/edit-profile-photo-icon.svg';
@@ -99,7 +98,6 @@
       }
     },
     components: {
-      NavLeftSide,
       ButtonDiv
     },
     created() {

@@ -33,6 +33,15 @@
             <router-link class="link-username" to="/user/profile">{{currentUser.username}}</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
+            <router-link to="/user/workers">Workers</router-link>
+          </div>
+          <div v-if="loggedIn" class="nav-bar">
+            <router-link :to="'/user/calendar/  '+new Date().getFullYear()">Lessons</router-link>
+          </div>
+          <div v-if="loggedIn" class="nav-bar">
+            <router-link to="/user/lessons">Calendar</router-link>
+          </div>
+          <div v-if="loggedIn" class="nav-bar">
             <router-link to="/user/chat">Chat</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
@@ -61,7 +70,7 @@
     data() {
       return {
         hover: false,
-        show: false,
+        show: false
       }
     },
     mounted() {

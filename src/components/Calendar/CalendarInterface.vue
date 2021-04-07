@@ -28,11 +28,22 @@
           <span>Year</span>
         </div>
       </a>
+      <a>
+        <div class="c-i-checkbox content-center"
+        :class="{
+          'c-i-checkbox-not-checked > span': !weekends,
+          'c-i-checkbox-checked > span': weekends}"
+        v-on:click="updateW()">
+          <span>Weekends</span>
+        </div>
+      </a>
     </div>
   </div>
 </template>
 
 <script>
+  import { mapMutations } from 'vuex'
+
   export default {
     name: "CalendarInterface",
     data() {
@@ -40,10 +51,12 @@
         link: "/user/calendar/",
         year: Number.parseInt(this.$route.params.year),
         month: Number.parseInt(this.$route.params.month),
-        day: Number.parseInt(this.$route.params.day)
+        day: Number.parseInt(this.$route.params.day),
+        weekends: false,
       }
     },
     methods: {
+      ...mapMutations(['updateWeekends']),
       next() {
         if (this.year && this.month && this.day) {
           if (Number.parseInt(this.day + 1) > this.getDaysCount(this.year, this.day)) {
@@ -98,8 +111,12 @@
       },
       getDaysCount(year, month) {
         return new Date(year, month, 0).getDate();
+      },
+      updateW() {
+        this.weekends = !this.weekends;
+        this.updateWeekends(this.weekends);
       }
-    }
+    },
   }
 </script>
 

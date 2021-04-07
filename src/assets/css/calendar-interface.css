@@ -10,7 +10,6 @@
 }
 
 .calendar-interface-field {
-    margin-bottom: 10px;
     background-color: #202020;
 }
 
@@ -58,4 +57,27 @@
 
 img {
     display: block;
+}
+
+.c-i-checkbox > span {
+    position: relative;
+    vertical-align: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: 7px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.c-i-checkbox > span {
+    background-color: #000000;
+    border: 2px solid #f6f6f6;
+    color: #f6f6f6;
+}
+.c-i-checkbox-checked > span {
+    background-color: #00890b;
 }

@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div class="main wrapper-nav-ls">
-      <NavLeftSide/>
+    <div class="main"
+    :class="{
+      'wrapper-nav-ls': windowWidth > 958
+    }">
+      <NavLeftSide v-show="windowWidth > 958"/>
       <router-view v-if="show"/>
       <div v-else>
         User Page Forbidden
@@ -19,13 +22,17 @@
     data() {
       return {
         content: '',
-        show: false
+        show: false,
+        windowWidth: window.innerWidth
       };
     },
     components: {
       NavLeftSide
     },
     mounted() {
+      window.onresize = () => {
+        this.windowWidth = window.innerWidth
+      };
       UserService.getUserBoard().then(
           response => {
             this.show = true;
