@@ -75,7 +75,7 @@
         },
         buttonLessons: {
           name: "Lessons",
-          link: "/user/lessons"
+          link: "/user/memories"
         },
         buttonHover: false,
         dropdown: false

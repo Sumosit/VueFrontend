@@ -38,7 +38,10 @@
 
 [class*="btn-nav-pull"]:hover {
 }
-
+a {
+    color: white;
+    text-decoration: none;
+}
 .nav-titles {
     display: block;
     margin-top: 60px;

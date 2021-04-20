@@ -6,7 +6,7 @@ import { admin } from './admin.module';
 import { user } from './user.module';
 import { personalData } from './personalData/personalData.module';
 import { qualification } from './qualification';
-import { lessons } from './lessons/lessons'
+import { memories } from './Memory/memories'
 import { calendar } from './calendar/calendar'
 
 Vue.use(Vuex);
@@ -18,7 +18,7 @@ export default new Vuex.Store({
     user,
     personalData,
     qualification,
-    lessons,
+    memories,
     calendar
   }
 });

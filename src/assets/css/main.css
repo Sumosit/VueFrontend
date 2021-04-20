@@ -1,15 +1,15 @@
-html {
+html, body {
     overflow-y: auto;
 }
 
 .main-nav {
     transition: 0.6s;
-    margin-top: 53px;
+    margin-top: 56px;
 }
 
 .main-nav-pull {
     transition: 0.3s;
-    margin-top: 5px;
+    margin-top: 56px;
 }
 
 .main {

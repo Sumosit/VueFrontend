@@ -9,17 +9,17 @@
       <div class="c-id2-list">
         <div v-for="(chat, index) in getChat"
              :key="index"
-        v-on:click="setUrlParameters(chat.id, chat.recipientId.id)">
+        v-on:click="setUrlParameters(chat.id, chat.recipient.id)">
           <div class="c-profile-image">
             <div class="c-pi-avatar" >
-              <img v-if="chat.recipientId.fileDB"
-                   :src="backendUrl + 'files/' + chat.recipientId.fileDB.id">
+              <img v-if="chat.recipient.fileDB"
+                   :src="backendUrl + 'files/' + chat.recipient.fileDB.id">
               <img v-else src="../assets/images/user.svg">
             </div>
             <div class="pi-info">
               <div class="c-profile-info">
-                <span class="username">{{chat.recipientId.username}}</span>
-                <span class="email">{{chat.recipientId.email}}</span>
+                <span class="username">{{chat.recipient.username}}</span>
+                <span class="email">{{chat.recipient.email}}</span>
               </div>
             </div>
           </div>

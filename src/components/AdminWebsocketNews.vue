@@ -86,8 +86,6 @@
         if (this.stompClient && this.stompClient.connected) {
           const msg = {
             authorId: this.$store.state.auth.user.id,
-            authorUsername: this.$store.state.auth.user.username,
-            authorAvatar: backendUrl() + 'files/' + this.$store.state.auth.user.fileDB.id,
             title: this.send_title,
             content: this.send_content,
             date: getTimestampDate()

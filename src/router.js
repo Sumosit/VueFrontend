@@ -23,13 +23,11 @@ import HRI from "./views/HRI";
 import Workers from "./components/Workers";
 import Chat from "./components/Chat";
 import ChatWith from "./components/ChatWith";
-import Lessons from "./components/Lessons/Lessons";
-import LessonTasks from "./components/Lessons/LessonTasks";
-import Tasks from "./components/Lessons/Task";
 import Calendar from "./components/Calendar/Calendar";
 import Month from "./components/Calendar/Month";
 import Day from "./components/Calendar/Day";
 import Years from "./components/Calendar/Years";
+import Memory from "./components/Memory/Memory"
 
 Vue.use(Router);
 
@@ -99,6 +97,10 @@ export const router = new Router({
       component: UserBoard,
       children: [
         {
+          path: '/user/memory/:memoryId',
+          component: Memory
+        },
+        {
           path: '/user/salaries',
           component: UserSalaries,
         },
@@ -155,18 +157,6 @@ export const router = new Router({
         {
           path: '/user/chat/with/:chatId/:recipientId',
           component: ChatWith
-        },
-        {
-          path: '/user/lessons',
-          component: Lessons
-        },
-        {
-          path:'/user/lessons/:lessonId',
-          component: LessonTasks
-        },
-        {
-          path:'/user/lessons/tasks/:lessonId/:taskId',
-          component: Tasks,
         },
         {
           path:'/user/calendar',

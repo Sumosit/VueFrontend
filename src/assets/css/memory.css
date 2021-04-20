@@ -1,0 +1,29 @@
+.memory {
+    padding: 8px;
+    background-color: #050004;
+    color: #f6f6f6;
+    font-family: Arial, sans-serif;
+}
+
+.memory-interface {
+
+}
+.memory-interface > div {
+    display: inline-flex;
+}
+.m-i-plus {
+    height: 30px;
+    width: 30px;
+    border: 1px solid #f6f6f6;
+    font-family: "Century Gothic", sans-serif;
+    font-size: 30px;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.m-i-save-field {
+    background-color: red;
+}

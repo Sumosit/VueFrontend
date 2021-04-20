@@ -36,10 +36,10 @@
             <router-link to="/user/workers">Workers</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
-            <router-link :to="'/user/calendar/  '+new Date().getFullYear()">Lessons</router-link>
+            <router-link :to="'/user/calendar/'+new Date().getFullYear()">Calendar</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
-            <router-link to="/user/lessons">Calendar</router-link>
+            <a :href="'/user/memory/'+$store.getters.getMainMemory.id">Memory</a>
           </div>
           <div v-if="loggedIn" class="nav-bar">
             <router-link to="/user/chat">Chat</router-link>
@@ -70,10 +70,13 @@
     data() {
       return {
         hover: false,
-        show: false
+        show: false,
+        memory: Object
       }
     },
-    mounted() {
+    async mounted() {
+      await this.$store.dispatch("fetchMainMemory", this.$store.state.auth.user.id);
+      // this.memory = this.$store.getters.getMainMemory;
     },
     computed: {
       loggedIn() {

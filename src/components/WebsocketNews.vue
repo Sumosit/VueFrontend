@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="news-all">
     <div class="news"
-         v-for="item in received_messages"
-         :key="item">
+         v-for="(item, index) in $store.getters.allNews"
+         :key="index">
       <div class="news-title-field">
         <div class="news-title-author-avatar">
-          <img :src="item.authorAvatar">
+          <img :src="backendUrl+'files/'+item.author.fileDB.id">
         </div>
         <div class="news-title">
           {{item.title}}
 <!--          <p>by Mikhail Sabyanin - Tuesday, 15 December 2020, 3:26 PM</p>-->
-          <p>by {{item.authorUsername}}, {{item.date}}</p>
+          <p>by {{item.author.username}}, {{item.date}}</p>
         </div>
       </div>
       <div class="news-content-field">
@@ -32,7 +32,8 @@
         received_messages: [],
         send_title: null,
         send_content: null,
-        connected: false
+        connected: false,
+        backendUrl: backendUrl()
       };
     },
     methods: {
@@ -44,9 +45,10 @@
             frame => {
               this.connected = true;
               console.log(frame);
-              this.stompClient.subscribe("/topic/news", tick => {
+              this.stompClient.subscribe("/topic/news", async tick => {
                 console.log(tick);
-                this.received_messages.unshift(JSON.parse(tick.body));
+                // this.received_messages.unshift(JSON.parse(tick.body));
+                await this.$store.dispatch("fetchNews");
               });
             },
             error => {
@@ -65,9 +67,10 @@
         this.connected ? this.disconnect() : this.connect();
       }
     },
-    mounted() {
+    async mounted() {
       this.connect();
-      this.$store.dispatch("fetchNews");
+      await this.$store.dispatch("fetchNews");
+      console.log(this.$store.getters.allNews);
       this.received_messages = this.$store.getters.allNews;
     }
   };

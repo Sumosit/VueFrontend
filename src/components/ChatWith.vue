@@ -1,20 +1,21 @@
 <template>
   <div>
     <div class="mf-history">
+      {{r_m}}
       <div v-for="(item, index) in received_messages">
         <div
-          v-if="item.userId!==$store.state.auth.user.id"
+          v-if="item.sender.id!==$store.state.auth.user.id"
           class="recipient wrapper-chat-with-rec">
           <div class="rec-pi-avatar">
-            <img v-if="recipient.fileDB"
-                 :src="backendUrl + 'files/' + recipient.fileDB.id">
+            <img v-if="item.recipient.fileDB"
+                 :src="backendUrl + 'files/' + item.recipient.fileDB.id">
             <img v-else src="../assets/images/user.svg">
           </div>
           <div class="message-rec">
             <span>{{ item.message }}</span>
           </div>
         </div>
-        <div v-if="item.userId===$store.state.auth.user.id"
+        <div v-if="item.sender.id===$store.state.auth.user.id"
              :class="{'sender wrapper-chat-with-sen': changeView === false,
           'recipient wrapper-chat-with-rec': changeView === true}">
           <div v-if="changeView === false"
@@ -77,8 +78,8 @@
         send_message: null,
         connected: false,
         backendUrl: '',
-        recipient: null,
         chat: [],
+        chatId: '',
         r_m:''
       };
     },
@@ -137,14 +138,13 @@
       this.connect();
       this.backendUrl = backendUrl();
       this.r_m = await axios.get(backendUrl() + 'api/chat/one/' + this.$route.params.chatId,
-          {headers: authHeader()});
+          {
+            headers: authHeader()
+          });
       console.log(this.r_m.data);
       this.received_messages = this.sortedChatMessages;
-      const recData = await axios.get(backendUrl() + 'api/user/one/' + this.$route.params.recipientId,
-          {headers: authHeader()});
-      this.recipient = recData.data;
-      console.log(this.recipient);
-      var container = document.querySelector(".wrapper-nav-ls");
+
+      var container = document.querySelector(".mf-history");
       var scrollHeight = container.scrollHeight;
       container.scrollTop = scrollHeight;
       this.scrollToEnd();

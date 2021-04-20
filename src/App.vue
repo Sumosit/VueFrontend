@@ -3,7 +3,7 @@
     <AfkBackground v-show="!afkBackground"/>
     <div v-show="afkBackground">
       <NavPull v-show="windowWidth <= 958"/>
-      <Nav v-show="windowWidth > 958"/>
+      <Nav/>
     </div>
     <div v-show="afkBackground" >
       <router-view :class="{'main-nav': windowWidth > 958,

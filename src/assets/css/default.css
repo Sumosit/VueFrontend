@@ -9,7 +9,7 @@ body {
 
 html,body{
     padding: 0;
-    margin: -0.24%;
+    margin: -3px 0 0;
     height: 100%;
     overflow-x: hidden;
 }
@@ -120,4 +120,8 @@ input {
     padding: 5px;
     background-color: #0e0e10;
     font-family: Arial, sans-serif;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }

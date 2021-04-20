@@ -59,6 +59,7 @@ export const user = {
           .then(json => {
             setTimeout(() => {
               const news = json;
+              console.log(news);
               ctx.commit('updateNews', news);
             }, 1000)
           });
@@ -92,20 +93,6 @@ export const user = {
   },
   mutations: {
     async updateChat(state, chat) {
-      for (let i = 0; i < chat.length; i++) {
-        if (chat[i].senderId === this.state.auth.user.id) {
-          let temp = chat[i].recipientId;
-          chat[i].recipientId = chat[i].senderId;
-          chat[i].senderId = temp;
-        }
-        const senData = await axios.get(backendUrl() + 'api/user/one/' + chat[i].senderId,{ headers: authHeader()});
-        const recData = await axios.get(backendUrl() + 'api/user/one/' + chat[i].recipientId,{ headers: authHeader()});
-        chat[i].recipientId = senData.data;
-        chat[i].senderId = recData.data;
-
-        console.log(senData.data);
-        console.log(recData.data);
-      }
       state.chat = chat;
     },
     updateUsers(state, users) {
