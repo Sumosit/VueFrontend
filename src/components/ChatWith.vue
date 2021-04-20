@@ -1,22 +1,24 @@
 <template>
   <div>
     <div class="mf-history">
-      {{r_m}}
+      <!--      {{r_m}}-->
+<!--      {{received_messages}}-->
       <div v-for="(item, index) in received_messages">
         <div
           v-if="item.sender.id!==$store.state.auth.user.id"
           class="recipient wrapper-chat-with-rec">
           <div class="rec-pi-avatar">
-            <img v-if="item.recipient.fileDB"
-                 :src="backendUrl + 'files/' + item.recipient.fileDB.id">
+            <img v-if="item.sender.fileDB"
+                 :src="backendUrl + 'files/' + item.sender.fileDB.id">
             <img v-else src="../assets/images/user.svg">
           </div>
           <div class="message-rec">
             <span>{{ item.message }}</span>
           </div>
         </div>
-        <div v-if="item.sender.id===$store.state.auth.user.id"
-             :class="{'sender wrapper-chat-with-sen': changeView === false,
+        <div
+          v-if="item.sender.id===$store.state.auth.user.id"
+          :class="{'sender wrapper-chat-with-sen': changeView === false,
           'recipient wrapper-chat-with-rec': changeView === true}">
           <div v-if="changeView === false"
                class="message-sen">
@@ -24,7 +26,7 @@
           </div>
           <div
             :class="{'sen-pi-avatar': changeView === false,
-            'rec-pi-avatar': changeView === true}">
+                      'rec-pi-avatar': changeView === true}">
             <img v-if="$store.state.auth.user.fileDB"
                  :src="backendUrl + 'files/' + $store.state.auth.user.fileDB.id">
             <img v-else src="../assets/images/user.svg">
@@ -80,7 +82,7 @@
         backendUrl: '',
         chat: [],
         chatId: '',
-        r_m:''
+        r_m: ''
       };
     },
     props: ['changeView'],
@@ -153,7 +155,7 @@
       this.scrollToEnd();
     },
     computed: {
-      sortedChatMessages: function() {
+      sortedChatMessages: function () {
         function compare(a, b) {
           if (a.id < b.id)
             return -1;
