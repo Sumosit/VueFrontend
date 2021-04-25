@@ -7,9 +7,26 @@ export const user = {
     storageFiles: [],
     news: [],
     users: [],
-    chat: []
+    chat: [],
+    userExtra: Object,
+    user: Object
   },
   actions: {
+    async fetchUserExtra(ctx, user_id) {
+      await fetch(backendUrl() + 'api/user/userExtra/' + user_id,
+          {
+            headers: authHeader()
+          })
+          .then(response => response.json())
+          .then(json => {
+            setTimeout(() => {
+              const userExtra = json;
+              console.log(userExtra);
+              ctx.commit('updateUserExtra', userExtra);
+              return userExtra;
+            }, 1000)
+          });
+    },
     async fetchUser(ctx, user_id) {
       await fetch(backendUrl() + 'api/user/one/' + user_id,
           {
@@ -20,6 +37,7 @@ export const user = {
             setTimeout(() => {
               const user = json;
               console.log(user);
+              ctx.commit('updateUser', user);
               return user;
             }, 1000)
           });
@@ -92,11 +110,17 @@ export const user = {
     }
   },
   mutations: {
-    async updateChat(state, chat) {
+    updateUserExtra(state, userExtra) {
+      state.userExtra = userExtra;
+    },
+    updateChat(state, chat) {
       state.chat = chat;
     },
     updateUsers(state, users) {
       state.users = users;
+    },
+    updateUser(state, user) {
+      state.user = user;
     },
     updateNews(state, payload) {
       state.news = payload.reverse();
@@ -111,6 +135,12 @@ export const user = {
     }
   },
   getters: {
+    getUserExtra(state) {
+      return state.userExtra;
+    },
+    getUser(state) {
+      return state.user;
+    },
     allChat(state) {
       return state.chat;
     },

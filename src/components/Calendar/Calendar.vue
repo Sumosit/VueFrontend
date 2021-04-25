@@ -14,6 +14,9 @@
     components: {
       CalendarInterface
     },
+    created() {
+      document.title = "Calendar";
+    },
     data() {
       return {
         year: Number.parseInt(this.$route.params.year),

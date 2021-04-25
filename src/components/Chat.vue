@@ -12,14 +12,22 @@
         v-on:click="setUrlParameters(chat.id, chat.recipient.id)">
           <div class="c-profile-image">
             <div class="c-pi-avatar" >
-              <img v-if="chat.recipient.fileDB"
+              <img v-if="chat.recipient.fileDB && (chat.recipient.id !== $store.state.auth.user.id)"
                    :src="backendUrl + 'files/' + chat.recipient.fileDB.id">
+              <img v-if="chat.sender.fileDB && (chat.recipient.id === $store.state.auth.user.id)"
+                   :src="backendUrl + 'files/' + chat.sender.fileDB.id">
               <img v-else src="../assets/images/user.svg">
             </div>
             <div class="pi-info">
-              <div class="c-profile-info">
+              <div class="c-profile-info"
+              v-if="chat.recipient.id !== $store.state.auth.user.id">
                 <span class="username">{{chat.recipient.username}}</span>
                 <span class="email">{{chat.recipient.email}}</span>
+              </div>
+              <div class="c-profile-info"
+              v-if="chat.sender.id !== $store.state.auth.user.id">
+                <span class="username">{{chat.sender.username}}</span>
+                <span class="email">{{chat.sender.email}}</span>
               </div>
             </div>
           </div>
@@ -43,6 +51,9 @@
     name: "Chat",
     components: {
       ChatWith
+    },
+    created() {
+      document.title = "Chat";
     },
     mounted() {
       if (this.$route.params.chatId) {

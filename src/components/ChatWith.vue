@@ -171,4 +171,5 @@
 
 <style scoped>
   @import '../assets/css/chat-with.css';
+
 </style>

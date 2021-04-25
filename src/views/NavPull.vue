@@ -30,25 +30,28 @@
           </div>
           <div v-if="loggedIn"
                class="nav-bar-username">
-            <router-link class="link-username" to="/user/profile">{{currentUser.username}}</router-link>
+            <router-link class="link-username" to="/user/profile/info">{{currentUser.username}}</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
             <router-link to="/user/workers">Workers</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
-            <router-link :to="'/user/calendar/'+new Date().getFullYear()">Calendar</router-link>
+            <router-link to="/user/chat">Chat</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
             <a :href="'/user/memory/'+$store.getters.getMainMemory.id">Memory</a>
           </div>
           <div v-if="loggedIn" class="nav-bar">
-            <router-link to="/user/chat">Chat</router-link>
+            <router-link :to="'/user/calendar/'+new Date().getFullYear()">Calendar</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
             <router-link to="/news">News</router-link>
           </div>
           <div v-if="isAdmin" class="nav-bar">
             <router-link to="/admin/news">Admin News</router-link>
+          </div>
+          <div v-if="isAdmin" class="nav-bar">
+            <router-link to="/admin/tasks">Admin Tasks</router-link>
           </div>
           <div v-if="isUser" class="nav-bar">
             <router-link to="/user/storage">Storage</router-link>

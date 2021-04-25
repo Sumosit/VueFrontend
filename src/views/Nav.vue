@@ -4,7 +4,7 @@
       <div class="right content-center">
         <img src="../assets/images/IT_Logo.png">
       </div>
-      <router-link tag="div" to="/user/profile"
+      <router-link tag="div" to="/user/profile/info"
                    class="right content-center cursor-pointer">
         <span>{{$store.state.auth.user.username}}</span>
       </router-link>

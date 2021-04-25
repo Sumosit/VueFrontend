@@ -2,12 +2,12 @@
   <div id="app">
     <AfkBackground v-show="!afkBackground"/>
     <div v-show="afkBackground">
-      <NavPull v-show="windowWidth <= 958"/>
+      <NavPull/>
       <Nav/>
     </div>
     <div v-show="afkBackground" >
       <router-view :class="{'main-nav': windowWidth > 958,
-                  'main-nav-pull': windowWidth <= 958}"/>
+      'main-nav-pull': windowWidth <= 958}"/>
     </div>
   </div>
 </template>

@@ -12,13 +12,6 @@ import TestModerator from "./views/TestModerator";
 import UserBoard from "./views/UserBoard";
 import UserSalaries from "./views/UserSalaries";
 import UserStorage from "./views/UserStorage";
-import Profile from "./views/Profile";
-import PersonalData from "./components/PersonalData";
-import QualificationDocuments from "./components/QualificationDocuments";
-import AcademicDegree from "./components/qualification_components/AcademicDegree";
-import AcademicTitle from "./components/qualification_components/AcademicTitle";
-import Education from "./components/qualification_components/Education";
-import Training from "./components/qualification_components/Training";
 import HRI from "./views/HRI";
 import Workers from "./components/Workers";
 import Chat from "./components/Chat";
@@ -28,6 +21,10 @@ import Month from "./components/Calendar/Month";
 import Day from "./components/Calendar/Day";
 import Years from "./components/Calendar/Years";
 import Memory from "./components/Memory/Memory"
+import Profile from "./views/Profile";
+import ProfileInfo from "./views/ProfileInfo";
+import ProfileSettings from "./views/ProfileSettings";
+import AdminTasks from "./components/Task/AdminTasks"
 
 Vue.use(Router);
 
@@ -76,6 +73,10 @@ export const router = new Router({
           path: '/admin/news',
           component: AdminWebsocketNews,
         },
+        {
+          path: '/admin/tasks',
+          component: AdminTasks
+        }
       ]
     },
     {
@@ -110,32 +111,16 @@ export const router = new Router({
         },
         {
           path: '/user/profile',
-          component: Profile
-        },
-        {
-          path: '/user/personal-data',
-          component: PersonalData
-        },
-        {
-          path: '/user/qualification-documents',
-          component: QualificationDocuments,
+          component: Profile,
           children: [
             {
-              path: '/user/qualification-documents/academic-degree',
-              component: AcademicDegree,
+              path: '/user/profile/settings',
+              component: ProfileSettings
             },
             {
-              path: '/user/qualification-documents/academic-title',
-              component: AcademicTitle,
-            },
-            {
-              path: '/user/qualification/education',
-              component: Education,
-            },
-            {
-              path: '/user/qualification/training',
-              component: Training,
-            },
+              path: '/user/profile/info',
+              component: ProfileInfo
+            }
           ]
         },
         {

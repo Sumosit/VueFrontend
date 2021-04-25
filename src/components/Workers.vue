@@ -32,6 +32,9 @@
 
   export default {
     name: "Users",
+    created() {
+      document.title = "Workers";
+    },
     mounted() {
       this.$store.dispatch('fetchUsers');
       this.backendUrl = backendUrl();

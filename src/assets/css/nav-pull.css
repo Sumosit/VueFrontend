@@ -80,3 +80,8 @@ a {
     transition: all 0.3s;
     border-radius: 40%;
 }
+
+.nav-bar > a {
+    position: relative;
+    display: block;
+}

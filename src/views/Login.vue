@@ -115,7 +115,7 @@
     },
     created() {
       if (this.loggedIn) {
-        this.$router.push('/profile');
+        this.$router.push('/user/profile/info');
       }
     },
     methods: {
@@ -130,7 +130,7 @@
           if (this.user.username && this.user.password) {
             this.$store.dispatch('auth/login', this.user).then(
                 () => {
-                  this.$router.push('/user/profile');
+                  this.$router.push('/user/profile/info');
                 },
                 error => {
                   this.loading = false;
