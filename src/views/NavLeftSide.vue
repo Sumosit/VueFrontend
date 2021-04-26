@@ -2,24 +2,8 @@
   <div class="nav-ls">
     <div>
       <ButtonDivLink :ButtonNameAndLink="buttonProfile" :lighter="false"/>
-      <div style="position: relative"
-        @mouseover="dropdown = true"
-        @mouseleave="dropdown = false">
-        <ButtonDivLink :ButtonNameAndLink="buttonHRI" :lighter="false"/>
-        <div
-          class="nav-hri-dropdown-content"
-          v-show="dropdown === true">
-          <ButtonDivLinkDropdown :NavLeftSideButton="buttonPersonalData"/>
-          <ButtonDivLinkDropdown :NavLeftSideButton="buttonQualificationDocuments"/>
-          <ButtonDivLinkDropdown :NavLeftSideButton="buttonWorkExperience"/>
-          <ButtonDivLinkDropdown :NavLeftSideButton="buttonPositionsHeld"/>
-          <ButtonDivLinkDropdown :NavLeftSideButton="buttonMedicalInfo"/>
-          <ButtonDivLinkDropdown :NavLeftSideButton="buttonAwards"/>
-        </div>
-      </div>
       <ButtonDivLink :ButtonNameAndLink="buttonWorkers" :lighter="false"/>
       <ButtonDivLink :ButtonNameAndLink="buttonChat" :lighter="false"/>
-      <ButtonDivLink :ButtonNameAndLink="buttonLessons" :lighter="false"/>
       <ButtonDivLink :ButtonNameAndLink="{name: 'Calendar', link: '/user/calendar/  '+new Date().getFullYear()}" :lighter="false"/>
     </div>
   </div>
@@ -35,7 +19,7 @@
       return {
         buttonProfile: {
           name: "Profile",
-          link: "/user/profile"
+          link: "/user/profile/info"
         },
         buttonHRI: {
           name: "Human Resources Information",
