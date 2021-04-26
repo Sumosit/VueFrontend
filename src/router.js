@@ -102,10 +102,6 @@ export const router = new Router({
           component: Memory
         },
         {
-          path: '/user/salaries',
-          component: UserSalaries,
-        },
-        {
           path: '/user/storage',
           component: UserStorage
         },

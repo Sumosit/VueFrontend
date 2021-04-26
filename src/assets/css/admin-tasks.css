@@ -1,6 +1,9 @@
 .admin-tasks {
     height: 93.68vh;
+    padding: 8px;
     background-color: #050004;
+    font-family: Arial, sans-serif;
+    color: #f6f6f6;
 }
 
 .admin-users {
@@ -75,4 +78,45 @@
 }
 .admin-users-open > img {
     width: 20px;
+}
+
+.a-t-title, .a-t-date {
+    height: 30px;
+}
+.a-t-title {
+    width: 400px;
+}
+.a-t-date {
+    margin-left: 5px;
+    margin-top: 2px;
+}
+.a-t-date > .dm-date {
+    height: 30px;
+    width: 80px;
+    padding-left: 4px;
+    border-right: none;
+}
+.a-t-date > .dm-time {
+    height: 30px;
+    width: 70px;
+    padding-left: 7px;
+}
+.a-t-description {
+    margin-top: 8px;
+    min-width: 100%;
+    min-height: 120px;
+}
+.a-t-users-count {
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+.a-t-files {
+    margin-top: 5px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
