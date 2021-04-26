@@ -4,7 +4,7 @@
     :class="{
       'wrapper-nav-ls': windowWidth > 960
     }">
-      <NavLeftSide v-show="windowWidth > 961"/>
+<!--      <NavLeftSide v-show="windowWidth > 961"/>-->
       <router-view v-if="show"/>
       <div v-else>
         User Page Forbidden
