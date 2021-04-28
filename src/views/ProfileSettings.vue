@@ -3,9 +3,11 @@
     <div class="name-surname">
       <input
         v-model="name"
-        placeholder="Username is empty">
+        type="text"
+        placeholder="Name is empty">
       <input
         v-model="surname"
+        type="text"
         placeholder="Surname is empty">
       <button v-on:click="saveNameAndSurname">Save</button>
     </div>
@@ -185,11 +187,11 @@
       }
     },
     async mounted() {
-      await this.$store.dispatch("fetchUserExtra", this.$store.state.auth.user.id);
       await this.$store.dispatch("fetchUser", this.$store.state.auth.user.id);
+      await this.$store.dispatch("fetchUserExtra", this.$store.state.auth.user.id);
+      this.setNameSurname();
     },
     updated() {
-      this.setNameSurname();
     },
     methods: {
       setNameSurname() {
@@ -207,6 +209,9 @@
       },
       saveNameAndSurname() {
         let fd = new FormData();
+        if (!this.name || this.name === "") {
+          this.name = " "
+        }
         fd.append("name", this.name);
         fd.append("surname", this.surname);
         fd.append("userId", this.$store.state.auth.user.id);
@@ -279,7 +284,7 @@
     .documents-wrapper {
       margin-top: 10px;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       grid-gap: 10px;
     }
   }

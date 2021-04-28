@@ -94,11 +94,10 @@ export const router = new Router({
     {
       path: '/user',
       name: 'user',
-      // lazy-loaded
       component: UserBoard,
       children: [
         {
-          path: '/user/memory/:memoryId',
+          path: 'memory/:memoryId',
           component: Memory
         },
         {
