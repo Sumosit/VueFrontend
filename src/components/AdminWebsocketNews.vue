@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <form class="form-inline">
+  <div class="admin-news">
+    <form>
       <label for="connect">WebSocket connection:</label>
       <button
         id="connect"
@@ -19,35 +19,34 @@
       >Disconnect
       </button>
     </form>
-    <form class="form-inline">
+    <form class="ad-input">
       <label for="title">Title</label>
       <input
         type="text"
         id="title"
-        class="form-control"
         v-model="send_title"
         placeholder="Title"
       >
       <label for="content">Content</label>
       <textarea
         id="content"
-        class="form-control"
         v-model="send_content"
         placeholder="Content"
       ></textarea>
       <button
         id="send"
-        class="btn btn-default"
         type="submit"
         @click.prevent="send"
       >Send
       </button>
     </form>
-    <table id="conversation"
-           class="table table-striped">
+    <table class="admin-news-table" id="conversation" style="
+    margin-top: 5px">
       <thead>
       <tr>
-        <th>News</th>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Content</th>
       </tr>
       </thead>
       <tbody>
@@ -131,4 +130,5 @@
 </script>
 
 <style scoped>
+  @import '../assets/css/admin-news.css';
 </style>

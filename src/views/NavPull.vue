@@ -1,21 +1,17 @@
 <template>
   <div>
-    <img src="../assets/images/nav-pull.jpg"
-         class="btn-nav-pull"
-         :class="{'nav-bar-over': !hover, 'nav-bar-leave': hover}"
-         @mouseover="hover = false"
-         @mouseleave="hover = true"
-         v-on:click="show = !show">
+    <div v-on:click="show = !show">
+      <NavPullBtn :show="show"/>
+    </div>
     <transition name="fade">
       <div v-show="show"
            @mouseleave="show = false"
            class="nav-pull">
-        <img src="../assets/images/nav-pull.jpg"
-             class="btn-nav-pull"
-             :class="{'nav-bar-over': !hover, 'nav-bar-leave': hover}"
-             @mouseover="hover = false"
-             @mouseleave="hover = true"
-             v-on:click="show = !show">
+        <div v-on:click="show = !show">
+          <NavPullBtn
+            :show="show"
+            :lighter="lighter"/>
+        </div>
         <div class="nav-titles">
           <div class="nav-bar">
             <router-link to="/">Home</router-link>
@@ -47,6 +43,12 @@
           <div v-if="loggedIn" class="nav-bar">
             <router-link to="/news">News</router-link>
           </div>
+          <div v-if="isUser" class="nav-bar">
+            <router-link to="/user/tasks">Tasks</router-link>
+          </div>
+          <div v-if="isUser" class="nav-bar">
+            <router-link to="/user/salary">Salary</router-link>
+          </div>
           <div v-if="isAdmin" class="nav-bar">
             <router-link to="/admin/news">Admin News</router-link>
           </div>
@@ -68,14 +70,21 @@
 </template>
 
 <script>
+  import NavPullBtn from "../views/NavPullBtn";
+
   export default {
     name: "NavPull",
+    components: {NavPullBtn},
     data() {
       return {
         hover: false,
         show: false,
+        lighter: true,
         memory: Object
       }
+    },
+    component: {
+      NavPullBtn
     },
     async mounted() {
       await this.$store.dispatch("fetchMainMemory", this.$store.state.auth.user.id);
@@ -87,7 +96,7 @@
       },
       isUser() {
         if (this.$store.state.auth.status.loggedIn) {
-          return true;
+          return this.$store.state.auth.user.roles.includes('ROLE_USER')
         }
       },
       isAdmin() {

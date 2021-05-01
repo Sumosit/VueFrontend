@@ -2,7 +2,7 @@
   <div>
     <div class="mf-history">
       <!--      {{r_m}}-->
-<!--      {{received_messages}}-->
+      <!--            {{received_messages}}-->
       <div v-for="(item, index) in received_messages">
         <div
           v-if="item.sender.id!==$store.state.auth.user.id"
@@ -72,6 +72,7 @@
   import backendUrl from "../store/backendUrl";
   import axios from "axios";
   import authHeader from "../services/auth-header";
+  import getTimestampDate from "../js/getTimestampDate";
 
   export default {
     data() {
@@ -98,7 +99,8 @@
           const msg = {
             message: this.send_message,
             chatId: this.$route.params.chatId,
-            userId: this.$store.state.auth.user.id
+            userId: this.$store.state.auth.user.id,
+            sendDate: new Date().getTime()
           };
           console.log(JSON.stringify(msg));
           this.stompClient.send("/app/chat/" + this.chatId, JSON.stringify(msg), {});
@@ -153,13 +155,14 @@
     },
     updated() {
       this.scrollToEnd();
+      this.$store.dispatch('fetchChat');
     },
     computed: {
       sortedChatMessages: function () {
         function compare(a, b) {
-          if (a.id < b.id)
+          if (a.sendDate > b.sendDate)
             return -1;
-          if (a.id > b.id)
+          if (a.sendDate < b.sendDate)
             return 1;
           return 0;
         }

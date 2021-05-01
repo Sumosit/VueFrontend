@@ -1,0 +1,24 @@
+.salary {
+    padding: 8px;
+    background-color: #050004;
+    color: #f6f6f6;
+    font-family: Arial, sans-serif;
+}
+.salary > div {
+    margin-top: 5px;
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+.salary-head > th {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+.salary > table {
+    margin-top: 5px;
+}
+.salary > table > tbody > tr > td {
+    padding: 8px;
+}
+.salary-table {
+}

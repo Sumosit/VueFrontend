@@ -1,8 +1,5 @@
 <template>
   <div class="main">
-    <div class="title">
-      <span>News</span>
-    </div>
     <div>
       <router-view/>
     </div>

@@ -25,6 +25,8 @@ import Profile from "./views/Profile";
 import ProfileInfo from "./views/ProfileInfo";
 import ProfileSettings from "./views/ProfileSettings";
 import AdminTasks from "./components/Task/AdminTasks"
+import Tasks from "./components/Task/Tasks"
+import Salary from "./components/Salary/Salary";
 
 Vue.use(Router);
 
@@ -96,6 +98,14 @@ export const router = new Router({
       name: 'user',
       component: UserBoard,
       children: [
+        {
+          path: 'salary',
+          component: Salary,
+        },
+        {
+          path: 'tasks',
+          component: Tasks,
+        },
         {
           path: 'memory/:memoryId',
           component: Memory

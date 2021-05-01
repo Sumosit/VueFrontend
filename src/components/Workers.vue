@@ -4,6 +4,7 @@
       <input class="workers-btn-search" type="text" v-model="search">
     </div>
     <div v-for="(user, index) in filteredList"
+         v-if="user.id !== $store.state.auth.user.id"
          :key="index">
       <div class="workers-wrapper">
         <div v-if="user.fileDB"
@@ -12,7 +13,7 @@
         </div>
         <div v-else
              class="workers-profile-image">
-          <img src="src/assets/images/user.svg">
+          <img src="../assets/images/user.svg">
         </div>
         <div class="workers-profile-info">
           <span class="username">{{user.username}}</span>

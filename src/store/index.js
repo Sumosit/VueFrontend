@@ -4,8 +4,9 @@ import Vuex from 'vuex';
 import { auth } from './auth.module';
 import { admin } from './admin.module';
 import { user } from './user.module';
-import { memories } from './Memory/memories'
+import { memories } from './memory/memories'
 import { calendar } from './calendar/calendar'
+import { tasks } from  './tasks/tasks'
 
 Vue.use(Vuex);
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     admin,
     user,
     memories,
-    calendar
+    calendar,
+    tasks
   }
 });

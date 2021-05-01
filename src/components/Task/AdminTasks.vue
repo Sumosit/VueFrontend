@@ -96,16 +96,14 @@
       date: function (val) {
         if (val.length === 4) {
           this.date = this.date + "-";
-        }
-        else if (val.length === 7) {
+        } else if (val.length === 7) {
           this.date = this.date + "-";
         }
       },
       time: function (val) {
         if (val.length === 2) {
           this.time = this.time + "-";
-        }
-        else if (val.length === 5) {
+        } else if (val.length === 5) {
           this.time = this.time + "-";
         }
       }
@@ -121,8 +119,7 @@
       addToSelected(userrid) {
         if (this.selected.find((user) => user.id === userrid.id)) {
           this.selected.splice(this.selected.indexOf(userrid), 1)
-        }
-        else {
+        } else {
           this.selected.push(userrid);
         }
       },
@@ -133,15 +130,10 @@
           usersId.push(this.selected[i].id);
           console.log(this.selected[i].id);
         }
-        if (this.files) {
-          for (var i = 0; i < this.files.length; i++) {
-            let file = this.files[i];
-            fd.append('files', file);
-            console.log(file)
-          }
-        }
-        else {
-          fd.append('files', null);
+        for (var i = 0; i < this.files.length; i++) {
+          let file = this.files[i];
+          fd.append('files', file);
+          console.log(file)
         }
         fd.append("title", this.title);
         fd.append("description", this.description);

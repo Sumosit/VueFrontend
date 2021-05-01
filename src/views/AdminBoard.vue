@@ -1,7 +1,11 @@
 <template>
   <div>
-    <div>
-      <router-view class="main" v-if="show"/>
+    <div class="main"
+         :class="{
+      'wrapper-nav-ls': windowWidth > 960
+    }">
+      <NavLeftSide v-show="windowWidth > 961"/>
+      <router-view v-if="show"/>
       <div v-else>
         Admin Page Forbidden
       </div>
@@ -11,6 +15,7 @@
 
 <script>
   import UserService from '../services/user.service';
+  import NavLeftSide from "./NavLeftSide";
   import {mapActions} from "vuex";
 
   export default {
@@ -18,10 +23,17 @@
     data() {
       return {
         content: '',
-        show: false
+        show: false,
+        windowWidth: window.innerWidth
       };
     },
+    components: {
+      NavLeftSide
+    },
     mounted() {
+      window.onresize = () => {
+        this.windowWidth = window.innerWidth
+      };
       UserService.getAdminBoard().then(
           response => {
             this.show = true;

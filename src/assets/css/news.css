@@ -2,12 +2,19 @@
     padding: 5px;
 }
 .news {
+    margin-left: auto;
+    margin-right: auto;
     padding: 10px;
-    border: 2px solid #a8a8a8;
+    border: 1px solid #f6f6f6;
     border-radius: 5px;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: #f6f6f6;
     margin-bottom: 5px;
+}
+@media only screen and (min-width: 1600px) {
+    .news {
+        width: 50%;
+    }
 }
 .news-title-field {
     display: flex;

@@ -9,7 +9,7 @@
 
 @media (min-width: 300px) {
     .c-wrapper {
-        min-height: 645px;
+        min-height: 800px;
         display: grid;
         grid-template-columns: 1fr 4fr;
         grid-template-areas: "id2-list message-field";
@@ -40,7 +40,7 @@
 .c-btn-search-field, .c-btn-send-field {
     position: relative;
     padding: 10px;
-    background-color: #333336;
+    background-color: #0e0e10;
 }
 
 .c-btn-search-field > img {
@@ -58,6 +58,7 @@
     background: white url(../images/search-icon.svg) no-repeat right center;
     height: 32px;
     font-size: 20px;
+    color: black;
 }
 
 @media (min-width: 300px) {
@@ -65,8 +66,7 @@
         display: grid;
         grid-template-columns: 50px 3fr;
         grid-template-areas: "pi-avatar pi-info";
-        grid-gap: 5px;
-        padding: 10px;
+        grid-gap: 0px;
     }
 }
 
@@ -105,4 +105,7 @@
 .c-profile-info > .email {
     font-size: 14px;
     color: #aaa;
+}
+.current-chat {
+    background-color: #84849a;
 }

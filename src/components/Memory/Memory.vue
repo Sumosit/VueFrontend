@@ -7,7 +7,7 @@
       <div class="m-i">
         <button v-on:click="saveMemory">Create package</button>
       </div>
-      <input id="files" ref="files" type="file" multiple @change="handleFileUploads"/>
+      <input style="display: block; margin-top: 5px" id="files" ref="files" type="file" multiple @change="handleFileUploads"/>
       <label for="files"></label>
       <button @click="addFilesToMemory()">Upload</button>
     </div>

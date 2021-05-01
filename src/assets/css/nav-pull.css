@@ -6,6 +6,7 @@
     left: 0;
     top: 0;
     background-color: rgba(0, 0, 0, 0.9);
+    overflow-y: auto;
 }
 
 .fade-enter-active {
@@ -33,7 +34,6 @@
     left: 5px;
     width: 35px;
     height: 35px;
-    border-radius: 40%;
 }
 
 [class*="btn-nav-pull"]:hover {
@@ -61,7 +61,7 @@ a {
 }
 .nav-bar {
     margin-top: 10px;
-    padding: 10px 0;
+    padding: 5px 5px;
     border-bottom: 2px solid #ffffff;
 }
 .nav-bar:hover, .nav-bar-username:hover {
@@ -74,11 +74,11 @@ a {
 }
 .nav-bar-over, .nav-bar-username-over {
     transition: all 0.3s;
-    border-radius: 0;
+    background: #adadad;
 }
 .nav-bar-leave, .nav-bar-username-leave {
     transition: all 0.3s;
-    border-radius: 40%;
+    background: #414141;
 }
 
 .nav-bar > a {

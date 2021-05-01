@@ -5,6 +5,7 @@ import axios from 'axios';
 export const user = {
   state: {
     storageFiles: [],
+    allFiles: [],
     news: [],
     users: [],
     chat: [],
@@ -95,6 +96,19 @@ export const user = {
             }, 1000)
           });
     },
+    async fetchAllFiles(ctx) {
+      await fetch(backendUrl() + 'files',
+          {
+            headers: authHeader()
+          })
+          .then(response => response.json())
+          .then(json => {
+            setTimeout(() => {
+              const allFiles = json;
+              ctx.commit('updateStorageFiles', allFiles);
+            }, 1000)
+          });
+    },
     async fetchUserSalaries(ctx, userId) {
       await fetch(backendUrl() + 'api/user/salaries/' + userId,
           {
@@ -110,6 +124,9 @@ export const user = {
     }
   },
   mutations: {
+    updateAllFiles(state, payload) {
+      state.allFiles = payload;
+    },
     updateUserExtra(state, userExtra) {
       state.userExtra = userExtra;
     },
@@ -135,6 +152,9 @@ export const user = {
     }
   },
   getters: {
+    getAllFiles(state) {
+      return state.allFiles;
+    },
     getUserExtra(state) {
       return state.userExtra;
     },

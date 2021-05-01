@@ -27,6 +27,9 @@
 
   export default {
     name: "websocketdemo",
+    created() {
+      document.title = "News";
+    },
     data() {
       return {
         received_messages: [],

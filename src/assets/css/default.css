@@ -1,12 +1,11 @@
 body {
-    background-image: url(../images/Sasuke.jpg);
+    /*background-image: url(../images/bg.jpg);*/
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    background-color: #464646;
+    background-color: #9d9d9d;
 }
-
 html,body{
     padding: 0;
     margin: 0;

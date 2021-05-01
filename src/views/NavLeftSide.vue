@@ -1,10 +1,26 @@
 <template>
   <div class="nav-ls">
     <div>
-      <ButtonDivLink :ButtonNameAndLink="buttonProfile" :lighter="false"/>
-      <ButtonDivLink :ButtonNameAndLink="buttonWorkers" :lighter="false"/>
-      <ButtonDivLink :ButtonNameAndLink="buttonChat" :lighter="false"/>
-      <ButtonDivLink :ButtonNameAndLink="{name: 'Calendar', link: '/user/calendar/  '+new Date().getFullYear()}" :lighter="false"/>
+      <ButtonDivLink v-if="isUser" :ButtonNameAndLink="buttonProfile" :lighter="false"/>
+      <ButtonDivLink v-if="isUser" :ButtonNameAndLink="buttonWorkers" :lighter="false"/>
+      <ButtonDivLink v-if="isUser" :ButtonNameAndLink="buttonChat" :lighter="false"/>
+      <ButtonDivLink v-if="isUser"
+                     :ButtonNameAndLink="{name: 'Memory', link: '/user/memory/  '+$store.getters.getMainMemory.id}"
+                     :lighter="false"/>
+      <ButtonDivLink :ButtonNameAndLink="{name: 'News', link: '/news/'}" :lighter="false"/>
+      <ButtonDivLink v-if="isUser"
+                     :ButtonNameAndLink="{name: 'Calendar', link: '/user/calendar/  '+new Date().getFullYear()}"
+                     :lighter="false"/>
+      <ButtonDivLink v-if="isUser" :ButtonNameAndLink="{name: 'Tasks', link: '/user/tasks'}" :lighter="false"/>
+      <ButtonDivLink v-if="isUser" :ButtonNameAndLink="{name: 'Salary', link: '/user/salary'}" :lighter="false"/>
+      <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Admin News', link: '/admin/news'}" :lighter="false"/>
+      <ButtonDivLink v-if="isAdmin"
+                     :ButtonNameAndLink="{name: 'Admin Tasks', link: '/admin/tasks/  '+new Date().getFullYear()}"
+                     :lighter="false"/>
+      <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Storage', link: '/user/storage'}" :lighter="false"/>
+      <a href @click.prevent="logOut">
+        <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Exit', link: '/user/storage'}" :lighter="false"/>
+      </a>
     </div>
   </div>
 </template>
@@ -68,6 +84,36 @@
     components: {
       ButtonDivLink,
       ButtonDivLinkDropdown
+    },
+    async mounted() {
+      await this.$store.dispatch("fetchMainMemory", this.$store.state.auth.user.id);
+    },
+    computed: {
+      logOut() {
+        this.$store.dispatch('auth/logout');
+        this.$router.push('/login');
+      },
+      loggedIn() {
+        return this.$store.state.auth.user;
+      },
+      isUser() {
+        if (this.$store.state.auth.status.loggedIn) {
+          return this.$store.state.auth.user.roles.includes('ROLE_USER')
+        }
+      },
+      isAdmin() {
+        if (this.$store.state.auth.status.loggedIn) {
+          return this.$store.state.auth.user.roles.includes('ROLE_ADMIN')
+        }
+      },
+      isModerator() {
+        if (this.$store.state.auth.status.loggedIn) {
+          return this.$store.state.auth.user.roles.includes('ROLE_MODERATOR')
+        }
+      },
+      currentUser() {
+        return this.$store.state.auth.user;
+      },
     },
     methods: {
       logOut() {

@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div v-if="currentUser.fileDB && !editProfilePhoto"
-         class="profile-image">
+         class="profile-image content-center">
       <img :src="backendUrl + 'files/' +$store.state.auth.user.fileDB.id">
       <div class="change-photo-activator">
         <img :src="editProfilePhotoIcon"
@@ -12,7 +12,7 @@
          class="profile-image">
       <label class="profile-avatar-upload" for="uploadImage">
         <span>Загрузка изображения профиля</span>
-        <span class="upload-btn">{{uploadStatus}}</span>
+        <span class="upload-field">{{uploadStatus}}</span>
         <span
           v-if="selectedFile">
               {{selectedFile.name}}
@@ -24,11 +24,11 @@
                id="uploadImage" type="file"
                @change="onFileChanged"/>
       </label>
+      <button class="upload-btn" @click="onUpload">Upload</button>
       <div class="change-photo-activator">
         <img :src="editProfilePhotoIcon"
              v-on:click="editProfilePhoto = !editProfilePhoto">
       </div>
-      <button @click="onUpload">Upload</button>
     </div>
     <div class="profile-info">
           <span class="button button-instrument"

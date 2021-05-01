@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="storage">
     <input id="files" ref="files" type="file" multiple @change="handleFileUploads"/>
     <label for="files">Choose file</label>
     <button @click="submitFiles()">Upload</button>
 
-<!--    {{allStorageFiles()}}-->
+    <!--    {{allStorageFiles()}}-->
     <div class="grid-container">
       <div class="grid-item"
-           v-for="(file, index) in allStorageFiles()"
+           v-for="(file, index) in this.$store.getters.getAllFiles"
            :key="index"
            v-if="file.type==='image/jpeg' ||
                   file.type==='image/png' ||
@@ -48,8 +48,11 @@
         docxIcon
       }
     },
+    created() {
+      document.title = "Storage";
+    },
     mounted() {
-      this.$store.dispatch('fetchStorageFiles');
+      this.$store.dispatch('fetchAllFiles');
       this.backendUrl = backendUrl();
     },
     methods: {
@@ -69,7 +72,7 @@
         axios.post(backendUrl() + 'user/storage/upload', formData, {
           headers:
               authHeader(),
-              'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data'
         }).then(res => {
           console.log(res);
           this.$store.dispatch('fetchStorageFiles');

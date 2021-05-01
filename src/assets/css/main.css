@@ -27,6 +27,9 @@ html, body {
     /*padding: 10px 10px;*/
     color: white;
 }
+.main > div {
+    padding: 5px 0;
+}
 
 .title {
     display: block;

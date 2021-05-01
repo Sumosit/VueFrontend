@@ -1,13 +1,14 @@
 <template>
   <nav>
     <div class="nav-field">
-      <div class="right content-center">
-        <img src="../assets/images/IT_Logo.png">
-      </div>
       <router-link tag="div" to="/user/profile/info"
+                   v-if="isUser"
                    class="right content-center cursor-pointer">
         <span>{{$store.state.auth.user.username}}</span>
       </router-link>
+      <div class="right content-center notification">
+        <img src="../assets/images/notification.png">
+      </div>
     </div>
   </nav>
 </template>

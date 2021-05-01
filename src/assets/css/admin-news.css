@@ -1,0 +1,29 @@
+.admin-news {
+    padding: 8px;
+    background-color: #050004;
+    color: #f6f6f6;
+}
+.ad-input > label {
+    margin-top: 5px;
+    display: block;
+    color: #f6f6f6;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+
+.ad-input > input, .ad-input > textarea {
+    margin-top: 3px;
+}
+.ad-input > input {
+    padding: 5px;
+    width: 800px;
+}
+.ad-input > textarea {
+    width: 100%;
+    min-height: 100px;
+}
+
+.admin-news-table > thead > tr, .admin-news-table > thead > tr > th,
+.admin-news-table > tbody > tr > td {
+    background-color: black;
+}

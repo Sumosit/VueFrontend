@@ -7,9 +7,8 @@ nav {
     left: 0;
     font-family: Arial, serif;
     font-size: 18px;
-    color: #ffffff;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 70%, rgba(38,38,38,1) 96%, rgba(255,255,255,1) 100%);
+    color: #000000;
+    background: #f6f6f6;
     display: flex;
 }
 
@@ -21,10 +20,20 @@ nav {
 
 .nav-field > div {
     display: inline-flex;
-    width: 100px;
+    margin-right: 30px;
     height: 100%;
 }
 
 .right {
     float: right;
+}
+
+.notification {
+}
+
+.notification > img {
+    display: block;
+    position: relative;
+    height: 60%;
+    width: auto;
 }
