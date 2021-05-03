@@ -171,9 +171,9 @@
     computed: {
       sortedChatMessages: function () {
         function compare(a, b) {
-          if (a.sendDate > b.sendDate)
+          if (a.id < b.id)
             return -1;
-          if (a.sendDate < b.sendDate)
+          if (a.id > b.id)
             return 1;
           return 0;
         }
