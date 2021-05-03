@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="ButtonNameAndLink.link"
+    <router-link
        class="nav-ls-link-btl"
        :class="{
     'isButton': isButton,
