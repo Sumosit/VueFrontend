@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-on:click="show = !show">
-      <NavPullBtn :show="show"/>
+      <NavPullBtn
+        :show="show"/>
     </div>
     <transition name="fade">
       <div v-show="show"
@@ -13,6 +14,10 @@
             :lighter="lighter"/>
         </div>
         <div class="nav-titles">
+          <div v-if="loggedIn"
+               class="nav-bar-username">
+            <router-link class="link-username" to="/user/profile/info">{{currentUser.username}}</router-link>
+          </div>
           <div class="nav-bar">
             <router-link to="/">Home</router-link>
           </div>
@@ -24,10 +29,6 @@
                class="nav-bar">
             <router-link to="/register">Register</router-link>
           </div>
-          <div v-if="loggedIn"
-               class="nav-bar-username">
-            <router-link class="link-username" to="/user/profile/info">{{currentUser.username}}</router-link>
-          </div>
           <div v-if="loggedIn" class="nav-bar">
             <router-link to="/user/workers">Workers</router-link>
           </div>
@@ -35,7 +36,7 @@
             <router-link to="/user/chat">Chat</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
-            <a :href="'/user/memory/'+$store.getters.getMainMemory.id">Memory</a>
+            <router-link :to="'/user/memory/'+$store.getters.getMainMemory.id">Memory</router-link>
           </div>
           <div v-if="loggedIn" class="nav-bar">
             <router-link :to="'/user/calendar/'+new Date().getFullYear()">Calendar</router-link>

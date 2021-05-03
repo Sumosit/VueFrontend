@@ -1,17 +1,20 @@
 <template>
   <div class="memories">
-    <div class="memories-interface">
+    <div class="memories-interface"
+         v-show="loading">
       <div class="m-i">
         <input type="text" v-model="memoryName">
       </div>
       <div class="m-i">
         <button v-on:click="saveMemory">Create package</button>
       </div>
-      <input style="display: block; margin-top: 5px" id="files" ref="files" type="file" multiple @change="handleFileUploads"/>
+      <input style="display: block; margin-top: 5px" id="files" ref="files" type="file" multiple
+             @change="handleFileUploads"/>
       <label for="files"></label>
       <button @click="addFilesToMemory()">Upload</button>
     </div>
-    <div class="memories-list">
+    <div class="memories-list"
+         v-show="loading">
       <a
         :href="'/user/memory/'+memory.id"
         v-for="(memory, index)
@@ -22,7 +25,8 @@
         </div>
       </a>
     </div>
-    <div class="grid-container">
+    <div class="grid-container"
+         v-show="loading">
       <div class="grid-item"
            v-for="(file, index) in $store.getters.getMemory.fileDBSet"
            :key="index">
@@ -34,6 +38,10 @@
         </div>
       </div>
     </div>
+    <div class="content-center"
+         v-show="!loading">
+      <LoadingLdsRipple/>
+    </div>
   </div>
 </template>
 
@@ -42,30 +50,38 @@
   import authHeader from "../../services/auth-header";
   import backendUrl from "../../store/backendUrl";
   import docxIcon from '../../assets/images/docx_icon.svg';
+  import LoadingLdsRipple from "../Loading/LoadingLdsRipple"
 
   export default {
     name: "Memories",
+    components: {
+      LoadingLdsRipple
+    },
     data() {
       return {
         memoryName: '',
         memoryId: Number.parseInt(this.$route.params.memoryId),
         memory: Object,
         docxIcon,
-        backendUrl: backendUrl()
+        backendUrl: backendUrl(),
+        loading: false
       }
     },
     async mounted() {
       await this.$store.dispatch("fetchMemory", {
         userId: this.$store.state.auth.user.id,
-        memoryId: this.memoryId
+        memoryId: this.$route.params.memoryId
       });
-      this.memory = this.$store.getters.getMemory;
+      this.memory = this.$store.getters.getMemory
+          .then(setTimeout(() => {
+            this.loading = true;
+          }, 1000));
     },
     methods: {
       saveMemory() {
         let fd = new FormData();
         fd.append("userId", this.$store.state.auth.user.id);
-        fd.append("memoryId", this.memoryId);
+        fd.append("memoryId", this.$route.params.memoryId);
         fd.append("memoryName", this.memoryName);
         console.log(fd);
 
@@ -74,7 +90,7 @@
         }).then(async res => {
           await this.$store.dispatch("fetchMemory", {
             userId: this.$store.state.auth.user.id,
-            memoryId: this.memoryId
+            memoryId: this.$route.params.memoryId
           });
           this.memories = this.$store.getters.getMemory;
           console.log(res);
@@ -91,7 +107,7 @@
           let file = this.files[i];
           fd.append('files', file);
         }
-        fd.append("memoryId", this.memoryId);
+        fd.append("memoryId", this.$route.params.memoryId);
         console.log(fd);
         axios.post(backendUrl() + 'api/user/memory/saveFiles', fd, {
           headers:
@@ -100,7 +116,7 @@
         }).then(async res => {
           await this.$store.dispatch("fetchMemory", {
             userId: this.$store.state.auth.user.id,
-            memoryId: this.memoryId
+            memoryId: this.$route.params.memoryId
           });
           console.log(res);
         }).catch(err => {

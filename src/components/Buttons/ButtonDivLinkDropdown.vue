@@ -34,14 +34,14 @@
   }
   .nav-ls-link-dp:hover, .nav-ls-link-dp:hover > a {
     transition: all 0.5s;
-    color: #f6f6f6;
+    color: black;
   }
   .nav-ls-link-dp:hover {
-    background-color: #000000;
+    background-color: #f6f6f6;
   }
   .nav-ls-link-mouseleave-dp {
     transition: all 0.5s;
-    color: white;
+    color: black;
     background-color: #3d3d3d;
   }
   .nav-ls-link {

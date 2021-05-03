@@ -1,39 +1,39 @@
 <template>
   <div class="calendar-interface-field">
     <div class="calendar-interface" id="calendar-interface">
-      <a :href="previous()">
-        <div class="c-i-img">
+      <router-link :to="previous()">
+        <div class="c-i-img" v-on:click="refresh = !refresh">
           <img
             src="../../assets/images/left-arrow.png" alt="">
         </div>
-      </a>
-      <a :href="next()">
-        <div class="c-i-img">
+      </router-link>
+      <router-link :to="next()">
+        <div class="c-i-img" v-on:click="refresh = !refresh">
           <img
             src="../../assets/images/right-arrow.png" alt="">
         </div>
-      </a>
-      <a :href="currentDate()">
+      </router-link>
+      <router-link :to="currentDate()">
         <div class="c-i-text content-center">
           <span>Today</span>
         </div>
-      </a>
-      <a :href="currentMonth()">
+      </router-link>
+      <router-link :to="currentMonth()">
         <div class="c-i-text content-center">
           <span>Month</span>
         </div>
-      </a>
-      <a :href="currentYear()">
+      </router-link>
+      <router-link :to="currentYear()">
         <div class="c-i-text content-center">
           <span>Year</span>
         </div>
-      </a>
+      </router-link>
       <a>
         <div class="c-i-checkbox content-center"
-        :class="{
+             :class="{
           'c-i-checkbox-not-checked > span': !weekends,
           'c-i-checkbox-checked > span': weekends}"
-        v-on:click="updateW()">
+             v-on:click="emitToParent()">
           <span>Weekends</span>
         </div>
       </a>
@@ -42,57 +42,68 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import {mapMutations} from 'vuex'
 
   export default {
     name: "CalendarInterface",
+    props: ['weekends'],
     data() {
       return {
         link: "/user/calendar/",
-        year: Number.parseInt(this.$route.params.year),
-        month: Number.parseInt(this.$route.params.month),
-        day: Number.parseInt(this.$route.params.day),
         weekends: false,
       }
     },
+    computed: {},
     methods: {
-      ...mapMutations(['updateWeekends']),
+      emitToParent() {
+        this.weekends = !this.weekends;
+        // this.updateWeekends(this.weekends);
+        this.$emit('childToParent', this.weekends);
+      },
       next() {
-        if (this.year && this.month && this.day) {
-          if (Number.parseInt(this.day + 1) > this.getDaysCount(this.year, this.day)) {
-            if (Number.parseInt(this.month + 1) === 13) {
-              return this.link + Number.parseInt(this.year + 1) + "/1/1";
+        let tempYearPOne = Number.parseInt(this.$route.params.year) + 1;
+        let tempMonthPOne = Number.parseInt(this.$route.params.month) + 1;
+        let tempDayPOne = Number.parseInt(this.$route.params.day) + 1;
+
+        if (this.$route.params.year && this.$route.params.month && this.$route.params.day) {
+          if (tempDayPOne > this.getDaysCount(this.$route.params.year, this.$route.params.day)) {
+            if (tempMonthPOne === 13) {
+              return this.link + tempYearPOne + "/1/1";
             }
-            return this.link + this.year + "/" + Number.parseInt(this.month + 1) + "/1";
+            return this.link + this.$route.params.year + "/" + tempMonthPOne + "/1";
           } else {
-            return this.link + this.year + "/" + this.month + "/" + Number.parseInt(this.day + 1);
+            return this.link + this.$route.params.year + "/" + this.$route.params.month + "/" + tempDayPOne;
           }
-        } else if (this.year && this.month && !this.day) {
-          if (Number.parseInt(this.month + 1) === 13) {
-            return this.link + Number.parseInt(this.year + 1) + "/1";
+        } else if (this.$route.params.year && this.$route.params.month && !this.$route.params.day) {
+          if (tempMonthPOne === 13) {
+            return this.link + tempYearPOne + "/1";
           } else {
-            return this.link + this.year + "/" + Number.parseInt(this.month + 1)
+            return this.link + this.$route.params.year + "/" + tempMonthPOne
           }
-        } else if (this.year && !this.month && !this.day) {
-          return this.link + Number.parseInt(this.year + 1);
+        } else if (this.$route.params.year && !this.$route.params.month && !this.$route.params.day) {
+          return this.link + tempYearPOne;
         }
+        this.emitComponentKeyToParent();
       },
       previous() {
-        if (this.year && this.month && this.day) {
-          if (Number.parseInt(this.day - 1) === 0) {
-            if (Number.parseInt(this.month - 1) === 0) {
-              return this.link+Number.parseInt(this.year-1)+"/12/"+this.getDaysCount(this.year-1, 12);
+        let tempYearMOne = Number.parseInt(this.$route.params.year) - 1;
+        let tempMonthMOne = Number.parseInt(this.$route.params.month) - 1;
+        let tempDayMOne = Number.parseInt(this.$route.params.day) - 1;
+
+        if (this.$route.params.year && this.$route.params.month && this.$route.params.day) {
+          if (tempDayMOne === 0) {
+            if (tempMonthMOne === 0) {
+              return this.$route.params.link + tempYearMOne + "/12/" + this.getDaysCount(tempYearMOne, 12);
+            } else {
+              return this.link + this.$route.params.year + "/" + tempMonthMOne + "/" + this.getDaysCount(this.$route.params.year, tempMonthMOne);
             }
-            else {
-              return this.link+this.year+"/"+Number.parseInt(this.month-1)+"/"+this.getDaysCount(this.year, this.month-1);
-            }
+          } else {
+            return this.link + this.$route.params.year + "/" + this.$route.params.month + "/" + tempDayMOne;
           }
-          else {
-            return this.link+this.year+"/"+this.month+"/"+Number.parseInt(this.day-1);
-          }
-        } else if (this.year && !this.month && !this.day) {
-          return this.link+Number.parseInt(this.year - 1);
+        } else if (this.$route.params.year && !this.$route.params.month && !this.$route.params.day) {
+          return this.link + tempYearMOne;
         }
+        this.emitComponentKeyToParent();
       },
       currentDate() {
         return "/user/calendar/" +
@@ -113,8 +124,6 @@
         return new Date(year, month, 0).getDate();
       },
       updateW() {
-        this.weekends = !this.weekends;
-        this.updateWeekends(this.weekends);
       }
     },
   }

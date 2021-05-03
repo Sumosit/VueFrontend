@@ -6,7 +6,8 @@
                  class="month-title">{{month.id}}, {{month.name}}
     </router-link>
     <div class="days-wrapper">
-      <Days v-for="index in getDaysCount()"
+      <Days :weekends="weekends"
+            v-for="index in getDaysCount()"
             :key="index"
             :day="{
              id: index,
@@ -22,7 +23,7 @@
 
   export default {
     name: "Months",
-    props: ['month'],
+    props: ['month', 'weekends'],
     components: {
       Days
     },

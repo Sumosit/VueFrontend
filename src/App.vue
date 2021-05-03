@@ -5,7 +5,7 @@
       <NavPull/>
       <Nav/>
     </div>
-    <div v-show="afkBackground" >
+    <div v-show="afkBackground">
       <router-view :class="{'main-nav': windowWidth > 958,
       'main-nav-pull': windowWidth <= 958}"/>
     </div>
@@ -20,14 +20,14 @@
   export default {
     data() {
       return {
-        windowWidth: window.innerWidth,
+        windowWidth: 0,
         afkBackground: true
       }
     },
+    created() {
+      window.addEventListener('resize', this.updateWidth);
+    },
     mounted() {
-      window.onresize = () => {
-        this.windowWidth = window.innerWidth
-      }
     },
     components: {
       Nav, NavPull,
@@ -57,6 +57,9 @@
       }
     },
     methods: {
+      updateWidth() {
+        this.windowWidth = window.innerWidth;
+      },
       logOut() {
         this.$store.dispatch('auth/logout');
         this.$router.push('/login');

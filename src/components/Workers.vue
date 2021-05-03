@@ -4,7 +4,7 @@
       <input class="workers-btn-search" type="text" v-model="search">
     </div>
     <div v-for="(user, index) in filteredList"
-         v-if="user.id !== $store.state.auth.user.id"
+         v-show="user.id !== $store.state.auth.user.id && loading"
          :key="index">
       <div class="workers-wrapper">
         <div v-if="user.fileDB"
@@ -18,9 +18,13 @@
         <div class="workers-profile-info">
           <span class="username">{{user.username}}</span>
           <span class="email">{{user.email}}</span>
-          <button v-on:click="createChat(user.id)">send message</button>
+          <button class="btn-create-chat" v-on:click="createChat(user.id)">send message</button>
         </div>
       </div>
+    </div>
+    <div class="content-center"
+         v-show="!loading">
+      <LoadingLdsRipple/>
     </div>
   </div>
 </template>
@@ -30,21 +34,29 @@
   import backendUrl from "../store/backendUrl";
   import axios from "axios";
   import authHeader from "../services/auth-header";
+  import LoadingLdsRipple from "./Loading/LoadingLdsRipple";
 
   export default {
     name: "Users",
-    created() {
-      document.title = "Workers";
-    },
-    mounted() {
-      this.$store.dispatch('fetchUsers');
-      this.backendUrl = backendUrl();
-    },
     data() {
       return {
         search: '',
         backendUrl: '',
+        loading: false
       }
+    },
+    created() {
+      document.title = "Workers";
+    },
+    async mounted() {
+      await this.$store.dispatch('fetchUsers')
+      .then(setTimeout(()=>{
+        this.loading = true;
+      }, 1000));
+      this.backendUrl = backendUrl();
+    },
+    components: {
+      LoadingLdsRipple
     },
     methods: {
       createChat(id2) {

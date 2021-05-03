@@ -1,16 +1,17 @@
 <template>
   <div>
     <div class="content-center calendar-year">
-      <span>{{year}}</span>
+      <span>{{$route.params.year}}</span>
     </div>
     <div class="months-wrapper">
       <Months class=""
+              :weekends="weekends"
               v-for="(month, index) in getMonths()"
               :key="index"
               :month="{
                id: month.id,
              name: month.name,
-             year: year}"/>
+             year: $route.params.year}"/>
     </div>
   </div>
 </template>
@@ -21,12 +22,12 @@
 
   export default {
     name: "Years",
+    props:['weekends'],
     components: {
       Months
     },
     data() {
       return {
-        year: Number.parseInt(this.$route.params.year),
       }
     },
     methods: {

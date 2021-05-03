@@ -3,7 +3,7 @@
 }
 
 .c-wrapper > div {
-    background-color: #0e0e10;
+    background-color: #f6f6f6;
     font-family: Arial, sans-serif;
 }
 
@@ -26,6 +26,7 @@
 
 .c-id2-list > div:hover {
     background-color: #292930;
+    color: #ffffff;
 }
 
 .c-id2-list > div {
@@ -40,7 +41,7 @@
 .c-btn-search-field, .c-btn-send-field {
     position: relative;
     padding: 10px;
-    background-color: #0e0e10;
+    background-color: #f6f6f6;
 }
 
 .c-btn-search-field > img {
@@ -48,23 +49,23 @@
     top: 0;
     right: 0;
     padding: 5px;
-    background-color: #f6f6f6;
+    background-color: black;
     border-radius: 5px;
     width: 20px;
     height: auto;
 }
 
 .c-btn-search {
-    background: white url(../images/search-icon.svg) no-repeat right center;
+    background: black url(../images/search-icon.svg) no-repeat right center;
     height: 32px;
     font-size: 20px;
-    color: black;
+    color: #f6f6f6;
 }
 
 @media (min-width: 300px) {
     .c-profile-image {
         display: grid;
-        grid-template-columns: 50px 3fr;
+        grid-template-columns: 100px 3fr;
         grid-template-areas: "pi-avatar pi-info";
         grid-gap: 0px;
     }
@@ -99,12 +100,10 @@
 
 .c-profile-info > .username {
     font-size: 18px;
-    color: #fff;
 }
 
 .c-profile-info > .email {
     font-size: 14px;
-    color: #aaa;
 }
 .current-chat {
     background-color: #84849a;

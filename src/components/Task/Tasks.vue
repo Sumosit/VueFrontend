@@ -1,8 +1,8 @@
 <template>
   <div class="tasks">
-<!--    {{$store.getters.getTasks}}-->
     <div class="task"
-      v-for="(task, index) in sortedTasks">
+         v-show="loading"
+         v-for="(task, index) in sortedTasks">
       <div v-text="'Title: '+task.title"></div>
       <div
         class="tasks-description"
@@ -18,6 +18,10 @@
         </div>
       </div>
     </div>
+    <div class="content-center"
+         v-show="!loading">
+      <LoadingLdsRipple/>
+    </div>
   </div>
 </template>
 
@@ -25,20 +29,28 @@
   import authHeader from "../../services/auth-header";
   import backendUrl from "../../store/backendUrl";
   import docxIcon from '../../assets/images/docx_icon.svg';
+  import LoadingLdsRipple from "../Loading/LoadingLdsRipple"
 
   export default {
     name: "Tasks",
-    created() {
-      document.title = "Tasks"
+    components: {
+      LoadingLdsRipple
     },
     data() {
       return {
         docxIcon,
-        backendUrl: backendUrl()
+        backendUrl: backendUrl(),
+        loading: false
       }
     },
+    created() {
+      document.title = "Tasks"
+    },
     async mounted() {
-      await this.$store.dispatch("fetchTasksBiUserId", this.$store.state.auth.user.id);
+      await this.$store.dispatch("fetchTasksBiUserId", this.$store.state.auth.user.id)
+          .then(setTimeout(() => {
+            this.loading = true;
+          }, 1000));
     },
     computed: {
       sortedTasks: function () {

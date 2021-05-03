@@ -23,9 +23,9 @@ html, body {
     left: 0;
     position: relative;
     margin: 49px auto auto;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(147, 147, 147, 0.8);
     /*padding: 10px 10px;*/
-    color: white;
+    /*color: #656565;*/
 }
 .main > div {
     padding: 5px 0;

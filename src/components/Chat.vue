@@ -8,10 +8,9 @@
     <div class="c-wrapper">
       <div class="c-id2-list">
         <div v-for="(chat, index) in getChatIdFilter()"
-             :class="{'current-chat': $route.params.recipientId && Number.parseInt($route.params.recipientId) === chat.recipient.id}"
+             :class="{'current-chat': $route.params.recipientId && Number.parseInt($route.params.recipientId) !== $store.state.auth.user.id && Number.parseInt($route.params.recipientId) === chat.recipient.id}"
              :key="index"
              v-on:click="setUrlParameters(chat.id, chat.recipient.id)">
-<!--                    {{chat}}-->
           <div class="c-profile-image">
             <div class="c-pi-avatar">
               <img v-if="chat.recipient.fileDB && (chat.recipient.id !== $store.state.auth.user.id)"
@@ -35,6 +34,10 @@
           </div>
         </div>
       </div>
+      <div class="content-center"
+           v-show="!loading">
+        <LoadingLdsRipple/>
+      </div>
       <div class="c-message-field">
         <ChatWith v-if="openChat"
                   :change-view="changeView"/>
@@ -48,29 +51,30 @@
   import ChatWith from "../components/ChatWith";
   import {router} from "../router";
   import axios from "axios";
-
   export default {
     name: "Chat",
     components: {
       ChatWith
-    },
-    created() {
-      document.title = "Chat";
-    },
-    mounted() {
-      if (this.$route.params.chatId) {
-        this.openChat = true;
-      }
-      this.$store.dispatch('fetchChat');
-      this.backendUrl = backendUrl();
     },
     data() {
       return {
         search: '',
         backendUrl: '',
         openChat: false,
-        changeView: false
+        changeView: false,
+        loading: false
       }
+    },
+    created() {
+      document.title = "Chat";
+    },
+    async mounted() {
+      if (this.$route.params.chatId) {
+        this.openChat = true;
+      }
+      await this.$store.dispatch('fetchChat');
+      this.loading = true;
+      this.backendUrl = backendUrl();
     },
     methods: {
       setUrlParameters(chat_id, recipientId) {

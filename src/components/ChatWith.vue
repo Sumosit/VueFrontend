@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="mf-history">
-      <!--      {{r_m}}-->
-      <!--            {{received_messages}}-->
+    <div
+      v-show="loading"
+      class="mf-history">
       <div v-for="(item, index) in received_messages">
         <div
           v-if="item.sender.id!==$store.state.auth.user.id"
@@ -39,8 +39,9 @@
       </div>
       <div id="bottom"></div>
     </div>
-
-    <form class="form-mf-message">
+    <form
+      v-show="loading"
+      class="form-mf-message">
       <div class="mf-message">
         <label class="label-text">
           <input
@@ -63,6 +64,10 @@
         </label>
       </div>
     </form>
+    <div class="content-center"
+         v-show="!loading">
+      <LoadingLdsRipple/>
+    </div>
   </div>
 </template>
 
@@ -73,8 +78,13 @@
   import axios from "axios";
   import authHeader from "../services/auth-header";
   import getTimestampDate from "../js/getTimestampDate";
+  import LoadingLdsRipple from "./Loading/LoadingLdsRipple"
 
   export default {
+    props: ['changeView'],
+    components: {
+      LoadingLdsRipple
+    },
     data() {
       return {
         received_messages: [],
@@ -83,10 +93,30 @@
         backendUrl: '',
         chat: [],
         chatId: '',
-        r_m: ''
+        r_m: '',
+        loading: false
       };
     },
-    props: ['changeView'],
+    async mounted() {
+      this.connect();
+      this.backendUrl = backendUrl();
+      this.r_m = await axios.get(backendUrl() + 'api/chat/one/' + this.$route.params.chatId,
+          {
+            headers: authHeader()
+          })
+      this.loading = true;
+      this.received_messages = this.sortedChatMessages;
+      console.log(this.r_m.data);
+
+      var container = document.querySelector(".mf-history");
+      var scrollHeight = container.scrollHeight;
+      container.scrollTop = scrollHeight;
+      this.scrollToEnd();
+    },
+    updated() {
+      this.scrollToEnd();
+      this.$store.dispatch('fetchChat');
+    },
     methods: {
       scrollToEnd() {
         var container = document.querySelector(".mf-history");
@@ -137,25 +167,6 @@
       tickleConnection() {
         this.connected ? this.disconnect() : this.connect();
       }
-    },
-    async mounted() {
-      this.connect();
-      this.backendUrl = backendUrl();
-      this.r_m = await axios.get(backendUrl() + 'api/chat/one/' + this.$route.params.chatId,
-          {
-            headers: authHeader()
-          });
-      console.log(this.r_m.data);
-      this.received_messages = this.sortedChatMessages;
-
-      var container = document.querySelector(".mf-history");
-      var scrollHeight = container.scrollHeight;
-      container.scrollTop = scrollHeight;
-      this.scrollToEnd();
-    },
-    updated() {
-      this.scrollToEnd();
-      this.$store.dispatch('fetchChat');
     },
     computed: {
       sortedChatMessages: function () {

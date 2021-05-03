@@ -3,7 +3,7 @@
     <div class="nav-field">
       <router-link tag="div" to="/user/profile/info"
                    v-if="isUser"
-                   class="right content-center cursor-pointer">
+                   class="right content-center cursor-pointer nav-username">
         <span>{{$store.state.auth.user.username}}</span>
       </router-link>
       <div class="right content-center notification">

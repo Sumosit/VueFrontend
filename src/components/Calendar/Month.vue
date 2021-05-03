@@ -1,13 +1,13 @@
 <template>
   <div>
-    <span class="month-title">{{month}}, {{getMonthName()}}, {{year}}</span>
+    <span class="month-title">{{$route.params.month}}, {{getMonthName()}}, {{$route.params.year}}</span>
     <div class="days-wrapper">
       <Days v-for="index in getDaysCount()"
             :key="index"
             :day="{
               id: index,
-              month: month,
-              year: year
+              month: $route.params.month,
+              year: $route.params.year
             }"/>
     </div>
   </div>
@@ -25,16 +25,14 @@
     },
     data() {
       return {
-        month: Number.parseInt(this.$route.params.month),
-        year: Number.parseInt(this.$route.params.year)
       }
     },
     methods: {
       getDaysCount() {
-        return new Date(this.year, this.month, 0).getDate();
+        return new Date(this.$route.params.year, this.$route.params.month, 0).getDate();
       },
       getMonthName() {
-        return getMonth(this.month).name;
+        return getMonth(this.$route.params.month).name;
       }
     }
   }

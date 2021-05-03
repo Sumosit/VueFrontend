@@ -13,8 +13,7 @@
 
 .nav-ls {
     font-family: Arial, sans-serif;
-    background-color: #000000;
-    border: 0.01vw solid #f6f6f6;
+    background-color: #f6f6f6;
 }
 
 .nav-ls-link {
@@ -24,16 +23,16 @@
 
 .nav-ls-link:hover, .nav-ls-link:hover > a {
     transition: all 0.5s;
-    color: black;
+    color: #f6f6f6;
 }
 .nav-ls-link:hover {
-    background-color: #ffffff;
+    background-color: black;
 }
 
 .nav-ls-link-mouseleave {
     transition: all 0.5s;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: #f6f6f6;
 }
 .nav-hri-dropdown-content {
     z-index: 6666;
@@ -47,5 +46,5 @@
     color: #242424;
 }
 .nav-link:hover {
-    background-color: #d9d9d9;
+    background-color: black;
 }

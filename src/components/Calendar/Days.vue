@@ -8,12 +8,12 @@
              'day-btn-mouseleave': buttonHover && !thisDay,
              'this-day': !buttonHover && thisDay,
              'this-day-mouseleave': buttonHover && thisDay,
-             'weekend': !buttonHover && $store.getters.getWeekends && weekend && !isNote,
-             'weekend-mouseleave': buttonHover && $store.getters.getWeekends && weekend && !isNote,
+             'weekend': !buttonHover && weekends && weekend && !isNote,
+             'weekend-mouseleave': buttonHover && weekends && weekend && !isNote,
              'isNote': !buttonHover && isNote,
              'isNote-mouseleave': buttonHover && isNote,
-             'isNote-weekend': !buttonHover && isNote && $store.getters.getWeekends && weekend,
-             'isNote-weekend-mouseleave': buttonHover && $store.getters.getWeekends && isNote && weekend
+             'isNote-weekend': !buttonHover && isNote && weekends && weekend,
+             'isNote-weekend-mouseleave': buttonHover && weekends && isNote && weekend
   }"
                @mouseover="buttonHover = false"
                @mouseleave="buttonHover = true">
@@ -30,7 +30,7 @@
 
   export default {
     name: "Days",
-    props: ['day'],
+    props: ['day', 'weekends'],
     data() {
       return {
         buttonHover: false,
@@ -40,7 +40,7 @@
         notes: null,
       }
     },
-    async mounted() {
+    mounted() {
       this.checkDate();
       this.checkWeekends();
     },

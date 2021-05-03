@@ -16,7 +16,6 @@
          :class="{
       'strip-anim': hover,
       'strip-lighter': lighter}"></div>
-    {{lighter}}
   </div>
 </template>
 
@@ -79,7 +78,6 @@
   }
   .strip-lighter {
     display: block;
-    margin-top: 4px;
     width: 36px;
     height: 7px;
     border-radius: 5px;
@@ -95,7 +93,7 @@
     width: 36px;
     height: 30px;
     top: 10px;
-    left: 5px;
+    left: 10px;
     color: black;
   }
 </style>

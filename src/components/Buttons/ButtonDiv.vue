@@ -25,29 +25,29 @@
 
 <style scoped>
   .button-link-bd:hover {
-    background-color: #ffffff;
+    background-color: black;
   }
 
   .button-link-mouseleave-bd {
     transition: all 0.5s;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: #f6f6f6;
   }
   .button-bd{
     position: relative;
     display: inline-block;
     padding: 15px 10px;
-    color: white;
+    color: black;
     width: 200px;
     height: 100%;
     font-size: 18px;
-    border: 1px solid white;
-    background-color: black;
+    border: 1px solid black;
+    background-color: #f6f6f6;
     cursor: pointer;
   }
   .button-hover-bd:hover {
     transition: all 0.5s;
-    color: black;
-    background-color: #ffffff;
+    color: #f6f6f6;
+    background-color: black;
   }
 </style>

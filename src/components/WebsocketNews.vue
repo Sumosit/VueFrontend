@@ -1,6 +1,7 @@
 <template>
   <div class="news-all">
     <div class="news"
+         v-show="loading"
          v-for="(item, index) in $store.getters.allNews"
          :key="index">
       <div class="news-title-field">
@@ -17,6 +18,10 @@
         <p style="white-space: pre-line" v-html="item.content"></p>
       </div>
     </div>
+    <div class="content-center"
+         v-show="!loading">
+      <LoadingLdsRipple/>
+    </div>
   </div>
 </template>
 
@@ -24,11 +29,12 @@
   import SockJS from "sockjs-client";
   import Stomp from "webstomp-client";
   import backendUrl from "../store/backendUrl";
+  import LoadingLdsRipple from "./Loading/LoadingLdsRipple"
 
   export default {
     name: "websocketdemo",
-    created() {
-      document.title = "News";
+    components: {
+      LoadingLdsRipple
     },
     data() {
       return {
@@ -36,8 +42,20 @@
         send_title: null,
         send_content: null,
         connected: false,
-        backendUrl: backendUrl()
+        backendUrl: backendUrl(),
+        loading: false
       };
+    },
+    created() {
+      document.title = "News";
+    },
+    async mounted() {
+      this.connect();
+      await this.$store.dispatch("fetchNews");
+      this.received_messages = this.$store.getters.allNews
+          .then(setTimeout(() => {
+            this.loading = true;
+          }, 1000));
     },
     methods: {
       connect() {
@@ -70,12 +88,6 @@
         this.connected ? this.disconnect() : this.connect();
       }
     },
-    async mounted() {
-      this.connect();
-      await this.$store.dispatch("fetchNews");
-      console.log(this.$store.getters.allNews);
-      this.received_messages = this.$store.getters.allNews;
-    }
   };
 </script>
 

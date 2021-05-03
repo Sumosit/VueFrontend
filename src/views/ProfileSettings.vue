@@ -38,7 +38,7 @@
           <button @click="onUpload">Upload</button>
         </div>
         <div v-if="getUserExtra().passport"
-             class="content-center">
+             class="content-center doc-download">
           <a :href="backendUrl+'files/'+getUserExtra().passport.id">
             Download
           </a>
@@ -67,7 +67,7 @@
           <button @click="onUpload">Upload</button>
         </div>
         <div v-if="getUserExtra().diploma"
-             class="content-center">
+             class="content-center doc-download">
           <a :href="backendUrl+'files/'+getUserExtra().diploma.id">
             Download
           </a>
@@ -97,7 +97,7 @@
           <button @click="onUpload">Upload</button>
         </div>
         <div v-if="getUserExtra().medicalVerification"
-             class="content-center">
+             class="content-center doc-download">
           <a :href="backendUrl+'files/'+getUserExtra().medicalVerification.id">
             Download
           </a>
@@ -126,7 +126,7 @@
           <button @click="onUpload">Upload</button>
         </div>
         <div v-if="getUserExtra().conviction"
-             class="content-center">
+             class="content-center doc-download">
           <a :href="backendUrl+'files/'+getUserExtra().conviction.id">
             Download
           </a>
@@ -156,7 +156,7 @@
           <button @click="onUpload">Upload</button>
         </div>
         <div v-if="getUserExtra().employmentContract"
-             class="content-center">
+             class="content-center doc-download">
           <a :href="backendUrl+'files/'+getUserExtra().employmentContract .id">
             Download
           </a>
@@ -260,8 +260,8 @@
 
   .profile-settings {
     padding: 8px;
-    background: #0e0e10;
-    color: #f6f6f6;
+    background: #f6f6f6;
+    color: black;
     font-family: Arial, sans-serif;
   }
 
@@ -274,6 +274,9 @@
     height: 36px;
     margin-right: 10px;
     font-size: 16px;
+    background: #f6f6f6;
+    border: 1px solid black;
+    color: black;
   }
 
   .name-surname > button {
@@ -302,7 +305,8 @@
     position: relative;
     word-break: break-word;
     padding: 15px;
-    border: 1px solid #f6f6f6;
+    background: #dddddd;
+    border: 1px solid black;
     border-radius: 5px;
   }
 
@@ -328,5 +332,9 @@
 
   .document > label:hover {
     color: #d20000;
+  }
+
+  .doc-download > a {
+    color: black;
   }
 </style>

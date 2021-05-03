@@ -106,7 +106,9 @@
     },
     methods: {
       EditProfileResume() {
-        this.editProfileResume = !this.editProfileResume;
+        if (this.$store.state.auth.user.fileDB) {
+          this.editProfileResume = !this.editProfileResume;
+        }
         this.$nextTick(() => {
           let element = document.getElementById("resumeSave");
           element.scrollIntoView({behavior: "smooth"});

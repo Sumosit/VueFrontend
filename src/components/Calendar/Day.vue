@@ -1,7 +1,7 @@
 <template>
   <div style="position: relative">
     <div class="day content-center">
-      <span class="day-title">{{day}}/{{month}}/{{year}}</span>
+      <span class="day-title">{{$route.params.day}}/{{$route.params.month}}/{{$route.params.year}}</span>
     </div>
     <div class="add-notes-on-off content-center"
          v-on:click="showAddNotesField=!showAddNotesField">
@@ -9,15 +9,15 @@
     </div>
     <Notes v-if="showAddNotesField"
            :date="{
-      day: day,
-      month: month,
-      year: year,
+      day: $route.params.day,
+      month: $route.params.month,
+      year: $route.params.year,
     }"/>
-    <NotesList v-if="year && month && day && showNotesList"
+    <NotesList v-if="$route.params.year && $route.params.month && $route.params.day && showNotesList"
                :date="{
-      day: day,
-      month: month,
-      year: year,
+      day: $route.params.day,
+      month: $route.params.month,
+      year: $route.params.year,
     }"
     :showNotesList="!showNotesList"/>
   </div>
@@ -34,9 +34,9 @@
     },
     data() {
       return {
-        year: Number.parseInt(this.$route.params.year),
-        month: Number.parseInt(this.$route.params.month),
-        day: Number.parseInt(this.$route.params.day),
+        // year: Number.parseInt(this.$route.params.year),
+        // month: Number.parseInt(this.$route.params.month),
+        // day: Number.parseInt(this.$route.params.day),
         showAddNotesField: false,
         showNotesList: true
       }

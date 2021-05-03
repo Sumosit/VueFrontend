@@ -37,3 +37,16 @@ nav {
     height: 60%;
     width: auto;
 }
+.nav-username {
+    width: 50px;
+    border-radius: 50%;
+    background: #f6f6f6;
+}
+
+.nav-username:hover {
+    transition: 0.5s all;
+    width: 50px;
+    border-radius: 50%;
+    background: #bcbcbc;
+    /*color: #f6f6f6;*/
+}
