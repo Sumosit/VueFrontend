@@ -1,1 +1,0 @@
-.userNav-grid-container{margin-top:10px;display:grid;grid-template-columns:repeat(12,minmax(auto,auto));grid-template-rows:repeat(1,minmax(auto,auto));grid-gap:10px}@media only screen and (max-width:600px){.userNav-grid-container{grid-template-columns:repeat(3,minmax(auto,auto))}}.userNav-grid-item{background-color:#eaeaea;padding:10px 10px 0;border:1px solid #fff;font-size:30px}

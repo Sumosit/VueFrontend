@@ -1,1 +1,0 @@
-.wrapper{display:grid;grid-template-columns:minmax(200px,20%) 80%;grid-gap:5px}.wrapper>div{background-color:#333336;font-family:Arial,sans-serif}.profile-image{padding:10px}.profile-info{padding:20px;overflow:hidden}.profile-info>.username{font-size:32px;color:#fff}.profile-info>.email{font-size:18px;color:#aaa}img{width:100%;height:auto}

@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="c-btn-search-field">
-      <input class="c-btn-search" type="text" v-model="search">
+      <input class="c-btn-search"
+             type="text"
+             placeholder="search"
+             v-model="search">
       <img v-on:click="changeView = !changeView"
            src="../assets/images/change-chatWith.png">
     </div>
