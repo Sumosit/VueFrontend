@@ -1,4 +1,4 @@
-  {
+{
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -11,7 +11,12 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/vue-fontawesome": "^2.0.0",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
+    "highlight.js": "^10.4.1",
+    "elliptic": "^6.5.4",
+    "y18n": "^4.0.1",
+    "is-svg": "^4.2.2",
+    "ssri": "^6.0.2",
     "bootstrap": "^4.5.3",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
