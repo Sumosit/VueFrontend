@@ -15,9 +15,7 @@
             <div class="c-pi-avatar">
               <img v-if="chat.recipient.fileDB && (chat.recipient.id !== $store.state.auth.user.id)"
                    :src="backendUrl + 'files/' + chat.recipient.fileDB.id">
-              <img v-if="chat.sender.fileDB && (chat.recipient.id === $store.state.auth.user.id)"
-                   :src="backendUrl + 'files/' + chat.sender.fileDB.id">
-              <img v-else-if="!chat.sender.fileDB && !chat.recipient.fileDB" src="../assets/images/user.svg">
+              <img v-else src="../assets/images/user.svg">
             </div>
             <div class="pi-info">
               <div class="c-profile-info"
