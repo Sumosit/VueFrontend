@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a :href="ButtonNameAndLink.link"
+    <router-link :to="ButtonNameAndLink.link"
        class="nav-ls-link-btl"
        :class="{
     'isButton': isButton,
@@ -14,7 +14,7 @@
        :to="ButtonNameAndLink.link"
     >
       {{ButtonNameAndLink.name}}
-    </a>
+    </router-link>
   </div>
 </template>
 
