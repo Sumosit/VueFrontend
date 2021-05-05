@@ -10,6 +10,8 @@
              'this-day-mouseleave': buttonHover && thisDay,
              'weekend': !buttonHover && weekends && weekend && !isNote,
              'weekend-mouseleave': buttonHover && weekends && weekend && !isNote,
+             'this-day-isNote': !buttonHover && isNote && thisDay,
+             'this-day-isNote-mouseleave': buttonHover && isNote && thisDay,
              'isNote': !buttonHover && isNote,
              'isNote-mouseleave': buttonHover && isNote,
              'isNote-weekend': !buttonHover && isNote && weekends && weekend,
@@ -19,6 +21,8 @@
                @mouseleave="buttonHover = true">
     {{day.id}}
     {{checkNotes()}}
+    <!--    {{isNote}}-->
+    <!--    {{thisDay}}-->
   </router-link>
 </template>
 
@@ -37,18 +41,18 @@
         thisDay: false,
         weekend: false,
         isNote: false,
-        notes: null,
+        notes: [],
       }
     },
-    mounted() {
+    async mounted() {
       this.checkDate();
       this.checkWeekends();
     },
     methods: {
       checkDate() {
-        if (this.day.id === new Date().getDate() &&
-            this.day.month === new Date().getMonth() + 1 &&
-            this.day.year === new Date().getFullYear()) {
+        if (Number.parseInt(this.day.id) === new Date().getDate() &&
+            Number.parseInt(this.day.month) === new Date().getMonth() + 1 &&
+            Number.parseInt(this.day.year) === new Date().getFullYear()) {
           this.thisDay = true;
         }
       },
@@ -59,10 +63,10 @@
       },
       checkNotes() {
         let en = this.$store.getters.getExistNotes;
-        for (var i = 0; i < en.length; i++) {
-          if (en[i].day === this.day.id &&
-          en[i].month === this.day.month &&
-          en[i].year === this.day.year) {
+        for (let i = 0; i < en.length; i++) {
+          if (en[i].day === Number.parseInt(this.day.id) &&
+              en[i].month === Number.parseInt(this.day.month) &&
+              en[i].year === Number.parseInt(this.day.year)) {
             this.isNote = true;
           }
         }
@@ -80,8 +84,8 @@
 
   .this-day:hover {
     transition: all 0.5s;
-    background-color: #ffffff;
-    color: black;
+    background-color: black;
+    color: #f6f6f6;
   }
 
   .this-day-mouseleave {
@@ -92,74 +96,92 @@
 
   .day-btn {
     cursor: pointer;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: #f6f6f6;
   }
 
   .day-btn:hover {
     transition: all 0.5s;
-    background-color: #ffffff;
-    color: black;
+    background-color: #444444;
+    color: #f6f6f6;
   }
 
   .day-btn-mouseleave {
     transition: all 0.5s;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: #f6f6f6;
   }
 
   .weekend {
     cursor: pointer;
-    color: white;
-    background-color: #00890b;
+    color: black;
+    background-color: #00f988;
   }
 
   .weekend:hover {
     transition: all 0.5s;
-    background-color: #ffffff;
-    color: black;
+    background-color: black;
+    color: #f6f6f6;
   }
 
   .weekend-mouseleave {
     transition: all 0.5s;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: #f6f6f6;
   }
 
   .isNote {
     cursor: pointer;
     color: white;
-    background-color: #750055;
+    background-color: rgba(208, 0, 149, 1);
   }
 
   .isNote:hover {
     transition: all 0.5s;
-    background-color: #ffffff;
-    color: black;
+    background-color: black;
+    color: #f6f6f6;
   }
 
   .isNote-mouseleave {
     transition: all 0.5s;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: #f6f6f6;
   }
 
   .isNote-weekend {
     cursor: pointer;
     color: white;
-    background: rgb(0,137,11);
-    background: linear-gradient(90deg, rgba(0,137,11,1) 50%, rgba(117,0,85,1) 50%);
+    background: rgb(0, 137, 11);
+    background: linear-gradient(90deg, rgba(0, 137, 11, 1) 50%, rgba(208, 0, 149, 1) 50%);
   }
 
   .isNote-weekend:hover {
     transition: all 0.5s;
-    background-color: #ffffff;
-    color: black;
+    background-color: black;
+    color: #f6f6f6;
   }
 
   .isNote-weekend-mouseleave {
     transition: all 0.5s;
+    color: black;
+    background-color: #f6f6f6;
+  }
+
+  .this-day-isNote {
+    cursor: pointer;
     color: white;
+    background: rgb(252,0,0);
+    background: linear-gradient(90deg, rgba(252,0,0,1) 50%, rgba(208, 0, 149, 1) 50%);  }
+
+  .this-day-isNote:hover {
+    transition: all 0.5s;
     background-color: black;
+    color: #f6f6f6;
+  }
+
+  .this-day-isNote-mouseleave {
+    transition: all 0.5s;
+    color: black;
+    background: linear-gradient(90deg, black 50%, black 50%);
   }
 </style>

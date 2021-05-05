@@ -49,13 +49,15 @@
 
 <script>
   import backendUrl from "../store/backendUrl";
+  import LoadingLdsRipple from "../components/Loading/LoadingLdsRipple";
   import ChatWith from "../components/ChatWith";
   import {router} from "../router";
   import axios from "axios";
+
   export default {
     name: "Chat",
     components: {
-      ChatWith
+      ChatWith, LoadingLdsRipple
     },
     data() {
       return {

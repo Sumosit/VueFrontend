@@ -1,7 +1,7 @@
 .calendar {
     padding: 0;
-    background-color: #050004;
-    color: #f6f6f6;
+    background-color: #f6f6f6;
+    color: black;
 }
 
 @media (min-width: 487px) {
@@ -12,6 +12,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
+    padding: 5px;
+    background-color: #ededed;
 }
 
 .months-wrapper > div {
@@ -28,7 +30,7 @@
 
 .days-wrapper > div {
     padding: 5px;
-    outline: 1px solid #f6f6f6;
+    outline: 1px solid black;
     /*border: 1px solid #f6f6f6;*/
 }
 
@@ -40,10 +42,11 @@
 }
 
 .calendar-year {
-    margin-top: 10px;
+    background-color: #ededed;
 }
 
 .calendar-year > span {
+    margin-top: 10px;
     font-family: Arial, sans-serif;
     font-size: 20px;
 }

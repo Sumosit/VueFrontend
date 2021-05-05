@@ -1,8 +1,14 @@
 .memories {
     padding: 8px;
-    background-color: #050004;
-    color: #f6f6f6;
+    background-color: #f6f6f6;
+    color: black;
     font-family: Arial, sans-serif;
+}
+
+.m-i > input {
+    background-color: #ebebeb;
+    color: black;
+    border: 1px solid black;
 }
 
 .memories-interface > div {
@@ -32,7 +38,8 @@
 .memories-list > a > div {
     margin-top: 5px;
     padding: 10px;
-    border: 1px solid #f6f6f6;
+    border: 1px solid black;
+    color: black;
 }
 
 .grid-container {
@@ -62,7 +69,7 @@
 .grid-item {
     display: block;
     padding: 10px 10px 0;
-    border: 1px solid #fff;
+    border: 1px solid black;
     font-size: 30px;
     overflow: hidden;
 }

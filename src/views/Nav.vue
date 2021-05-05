@@ -6,19 +6,31 @@
                    class="right content-center cursor-pointer nav-username">
         <span>{{$store.state.auth.user.username}}</span>
       </router-link>
-      <div class="right content-center notification">
+      <div class="right content-center notification" v-on:click="open_not = !open_not">
         <img src="../assets/images/notification.png">
+        <div v-show="notificationLength > 0">{{notificationLength}}</div>
       </div>
     </div>
+    <Notification
+      v-on:childToParent="onChildClick"
+      :notificationLength="notificationLength"
+      v-show="open_not"/>
   </nav>
 </template>
 
 <script>
+  import Notification from "../components/Notification/Notification"
+
   export default {
     name: "Nav",
+    components: {
+      Notification
+    },
     data() {
       return {
         dropdown: false,
+        open_not: false,
+        notificationLength: 0
       }
     },
     computed: {
@@ -48,6 +60,9 @@
       logOut() {
         this.$store.dispatch('auth/logout');
         this.$router.push('/login');
+      },
+      onChildClick(value) {
+        this.notificationLength = value
       }
     },
   }

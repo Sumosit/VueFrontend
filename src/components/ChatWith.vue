@@ -94,16 +94,21 @@
         chat: [],
         chatId: '',
         r_m: '',
-        loading: false
+        loading: false,
+        chatIdObj: Object
       };
     },
     async mounted() {
       this.connect();
       this.backendUrl = backendUrl();
-      this.r_m = await axios.get(backendUrl() + 'api/chat/one/' + this.$route.params.chatId,
+      this.r_m = await axios.get(backendUrl() + 'api/chat/messages/' + this.$route.params.chatId,
           {
             headers: authHeader()
-          })
+          });
+      this.chatIdObj = await axios.get(backendUrl() + 'api/chat/one/' + this.$route.params.chatId,
+          {
+            headers: authHeader()
+          });
       this.loading = true;
       this.received_messages = this.sortedChatMessages;
       console.log(this.r_m.data);
@@ -134,7 +139,24 @@
           };
           console.log(JSON.stringify(msg));
           this.stompClient.send("/app/chat/" + this.chatId, JSON.stringify(msg), {});
+          const msg_notification = {
+            id: null,
+            type: "Message from ",
+            message: this.send_message,
+            linkToChat: this.$route.path,
+            fromUserId: this.$store.state.auth.user.id,
+            userId: this.$route.params.recipientId
+          };
+          console.log(JSON.stringify(msg_notification));
+          let toUser;
+          if (this.chatIdObj.data.sender.id !== this.$store.state.auth.user.id) {
+            toUser = Number.parseInt(this.chatIdObj.data.sender.id);
+          } else {
+            toUser = Number.parseInt(this.chatIdObj.data.recipient.id);
+          }
+          this.stompClient.send("/app/notification/" + toUser, JSON.stringify(msg_notification), {});
         }
+
       },
       connect() {
         this.chatId = this.$route.params.chatId;

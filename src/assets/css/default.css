@@ -128,3 +128,12 @@ input {
 .inline-flex {
     display: inline-flex;
 }
+
+input, textarea {
+    background-color: #f6f6f6;
+    color: black;
+    border: 1px solid black;
+}
+::placeholder {
+    color: #636363;
+}

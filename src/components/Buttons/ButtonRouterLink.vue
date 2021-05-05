@@ -6,8 +6,8 @@
     'isButton': isButton,
     'nav-ls-link-btl nav-ls-link-btl > a': !buttonHover && !lighter,
     'nav-ls-link-btl-lighter nav-ls-link-btl-lighter > a': !buttonHover && lighter,
-    'nav-ls-link-btl-mouseleave': buttonHover && !lighter,
-    'nav-ls-link-btl-mouseleave-lighter': buttonHover && lighter
+    'nav-ls-link-btl-mouseleave': !buttonHover && !lighter,
+    'nav-ls-link-btl-mouseleave-lighter': !buttonHover && lighter
    }"
        @mouseover="buttonHover = false"
        @mouseleave="buttonHover = true"
@@ -54,7 +54,8 @@
   }
 
   .nav-ls-link-btl:hover {
-    background-color: black;
+    background-color: #bdbdbd;
+    color: black;
   }
 
   .nav-ls-link-btl-lighter:hover, .nav-ls-link-btl-lighter:hover > a {

@@ -45,11 +45,8 @@
       this.$nextTick(() => {
         this.refresh = true;
       });
-      await this.$store.dispatch('fetchExistNotesByDate', this.$store.state.auth.user.id)
-          .then(
-          setTimeout(() => {
-            this.loading = true;
-          }, 1000));
+      await this.$store.dispatch('fetchExistNotesByDate', this.$store.state.auth.user.id);
+      this.loading = true;
     },
     methods: {
       ...mapMutations(['updateWeekends']),

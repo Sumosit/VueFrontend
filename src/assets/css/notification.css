@@ -1,0 +1,47 @@
+.notification-field {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+    width: 250px;
+    max-height: 80vh;
+    background-color: #585858;
+    color: #f6f6f6;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    overflow-y: auto;
+}
+
+.notification-field > div {
+    display: block;
+}
+
+.notification-field > div {
+    padding: 5px;
+}
+
+.not-wrapper > div {
+    background-color: #f6f6f6;
+    font-family: Arial, sans-serif;
+}
+
+@media (min-width: 300px) {
+    .not-wrapper {
+        min-height: 50px;
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        grid-template-areas: "not-avatar not-info";
+    }
+}
+
+.not-avatar {
+    padding: 5px;
+}
+
+.not-info {
+    color: black;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+.not-type, .not-message {
+}

@@ -31,8 +31,8 @@
       <a>
         <div class="c-i-checkbox content-center"
              :class="{
-          'c-i-checkbox-not-checked > span': !weekends,
-          'c-i-checkbox-checked > span': weekends}"
+          'c-i-checkbox-not-checked > span': !this.weekends,
+          'c-i-checkbox-checked > span': this.weekends}"
              v-on:click="emitToParent()">
           <span>Weekends</span>
         </div>
@@ -49,8 +49,7 @@
     props: ['weekends'],
     data() {
       return {
-        link: "/user/calendar/",
-        weekends: false,
+        link: "/user/calendar/"
       }
     },
     computed: {},
@@ -83,7 +82,7 @@
         } else if (this.$route.params.year && !this.$route.params.month && !this.$route.params.day) {
           return this.link + tempYearPOne;
         }
-        this.emitComponentKeyToParent();
+        this.emitToParent();
       },
       previous() {
         let tempYearMOne = Number.parseInt(this.$route.params.year) - 1;
@@ -103,7 +102,7 @@
         } else if (this.$route.params.year && !this.$route.params.month && !this.$route.params.day) {
           return this.link + tempYearMOne;
         }
-        this.emitComponentKeyToParent();
+        this.emitToParent();
       },
       currentDate() {
         return "/user/calendar/" +

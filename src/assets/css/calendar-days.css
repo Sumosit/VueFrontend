@@ -5,7 +5,7 @@
 
 .day-btn:hover, .day-btn-current-date:hover{
     transition: all 0.5s;
-    background-color: #ffffff;
+    background-color: #f6f6f6;
     color: black;
 }
 
@@ -16,8 +16,8 @@
 
 .day-btn-mouseleave {
     transition: all 0.5s;
-    color: white;
-    background-color: black;
+    color: #ededed;
+    background-color: #f6f6f6;
 }
 
 .day-btn-mouseleave-current-date {

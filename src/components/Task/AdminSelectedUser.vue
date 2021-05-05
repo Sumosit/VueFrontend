@@ -40,7 +40,7 @@
   }
 
   .a-u-user:hover {
-    background: black;
+    background: #f6f6f6;
   }
 </style>
 

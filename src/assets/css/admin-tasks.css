@@ -1,9 +1,9 @@
 .admin-tasks {
     height: 93.68vh;
     padding: 8px;
-    background-color: #050004;
+    background-color: #f6f6f6;
     font-family: Arial, sans-serif;
-    color: #f6f6f6;
+    color: black;
 }
 
 .admin-users {
@@ -12,9 +12,9 @@
     right: 5px;
     width: 400px;
     height: 500px;
-    background-color: #282828;
-    border: 1px solid #f6f6f6;
-    color: #f6f6f6;
+    background-color: #cecece;
+    border: 1px solid black;
+    color: black;
     font-family: Arial, sans-serif;
 }
 
@@ -23,7 +23,7 @@
 
 .a-u-search-field {
     padding: 20px;
-    border-bottom: 1px solid #f6f6f6;
+    border-bottom: 1px solid black;
 }
 .a-u-search-field > input {
     width: 100%;
@@ -42,7 +42,7 @@
 }
 
 .user-click {
-    background-color: #565656;
+    background-color: #8e8e8e;
 }
 
 .a-u-interface {
@@ -51,15 +51,16 @@
     left: -41px;
     width: 40px;
     height: 500px;
-    background-color: #282828;
-    border-top: 1px solid #f6f6f6;
-    border-left: 1px solid #f6f6f6;
-    border-bottom: 1px solid #f6f6f6;
+    background-color: #cecece;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .a-u-i-btn {
     height: 40px;
-    background-color: #f6f6f6;
+    background-color: #cecece;
+    border-bottom: black;
 }
 
 .a-u-i-btn > img {
