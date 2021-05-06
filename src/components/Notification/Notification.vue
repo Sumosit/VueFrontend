@@ -23,6 +23,7 @@
   import backendUrl from "../../store/backendUrl";
   import axios from "axios";
   import authHeader from "../../services/auth-header";
+  import juntos from '../../assets/audio/done-for-you-612.mp3';
 
   export default {
     name: "Notification",
@@ -54,16 +55,19 @@
               console.log(frame);
               this.stompClient.subscribe("/topic/notification/" + this.$store.state.auth.user.id,
                   async tick => {
-                console.log(tick);
-                let message = JSON.parse(tick.body);
-                this.received_messages.push(message);
-                this.$store.commit('pushNotification', message);
-                this.notificationLength = this.received_messages.length;
-                this.emitToParent();
-                if (message.type.includes("New Task")) {
-                  await this.$store.dispatch("fetchTasksBiUserId", this.$store.state.auth.user.id);
-                }
-              });
+                    console.log(tick);
+                    let message = JSON.parse(tick.body);
+                    this.received_messages.push(message);
+                    this.$store.commit('pushNotification', message);
+                    this.notificationLength = this.received_messages.length;
+                    this.emitToParent();
+                    var audio = new Audio(juntos);
+                    audio.volume = 0.2;
+                    audio.play();
+                    if (message.type.includes("New Task")) {
+                      await this.$store.dispatch("fetchTasksBiUserId", this.$store.state.auth.user.id);
+                    }
+                  });
             },
             error => {
               console.log(error);

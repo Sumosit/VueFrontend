@@ -27,6 +27,7 @@ import ProfileSettings from "./views/ProfileSettings";
 import AdminTasks from "./components/Task/AdminTasks"
 import Tasks from "./components/Task/Tasks"
 import Salary from "./components/Salary/Salary";
+import AdminSalary from "./components/Salary/AdminSalary";
 
 Vue.use(Router);
 
@@ -82,6 +83,10 @@ export const router = new Router({
         {
           path: 'storage',
           component: AdminGlobalStorage
+        },,
+        {
+          path: 'salary',
+          component: AdminSalary
         },
       ]
     },

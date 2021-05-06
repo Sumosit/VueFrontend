@@ -73,9 +73,6 @@
 
   export default {
     name: "AdminTasks",
-    created() {
-      document.title = "Admin Tasks";
-    },
     components: {
       AdminSelectedUser
     },
@@ -90,6 +87,9 @@
         date: '1999-12-12',
         time: '01:01:01'
       }
+    },
+    created() {
+      document.title = "Admin Tasks";
     },
     mounted() {
       this.$store.dispatch("fetchUsers");

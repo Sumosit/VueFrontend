@@ -51,13 +51,16 @@
             <router-link to="/user/salary">Salary</router-link>
           </div>
           <div v-if="isAdmin" class="nav-bar">
-            <router-link to="/admin/news">Admin News</router-link>
+            <router-link to="/admin/news">Admin news</router-link>
           </div>
           <div v-if="isAdmin" class="nav-bar">
-            <router-link to="/admin/tasks">Admin Tasks</router-link>
+            <router-link to="/admin/tasks">Admin tasks</router-link>
           </div>
           <div v-if="isAdmin" class="nav-bar">
             <router-link to="/admin/storage">Admin global storage</router-link>
+          </div>
+          <div v-if="isAdmin" class="nav-bar">
+            <router-link to="/admin/salary">Admin salary</router-link>
           </div>
           <div class="nav-bar">
             <a href @click.prevent="logOut">

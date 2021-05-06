@@ -13,11 +13,12 @@
                      :lighter="false"/>
       <ButtonDivLink v-if="isUser" :ButtonNameAndLink="{name: 'Tasks', link: '/user/tasks'}" :lighter="false"/>
       <ButtonDivLink v-if="isUser" :ButtonNameAndLink="{name: 'Salary', link: '/user/salary'}" :lighter="false"/>
-      <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Admin News', link: '/admin/news'}" :lighter="false"/>
+      <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Admin news', link: '/admin/news'}" :lighter="false"/>
       <ButtonDivLink v-if="isAdmin"
-                     :ButtonNameAndLink="{name: 'Admin Tasks', link: '/admin/tasks/  '+new Date().getFullYear()}"
+                     :ButtonNameAndLink="{name: 'Admin tasks', link: '/admin/tasks/  '+new Date().getFullYear()}"
                      :lighter="false"/>
       <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Admin global storage', link: '/admin/storage'}" :lighter="false"/>
+      <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Admin salary', link: '/admin/salary'}" :lighter="false"/>
       <a href @click.prevent="logOut">
         <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Exit', link: '/user/storage'}" :lighter="false"/>
       </a>

@@ -81,10 +81,15 @@
     width: 20px;
 }
 
-.a-t-title, .a-t-date {
+.a-t-title {
+    display: block;
+    margin-top: 5px;
+}
+
+.a-t-title > input, .a-t-date {
     height: 30px;
 }
-.a-t-title {
+.a-t-title > input {
     padding: 6px;
     width: 400px;
 }
@@ -104,12 +109,12 @@
     padding-left: 7px;
 }
 .a-t-description {
-    margin-top: 8px;
+    margin-top: 5px;
     min-width: 100%;
     min-height: 120px;
 }
 .a-t-users-count {
-    margin-top: 10px;
+    margin-top: 5px;
     font-family: Arial, sans-serif;
     font-size: 18px;
 }

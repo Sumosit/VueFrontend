@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="workers-btn-search-field">
-      <input class="workers-btn-search" type="text" v-model="search">
+      <input placeholder="Search a workers" type="text" v-model="search">
     </div>
     <div v-for="(user, index) in filteredList"
          v-show="user.id !== $store.state.auth.user.id && loading"
