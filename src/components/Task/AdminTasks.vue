@@ -68,6 +68,8 @@
   import backendUrl from "../../store/backendUrl";
   import AdminSelectedUser from "../Task/AdminSelectedUser";
   import getTimestampDate from "../../js/getTimestampDate";
+  import SockJS from "sockjs-client";
+  import Stomp from "webstomp-client";
 
   export default {
     name: "AdminTasks",
@@ -91,6 +93,7 @@
     },
     mounted() {
       this.$store.dispatch("fetchUsers");
+      this.connect();
     },
     watch: {
       date: function (val) {
@@ -109,6 +112,35 @@
       }
     },
     methods: {
+      connect() {
+        this.chatId = this.$route.params.chatId;
+        this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
+        this.stompClient = Stomp.over(this.socket);
+
+        this.stompClient.connect(
+            {},
+            frame => {
+              this.connected = true;
+              console.log(frame);
+              this.stompClient.subscribe("/topic/chat/" + this.chatId, tick => {
+                console.log(tick);;
+              });
+            },
+            error => {
+              console.log(error);
+              this.connected = false;
+            }
+        );
+      },
+      disconnect() {
+        if (this.stompClient) {
+          this.stompClient.disconnect();
+        }
+        this.connected = false;
+      },
+      tickleConnection() {
+        this.connected ? this.disconnect() : this.connect();
+      },
       getUsersFilter() {
         let users = this.$store.getters.getUsers;
         return users.filter(c => this.getUsernameNameSurname(c.username, c.name, c.surname).toLowerCase().indexOf(this.search) > -1);
@@ -128,7 +160,6 @@
         let usersId = [];
         for (var i = 0; i < this.selected.length; i++) {
           usersId.push(this.selected[i].id);
-          console.log(this.selected[i].id);
         }
         for (var i = 0; i < this.files.length; i++) {
           let file = this.files[i];
@@ -143,15 +174,24 @@
         fd.append("usersId", usersId);
         // console.log(this.selected);
         console.log(fd);
+        console.log(usersId);
         axios.post(backendUrl() + 'api/admin/task/save', fd, {
           headers:
               authHeader(),
           'Content-Type': 'multipart/form-data'
-        }).then(async res => {
-          // await this.$store.dispatch("fetchMemory", {
-          //   userId: this.$store.state.auth.user.id,
-          //   memoryId: this.memoryId
-          // });
+        }).then(res => {
+          for (let i = 0; i < usersId.length; i++) {
+            let msg_notification = {
+              id: null,
+              type: "New Task from",
+              message: this.title,
+              linkToChat: this.$route.path,
+              fromUserId: this.$store.state.auth.user.id,
+              userId: usersId[i]
+            };
+            console.log(msg_notification);
+            this.stompClient.send("/app/notification/" + usersId[i], JSON.stringify(msg_notification), {});
+          }
           console.log(res);
         }).catch(err => {
           console.log(err.response);

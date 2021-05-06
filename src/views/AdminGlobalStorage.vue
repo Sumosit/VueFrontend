@@ -1,33 +1,21 @@
 <template>
-  <div class="storage">
-    <input id="files" ref="files" type="file" multiple @change="handleFileUploads"/>
-    <label for="files">Choose file</label>
-    <button @click="submitFiles()">Upload</button>
+  <div>
+    <div class="storage">
+      <input id="files" ref="files" type="file" multiple @change="handleFileUploads"/>
+      <label for="files">Choose file</label>
+      <button @click="submitFiles()">Upload</button>
 
-    <!--    {{allStorageFiles()}}-->
-    <div class="grid-container">
-      <div class="grid-item"
-           v-for="(file, index) in this.$store.getters.getAllFiles"
-           :key="index"
-           v-if="file.type==='image/jpeg' ||
-                  file.type==='image/png' ||
-                   file.type==='image/gif'">
-        <a :href="file.url">
-          <img :src="file.url">
-        </a>
-        <div class="filename">
-          <span>{{file.type}}</span>
-        </div>
-      </div>
-      <div class="grid-item"
-           v-for="(file, index) in allStorageFiles()"
-           :key="index"
-           v-if="file.type==='application/octet-stream'">
-        <a :href="file.url">
-          <img :src="docxIcon">
-        </a>
-        <div class="filename">
-          <span>{{file.type}}</span>
+      <!--    {{allStorageFiles()}}-->
+      <div class="admin-storage-grid-container">
+        <div class="admin-storage-grid-item"
+             v-for="(file, index) in allStorageFiles()"
+             :key="index">
+          <a :href="file.url">
+            <img :src="docxIcon">
+          </a>
+          <div class="filename">
+            <span>{{file.name}}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -51,8 +39,8 @@
     created() {
       document.title = "Storage";
     },
-    mounted() {
-      this.$store.dispatch('fetchAllFiles');
+    async mounted() {
+      await this.$store.dispatch('fetchAllFiles');
       this.backendUrl = backendUrl();
     },
     methods: {
@@ -73,9 +61,9 @@
           headers:
               authHeader(),
           'Content-Type': 'multipart/form-data'
-        }).then(res => {
+        }).then(async res => {
           console.log(res);
-          this.$store.dispatch('fetchStorageFiles');
+          await this.$store.dispatch('fetchAllFiles');
         }).catch(err => {
           console.log(err.response);
         });

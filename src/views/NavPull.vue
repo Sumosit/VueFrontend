@@ -56,8 +56,8 @@
           <div v-if="isAdmin" class="nav-bar">
             <router-link to="/admin/tasks">Admin Tasks</router-link>
           </div>
-          <div v-if="isUser" class="nav-bar">
-            <router-link to="/user/storage">Storage</router-link>
+          <div v-if="isAdmin" class="nav-bar">
+            <router-link to="/admin/storage">Admin global storage</router-link>
           </div>
           <div class="nav-bar">
             <a href @click.prevent="logOut">

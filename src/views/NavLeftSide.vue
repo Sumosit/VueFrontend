@@ -17,7 +17,7 @@
       <ButtonDivLink v-if="isAdmin"
                      :ButtonNameAndLink="{name: 'Admin Tasks', link: '/admin/tasks/  '+new Date().getFullYear()}"
                      :lighter="false"/>
-      <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Storage', link: '/user/storage'}" :lighter="false"/>
+      <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Admin global storage', link: '/admin/storage'}" :lighter="false"/>
       <a href @click.prevent="logOut">
         <ButtonDivLink v-if="isAdmin" :ButtonNameAndLink="{name: 'Exit', link: '/user/storage'}" :lighter="false"/>
       </a>

@@ -13,7 +13,7 @@
             <img v-else src="../assets/images/user.svg">
           </div>
           <div class="message-rec">
-            <span>{{ item.message }}</span>
+            <p v-html="item.message"></p>
           </div>
         </div>
         <div
@@ -22,7 +22,7 @@
           'recipient wrapper-chat-with-rec': changeView === true}">
           <div v-if="changeView === false"
                class="message-sen">
-            <span>{{ item.message }}</span>
+            <p v-html="item.message"></p>
           </div>
           <div
             :class="{'sen-pi-avatar': changeView === false,
@@ -33,7 +33,7 @@
           </div>
           <div v-if="changeView === true"
                class="message-rec">
-            <span>{{ item.message }}</span>
+            <p v-html="item.message"></p>
           </div>
         </div>
       </div>
@@ -43,15 +43,15 @@
       v-show="loading"
       class="form-mf-message">
       <div class="mf-message">
-        <label class="label-text">
-          <input
-            type="text"
-            id="name"
-            class="form-control"
+        <div
+          class="label-text">
+          <textarea
+            class="chat-message"
             v-model="send_message"
-            placeholder="Your message"
-          >
-        </label>
+            @keydown.enter.exact.prevent
+            @keyup.enter.exact="send"
+            @keydown.enter.shift.exact="newline"></textarea>
+        </div>
         <label class="label-send"
                for="send">
           <button
@@ -120,7 +120,6 @@
     },
     updated() {
       this.scrollToEnd();
-      this.$store.dispatch('fetchChat');
     },
     methods: {
       scrollToEnd() {
@@ -156,7 +155,7 @@
           }
           this.stompClient.send("/app/notification/" + toUser, JSON.stringify(msg_notification), {});
         }
-
+        this.$store.dispatch('fetchChat');
       },
       connect() {
         this.chatId = this.$route.params.chatId;
@@ -172,6 +171,7 @@
                 console.log(tick);
                 let message = JSON.parse(tick.body);
                 this.received_messages.push(message);
+                this.$store.dispatch('fetchChat');
               });
             },
             error => {

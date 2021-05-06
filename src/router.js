@@ -11,7 +11,7 @@ import BoardModerator from "./views/BoardModerator";
 import TestModerator from "./views/TestModerator";
 import UserBoard from "./views/UserBoard";
 import UserSalaries from "./views/UserSalaries";
-import UserStorage from "./views/UserStorage";
+import AdminGlobalStorage from "./views/AdminGlobalStorage";
 import HRI from "./views/HRI";
 import Workers from "./components/Workers";
 import Chat from "./components/Chat";
@@ -68,17 +68,21 @@ export const router = new Router({
       component: AdminBoard,
       children: [
         {
-          path: '/admin/salaries/give',
+          path: 'salaries/give',
           component: () => import('./views/AdminGiveSalaries.vue'),
         },
         {
-          path: '/admin/news',
+          path: 'news',
           component: AdminWebsocketNews,
         },
         {
-          path: '/admin/tasks',
+          path: 'tasks',
           component: AdminTasks
-        }
+        },
+        {
+          path: 'storage',
+          component: AdminGlobalStorage
+        },
       ]
     },
     {
@@ -109,10 +113,6 @@ export const router = new Router({
         {
           path: 'memory/:memoryId',
           component: Memory
-        },
-        {
-          path: '/user/storage',
-          component: UserStorage
         },
         {
           path: '/user/profile',

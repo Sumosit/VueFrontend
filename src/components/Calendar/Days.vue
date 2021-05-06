@@ -149,15 +149,16 @@
   }
 
   .isNote-weekend {
+    transition: 1s all;
     cursor: pointer;
-    color: white;
-    background: rgb(0, 137, 11);
-    background: linear-gradient(90deg, rgba(0, 137, 11, 1) 50%, rgba(208, 0, 149, 1) 50%);
+    background: #00f988;
+    background: linear-gradient(90deg, #00f988 50%, rgba(208, 0, 149, 1) 50%);
+    color: black;
   }
 
   .isNote-weekend:hover {
     transition: all 0.5s;
-    background-color: black;
+    background: linear-gradient(90deg, black 50%, black 50%);
     color: #f6f6f6;
   }
 

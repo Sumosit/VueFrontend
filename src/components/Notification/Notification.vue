@@ -2,15 +2,15 @@
   <div class="notification-field">
     <div>
       <a :href="not.linkToChat" target="_blank"
-         v-for="(not, index) in $store.getters.getNotification" class="not-wrapper">
+         v-for="(not, index) in sortedNotifications" class="not-wrapper">
         <div class="not-avatar content-center">
           <img v-if="not.fromUser.fileDB"
                :src="backendUrl + 'files/' + chat.recipient.fileDB.id">
           <img v-else src="../../assets/images/user.svg">
         </div>
         <div class="not-info">
-          <div class="not-type">{{not.type.slice(0, 18)}}...</div>
-          <div class="not-message">{{not.message.slice(0, 18)}}...</div>
+          <div class="not-type">{{not.type.slice(0, 18)}}</div>
+          <div class="not-message">{{not.message.slice(0, 18)}}</div>
         </div>
       </a>
     </div>
@@ -52,13 +52,17 @@
             frame => {
               this.connected = true;
               console.log(frame);
-              this.stompClient.subscribe("/topic/notification/" + this.$store.state.auth.user.id, tick => {
+              this.stompClient.subscribe("/topic/notification/" + this.$store.state.auth.user.id,
+                  async tick => {
                 console.log(tick);
                 let message = JSON.parse(tick.body);
                 this.received_messages.push(message);
                 this.$store.commit('pushNotification', message);
                 this.notificationLength = this.received_messages.length;
                 this.emitToParent();
+                if (message.type.includes("New Task")) {
+                  await this.$store.dispatch("fetchTasksBiUserId", this.$store.state.auth.user.id);
+                }
               });
             },
             error => {
@@ -79,6 +83,19 @@
       emitToParent() {
         this.$emit('childToParent', this.$store.getters.getNotification.length);
       },
+    },
+    computed: {
+      sortedNotifications: function () {
+        function compare(a, b) {
+          if (a.id > b.id)
+            return -1;
+          if (a.id < b.id)
+            return 1;
+          return 0;
+        }
+
+        return this.$store.getters.getNotification.sort(compare);
+      }
     }
   }
 </script>

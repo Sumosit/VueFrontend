@@ -7,7 +7,7 @@
       <div
         class="tasks-description"
         v-html="'Description: '+task.description"></div>
-      <div class="grid-container">
+      <div class="tasks-grid-container">
         <div class="tasks-grid-item"
              v-for="(file, index) in task.fileDBSet"
              :key="index">
@@ -17,6 +17,7 @@
           <div class="filename"><span v-text="file.name"></span></div>
         </div>
       </div>
+      <hr>
     </div>
     <div class="content-center"
          v-show="!loading">
@@ -65,7 +66,6 @@
         return this.$store.getters.getTasks.sort(compare);
       }
     }
-
   }
 </script>
 

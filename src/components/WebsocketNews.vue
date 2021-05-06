@@ -6,12 +6,13 @@
          :key="index">
       <div class="news-title-field">
         <div class="news-title-author-avatar">
-          <img :src="backendUrl+'files/'+item.author.fileDB.id">
+          <img v-if="item.author.fileDB"
+               :src="backendUrl + 'files/' + item.author.fileDB.id">
+          <img v-else src="../assets/images/user.svg">
         </div>
         <div class="news-title">
           {{item.title}}
-<!--          <p>by Mikhail Sabyanin - Tuesday, 15 December 2020, 3:26 PM</p>-->
-          <p>by {{item.author.username}}, {{item.date}}</p>
+           <p>by {{item.author.username}}, {{item.date}}</p>
         </div>
       </div>
       <div class="news-content-field">

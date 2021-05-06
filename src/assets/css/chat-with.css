@@ -22,11 +22,16 @@ body {
 }
 .mf-message > .label-text {
     position: relative;
+    padding: 0px 5px;
 }
-.mf-message > .label-text > input {
-    max-height: 60px;
-    min-height: 60px;
+.chat-message {
+    position: relative;
     width: 96%;
+    min-height: 40px;
+    padding: 5px;
+    background-color: #dedede;
+    bottom: 0;
+    border: 1px solid black;
 }
 .recipient {
     position: relative;

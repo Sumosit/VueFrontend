@@ -3,12 +3,13 @@
     class="calendar">
     <CalendarInterface
       v-on:childToParent="onChildClick"
+      :key="$route.params.day+$route.params.month+$route.params.year"
       :refresh="refresh"
       :weekends="weekends"
       v-if="refresh"/>
     <router-view
       v-show="loading"
-      :key="$route.params.day"
+      :key="$route.params.day+$route.params.month+$route.params.year"
       :weekends="weekends"
       style="padding: 8px"></router-view>
     <div class="content-center"
@@ -47,6 +48,9 @@
       });
       await this.$store.dispatch('fetchExistNotesByDate', this.$store.state.auth.user.id);
       this.loading = true;
+    },
+    async updated(){
+      await this.$store.dispatch('fetchExistNotesByDate', this.$store.state.auth.user.id);
     },
     methods: {
       ...mapMutations(['updateWeekends']),
