@@ -15,7 +15,7 @@ export const admin = {
           .then(json => {
             setTimeout(() => {
               const users = json;
-              console.log(users);
+              // console.log(users);
               ctx.commit('updateUsers', users);
               return users;
             }, 1000)

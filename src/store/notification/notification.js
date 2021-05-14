@@ -15,7 +15,7 @@ export const notification = {
           .then(json => {
             setTimeout(() => {
               const notification = json;
-              console.log(notification);
+              // console.log(notification);
               ctx.commit('updateNotification', notification);
               return notification;
             }, 1000)

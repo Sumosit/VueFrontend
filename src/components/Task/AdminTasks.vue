@@ -121,13 +121,13 @@
             {},
             frame => {
               this.connected = true;
-              console.log(frame);
+              // console.log(frame);
               this.stompClient.subscribe("/topic/tasks/" + this.$store.state.auth.user.id, tick => {
-                console.log(tick);;
+                // console.log(tick);
               });
             },
             error => {
-              console.log(error);
+              // console.log(error);
               this.connected = false;
             }
         );
@@ -164,7 +164,7 @@
         for (var i = 0; i < this.files.length; i++) {
           let file = this.files[i];
           fd.append('files', file);
-          console.log(file)
+          // console.log(file)
         }
         fd.append("title", this.title);
         fd.append("description", this.description);
@@ -189,12 +189,12 @@
               fromUserId: this.$store.state.auth.user.id,
               userId: usersId[i]
             };
-            console.log(msg_notification);
+            // console.log(msg_notification);
             this.stompClient.send("/app/notification/" + usersId[i], JSON.stringify(msg_notification), {});
           }
-          console.log(res);
+          // console.log(res);
         }).catch(err => {
-          console.log(err.response);
+          // console.log(err.response);
         });
 
       },

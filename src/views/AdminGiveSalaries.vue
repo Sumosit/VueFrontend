@@ -77,7 +77,7 @@
           headers: authHeader()
         }).then(res => {
           this.$store.dispatch('auth/fetchUserSalaries', this.currentUser.id);
-          console.log(res);
+          // console.log(res);
         }).catch(err => {
           console.log(err.response);
         });

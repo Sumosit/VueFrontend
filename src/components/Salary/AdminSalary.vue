@@ -138,13 +138,13 @@
             {},
             frame => {
               this.connected = true;
-              console.log(frame);
+              // console.log(frame);
               this.stompClient.subscribe("/topic/salary/" + this.$store.state.auth.user.id, tick => {
-                console.log(tick);;
+                // console.log(tick);;
               });
             },
             error => {
-              console.log(error);
+              // console.log(error);
               this.connected = false;
             }
         );
@@ -193,8 +193,8 @@
         fd.append("userId", this.$store.state.auth.user.id);
         fd.append("usersId", usersId);
         // console.log(this.selected);
-        console.log(fd);
-        console.log(usersId);
+        // console.log(fd);
+        // console.log(usersId);
         axios.post(backendUrl() + 'api/admin/salary/save', fd, {
           headers: authHeader()
         }).then(res => {
@@ -210,7 +210,7 @@
             console.log(msg_notification);
             this.stompClient.send("/app/notification/" + usersId[i], JSON.stringify(msg_notification), {});
           }
-          console.log(res);
+          // console.log(res);
         }).catch(err => {
           console.log(err.response);
         });

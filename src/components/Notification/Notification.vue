@@ -52,10 +52,10 @@
             {},
             frame => {
               this.connected = true;
-              console.log(frame);
+              // console.log(frame);
               this.stompClient.subscribe("/topic/notification/" + this.$store.state.auth.user.id,
                   async tick => {
-                    console.log(tick);
+                    // console.log(tick);
                     let message = JSON.parse(tick.body);
                     this.received_messages.push(message);
                     this.$store.commit('pushNotification', message);
@@ -73,7 +73,7 @@
                   });
             },
             error => {
-              console.log(error);
+              // console.log(error);
               this.connected = false;
             }
         );

@@ -15,7 +15,7 @@ export const tasks = {
           .then(json => {
             setTimeout(() => {
               const tasks = json;
-              console.log(tasks);
+              // console.log(tasks);
               ctx.commit('updateTasks', tasks);
               return tasks;
             }, 1000)

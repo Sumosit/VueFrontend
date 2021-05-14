@@ -15,7 +15,7 @@ export const salary = {
           .then(json => {
             setTimeout(() => {
               const salaries = json;
-              console.log(salaries);
+              // console.log(salaries);
               ctx.commit('updateSalaries', salaries);
               return salaries;
             }, 1000)

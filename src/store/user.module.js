@@ -22,7 +22,7 @@ export const user = {
           .then(json => {
             setTimeout(() => {
               const userExtra = json;
-              console.log(userExtra);
+              // console.log(userExtra);
               ctx.commit('updateUserExtra', userExtra);
               return userExtra;
             }, 1000)
@@ -37,7 +37,7 @@ export const user = {
           .then(json => {
             setTimeout(() => {
               const user = json;
-              console.log(user);
+              // console.log(user);
               ctx.commit('updateUser', user);
               return user;
             }, 1000)
@@ -52,7 +52,7 @@ export const user = {
           .then(json => {
             setTimeout(() => {
               const chat = json;
-              console.log(chat);
+              // console.log(chat);
               ctx.commit('updateChat', chat);
               return chat;
             }, 1000)
@@ -78,7 +78,7 @@ export const user = {
           .then(json => {
             setTimeout(() => {
               const news = json;
-              console.log(news);
+              // console.log(news);
               ctx.commit('updateNews', news);
             }, 1000)
           });

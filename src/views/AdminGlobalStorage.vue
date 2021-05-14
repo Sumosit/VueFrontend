@@ -56,13 +56,13 @@
           let file = this.files[i];
           formData.append('files', file);
         }
-        console.log(formData);
+        // console.log(formData);
         axios.post(backendUrl() + 'user/storage/upload', formData, {
           headers:
               authHeader(),
           'Content-Type': 'multipart/form-data'
         }).then(async res => {
-          console.log(res);
+          // console.log(res);
           await this.$store.dispatch('fetchAllFiles');
         }).catch(err => {
           console.log(err.response);

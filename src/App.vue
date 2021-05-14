@@ -71,7 +71,7 @@
         this.$router.push('/login');
       },
       send() {
-        console.log("Send message:" + this.send_message);
+        // console.log("Send message:" + this.send_message);
         if (this.stompClient && this.stompClient.connected) {
           const msg = {
             message: this.send_message,
@@ -79,7 +79,7 @@
             userId: this.$store.state.auth.user.id,
             sendDate: new Date().getTime()
           };
-          console.log(JSON.stringify(msg));
+          // console.log(JSON.stringify(msg));
           this.stompClient.send("/app/notification/" + this.$store.state.auth.user.id, JSON.stringify(msg), {});
         }
       },
@@ -90,9 +90,9 @@
             {},
             frame => {
               this.connected = true;
-              console.log(frame);
+              // console.log(frame);
               this.stompClient.subscribe("/topic/notification" + this.$store.state.auth.user.id, async tick => {
-                console.log(tick);
+                // console.log(tick);
                 let message = JSON.parse(tick.body);
                 this.received_messages.push(message);
               });

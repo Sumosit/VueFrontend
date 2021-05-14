@@ -67,7 +67,7 @@
         axios.post(backendUrl() + 'api/chat/add', formData, {
           headers: authHeader()
         }).then(res => {
-          console.log(res);
+          // console.log(res);
         }).catch(err => {
           console.log(err.response);
         });

@@ -111,7 +111,7 @@
           });
       this.loading = true;
       this.received_messages = this.sortedChatMessages;
-      console.log(this.r_m.data);
+      // console.log(this.r_m.data);
 
       var container = document.querySelector(".mf-history");
       var scrollHeight = container.scrollHeight;
@@ -136,7 +136,7 @@
             userId: this.$store.state.auth.user.id,
             sendDate: new Date().getTime()
           };
-          console.log(JSON.stringify(msg));
+          // console.log(JSON.stringify(msg));
           this.stompClient.send("/app/chat/" + this.chatId, JSON.stringify(msg), {});
           const msg_notification = {
             id: null,
@@ -146,7 +146,7 @@
             fromUserId: this.$store.state.auth.user.id,
             userId: this.$route.params.recipientId
           };
-          console.log(JSON.stringify(msg_notification));
+          // console.log(JSON.stringify(msg_notification));
           let toUser;
           if (this.chatIdObj.data.sender.id !== this.$store.state.auth.user.id) {
             toUser = Number.parseInt(this.chatIdObj.data.sender.id);
@@ -166,16 +166,16 @@
             {},
             frame => {
               this.connected = true;
-              console.log(frame);
+              // console.log(frame);
               this.stompClient.subscribe("/topic/chat/" + this.chatId, tick => {
-                console.log(tick);
+                // console.log(tick);
                 let message = JSON.parse(tick.body);
                 this.received_messages.push(message);
                 this.$store.dispatch('fetchChat');
               });
             },
             error => {
-              console.log(error);
+              // console.log(error);
               this.connected = false;
             }
         );

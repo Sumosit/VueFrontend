@@ -16,7 +16,7 @@ export const memories = {
           .then(json => {
             setTimeout(() => {
               const memory = json;
-              console.log(memory);
+              // console.log(memory);
               ctx.commit('updateMemory', memory);
               return memory;
             }, 1000)
@@ -31,7 +31,7 @@ export const memories = {
           .then(json => {
             setTimeout(() => {
               const mainMemory = json;
-              console.log(mainMemory);
+              // console.log(mainMemory);
               ctx.commit('updateMainMemory', mainMemory);
               return mainMemory;
             }, 1000)

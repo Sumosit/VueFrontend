@@ -96,7 +96,7 @@
         fd.append("userId", this.$store.state.auth.user.id);
         fd.append("memoryId", this.$route.params.memoryId);
         fd.append("memoryName", this.memoryName);
-        console.log(fd);
+        // console.log(fd);
 
         axios.post(backendUrl() + "api/user/memory/save", fd, {
           headers: authHeader()
@@ -106,7 +106,7 @@
             memoryId: this.$route.params.memoryId
           });
           this.memories = this.$store.getters.getMemory;
-          console.log(res);
+          // console.log(res);
         }).catch(err => {
           console.log(err.response);
         });
@@ -122,7 +122,7 @@
           fd.append('files', file);
         }
         fd.append("memoryId", this.$route.params.memoryId);
-        console.log(fd);
+        // console.log(fd);
         axios.post(backendUrl() + 'api/user/memory/saveFiles', fd, {
           headers:
               authHeader(),
@@ -132,7 +132,7 @@
             userId: this.$store.state.auth.user.id,
             memoryId: this.$route.params.memoryId
           });
-          console.log(res);
+          // console.log(res);
         }).catch(err => {
           console.log(err.response);
         });

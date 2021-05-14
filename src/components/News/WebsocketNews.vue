@@ -69,15 +69,15 @@
             {},
             frame => {
               this.connected = true;
-              console.log(frame);
+              // console.log(frame);
               this.stompClient.subscribe("/topic/news", async tick => {
-                console.log(tick);
+                // console.log(tick);
                 // this.received_messages.unshift(JSON.parse(tick.body));
                 await this.$store.dispatch("fetchNews");
               });
             },
             error => {
-              console.log(error);
+              // console.log(error);
               this.connected = false;
             }
         );

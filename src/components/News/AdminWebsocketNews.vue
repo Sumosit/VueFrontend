@@ -81,7 +81,7 @@
     },
     methods: {
       send() {
-        console.log("Send message:" + this.send_title);
+        // console.log("Send message:" + this.send_title);
         if (this.stompClient && this.stompClient.connected) {
           const msg = {
             authorId: this.$store.state.auth.user.id,
@@ -89,7 +89,7 @@
             content: this.send_content,
             date: getTimestampDate()
           };
-          console.log(JSON.stringify(msg));
+          // console.log(JSON.stringify(msg));
           this.stompClient.send("/app/news", JSON.stringify(msg), {});
         }
       },
@@ -100,14 +100,14 @@
             {},
             frame => {
               this.connected = true;
-              console.log(frame);
+              // console.log(frame);
               this.stompClient.subscribe("/topic/news", tick => {
-                console.log(tick);
+                // console.log(tick);
                 this.received_messages.unshift(JSON.parse(tick.body));
               });
             },
             error => {
-              console.log(error);
+              // console.log(error);
               this.connected = false;
             }
         );
