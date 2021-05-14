@@ -1,7 +1,7 @@
 <template>
   <div class="notification-field">
     <div>
-      <a :href="not.linkToChat" target="_blank"
+      <router-link :to="not.linkToChat" target="_blank"
          v-for="(not, index) in sortedNotifications" class="not-wrapper">
         <div class="not-avatar content-center">
           <img v-if="not.fromUser.fileDB"
@@ -12,7 +12,7 @@
           <div class="not-type">{{not.type.slice(0, 18)}}</div>
           <div class="not-message">{{not.message.slice(0, 18)}}</div>
         </div>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>
