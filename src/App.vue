@@ -13,8 +13,8 @@
 </template>
 
 <script>
-  import Nav from './views/Nav';
-  import NavPull from './views/NavPull';
+  import Nav from './components/Navigation/Nav';
+  import NavPull from './components/Navigation/NavPull';
   import AfkBackground from './components/AfkBackground';
   import SockJS from "sockjs-client";
   import Stomp from "webstomp-client";
@@ -118,4 +118,5 @@
 
 <style scoped>
   @import './assets/css/default.css';
+  @import './assets/css/default-upload.css';
 </style>

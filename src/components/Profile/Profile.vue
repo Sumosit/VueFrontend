@@ -20,8 +20,8 @@
 
 <script>
   import axios from 'axios';
-  import authHeader from "../services/auth-header";
-  import backendUrl from "../store/backendUrl";
+  import authHeader from "../../services/auth-header";
+  import backendUrl from "../../store/backendUrl";
 
   export default {
     name: 'Profile',
@@ -36,6 +36,6 @@
 </script>
 
 <style scoped>
-  @import '../assets/css/main.css';
-  @import '../assets/css/profile-grid.css';
+  @import '../../assets/css/main.css';
+  @import '../../assets/css/profile-grid.css';
 </style>

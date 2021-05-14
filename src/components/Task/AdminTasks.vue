@@ -122,7 +122,7 @@
             frame => {
               this.connected = true;
               console.log(frame);
-              this.stompClient.subscribe("/topic/chat/" + this.chatId, tick => {
+              this.stompClient.subscribe("/topic/tasks/" + this.$store.state.auth.user.id, tick => {
                 console.log(tick);;
               });
             },
@@ -183,7 +183,7 @@
           for (let i = 0; i < usersId.length; i++) {
             let msg_notification = {
               id: null,
-              type: "New Task from",
+              type: "New task from ",
               message: this.title,
               linkToChat: this.$route.path,
               fromUserId: this.$store.state.auth.user.id,

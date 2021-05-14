@@ -6,7 +6,7 @@
              placeholder="search"
              v-model="search">
       <img v-on:click="changeView = !changeView"
-           src="../assets/images/change-chatWith.png">
+           src="../../assets/images/change-chatWith.png">
     </div>
     <div class="c-wrapper">
       <div class="c-id2-list">
@@ -18,7 +18,7 @@
             <div class="c-pi-avatar">
               <img v-if="chat.recipient.fileDB && (chat.recipient.id !== $store.state.auth.user.id)"
                    :src="backendUrl + 'files/' + chat.recipient.fileDB.id">
-              <img v-else src="../assets/images/user.svg">
+              <img v-else src="../../assets/images/user.svg">
             </div>
             <div class="pi-info">
               <div class="c-profile-info"
@@ -48,10 +48,10 @@
 </template>
 
 <script>
-  import backendUrl from "../store/backendUrl";
-  import LoadingLdsRipple from "../components/Loading/LoadingLdsRipple";
-  import ChatWith from "../components/ChatWith";
-  import {router} from "../router";
+  import backendUrl from "../../store/backendUrl";
+  import LoadingLdsRipple from "../Loading/LoadingLdsRipple";
+  import ChatWith from "./ChatWith";
+  import {router} from "../../router";
   import axios from "axios";
 
   export default {
@@ -114,5 +114,5 @@
 </script>
 
 <style scoped>
-  @import '../assets/css/chat.css';
+  @import '../../assets/css/chat.css';
 </style>

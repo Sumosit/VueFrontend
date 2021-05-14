@@ -2,9 +2,9 @@
   <div>
     <div class="main"
          :class="{
-      'wrapper-nav-ls': windowWidth > 960
+      'wrapper-nav-ls': windowWidth > 1400
     }">
-      <NavLeftSide v-show="windowWidth > 961"/>
+      <NavLeftSide v-show="windowWidth > 1401"/>
       <router-view v-if="show"/>
       <div v-else>
         Admin Page Forbidden
@@ -15,7 +15,7 @@
 
 <script>
   import UserService from '../services/user.service';
-  import NavLeftSide from "./NavLeftSide";
+  import NavLeftSide from "../components/Navigation/NavLeftSide";
   import {mapActions} from "vuex";
 
   export default {

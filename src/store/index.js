@@ -8,6 +8,7 @@ import { memories } from './memory/memories'
 import { calendar } from './calendar/calendar'
 import { tasks } from  './tasks/tasks'
 import { notification } from  './notification/notification'
+import { salary } from  './salary/salary'
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     memories,
     calendar,
     tasks,
-    notification
+    notification,
+    salary
   }
 });

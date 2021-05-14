@@ -8,10 +8,21 @@
       <div class="m-i">
         <button v-on:click="saveMemory">Create package</button>
       </div>
-      <input style="display: block; margin-top: 5px" id="files" ref="files" type="file" multiple
-             @change="handleFileUploads"/>
-      <label for="files"></label>
-      <button @click="addFilesToMemory()">Upload</button>
+      <div class="upload-field content-center">
+        <span v-show="!dragover">Choose files</span>
+        <span v-show="dragover">Drag files here</span>
+        <input id="files" ref="files" type="file"
+               class="upload-input-file"
+               @change="handleFileUploads"
+               @dragover="dragover = true"
+               @dragleave="dragover = false"
+               multiple/>
+      </div>
+      <span class="upload-files-list"
+            v-for="(file, index) in filesToUpload">
+        {{file.name}}
+      </span>
+      <button class="upload-btn" @click="addFilesToMemory()">Upload</button>
     </div>
     <div class="memories-list"
          v-show="loading">
@@ -64,7 +75,9 @@
         memory: Object,
         docxIcon,
         backendUrl: backendUrl(),
-        loading: false
+        loading: false,
+        dragover: false,
+        filesToUpload: []
       }
     },
     async mounted() {
@@ -100,6 +113,7 @@
       },
       handleFileUploads() {
         this.files = this.$refs.files.files;
+        this.filesToUpload = this.files;
       },
       addFilesToMemory() {
         let fd = new FormData();

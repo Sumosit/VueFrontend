@@ -29,7 +29,7 @@
   import docxIcon from '../assets/images/docx_icon.svg';
 
   export default {
-    name: "UserGlobalStorage",
+    name: "AdminGlobalStorage",
     data() {
       return {
         backendUrl: '',
@@ -37,7 +37,7 @@
       }
     },
     created() {
-      document.title = "Storage";
+      document.title = "Admin global storage";
     },
     async mounted() {
       await this.$store.dispatch('fetchAllFiles');

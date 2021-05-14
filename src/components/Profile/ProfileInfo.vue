@@ -10,21 +10,31 @@
     </div>
     <div v-if="!currentUser.fileDB || editProfilePhoto"
          class="profile-image">
-      <label class="profile-avatar-upload" for="uploadImage">
-        <span>Загрузка изображения профиля</span>
-        <span class="upload-field">{{uploadStatus}}</span>
-        <span
-          v-if="selectedFile">
-              {{selectedFile.name}}
-            </span>
-        <span class="upload-error" v-show="uploadError">
-              {{uploadError}}
-            </span>
-        <input style="display: none"
-               id="uploadImage" type="file"
-               @change="onFileChanged"/>
-      </label>
-      <button class="upload-btn" @click="onUpload">Upload</button>
+<!--      <label class="profile-avatar-upload" for="uploadImage">-->
+<!--        <span>Загрузка изображения профиля</span>-->
+<!--        <span class="upload-field">{{uploadStatus}}</span>-->
+<!--        <span-->
+<!--          v-if="selectedFile">-->
+<!--              {{selectedFile.name}}-->
+<!--            </span>-->
+<!--        <span class="upload-error" v-show="uploadError">-->
+<!--              {{uploadError}}-->
+<!--            </span>-->
+<!--        <input style="display: none"-->
+<!--               id="uploadImage" type="file"-->
+<!--               @change="onFileChanged"/>-->
+<!--      </label>-->
+      <div class="upload-field content-center">
+        <span v-show="!dragover">Choose files</span>
+        <span v-show="dragover">Drag files here</span>
+        <input id="files" ref="files" type="file"
+               class="upload-input-file"
+               @change="onFileChanged"
+               @dragover="dragover = true"
+               @dragleave="dragover = false"
+               multiple/>
+      </div>
+      <button class="upload-btn" @click="onUpload()">Upload</button>
       <div class="change-photo-activator">
         <img :src="editProfilePhotoIcon"
              v-on:click="editProfilePhoto = !editProfilePhoto">
@@ -72,12 +82,12 @@
 
 <script>
   import axios from 'axios';
-  import authHeader from "../services/auth-header";
-  import backendUrl from "../store/backendUrl";
+  import authHeader from "../../services/auth-header";
+  import backendUrl from "../../store/backendUrl";
   import {mapMutations} from "vuex";
-  import ButtonDiv from "../components/Buttons/ButtonDiv";
+  import ButtonDiv from "../Buttons/ButtonDiv";
 
-  import editProfilePhotoIcon from '../assets/images/edit-profile-photo-icon.svg';
+  import editProfilePhotoIcon from '../../assets/images/edit-profile-photo-icon.svg';
 
   export default {
     name: 'ProfileInfo',

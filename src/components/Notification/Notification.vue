@@ -5,7 +5,7 @@
          v-for="(not, index) in sortedNotifications" class="not-wrapper">
         <div class="not-avatar content-center">
           <img v-if="not.fromUser.fileDB"
-               :src="backendUrl + 'files/' + chat.recipient.fileDB.id">
+               :src="backendUrl + 'files/' + not.fromUser.fileDB.id">
           <img v-else src="../../assets/images/user.svg">
         </div>
         <div class="not-info">
@@ -23,7 +23,7 @@
   import backendUrl from "../../store/backendUrl";
   import axios from "axios";
   import authHeader from "../../services/auth-header";
-  import juntos from '../../assets/audio/done-for-you-612.mp3';
+  import juntos from '../../assets/audio/Zvuk_urona_v_Maynkraft_(ringon.site).mp3';
 
   export default {
     name: "Notification",
@@ -64,8 +64,11 @@
                     var audio = new Audio(juntos);
                     audio.volume = 0.2;
                     audio.play();
-                    if (message.type.includes("New Task")) {
+                    if (message.type.includes("New task")) {
                       await this.$store.dispatch("fetchTasksBiUserId", this.$store.state.auth.user.id);
+                    }
+                    if (message.type.includes("New salary")) {
+                      await this.$store.dispatch("fetchSalaries", this.$store.state.auth.user.id);
                     }
                   });
             },

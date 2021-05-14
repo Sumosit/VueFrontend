@@ -27,8 +27,8 @@
 </template>
 
 <script>
-  import ButtonDivLink from "../components/Buttons/ButtonRouterLink";
-  import ButtonDivLinkDropdown from "../components/Buttons/ButtonDivLinkDropdown";
+  import ButtonDivLink from "../Buttons/ButtonRouterLink";
+  import ButtonDivLinkDropdown from "../Buttons/ButtonDivLinkDropdown";
 
   export default {
     name: "NavLeftSide",
@@ -126,5 +126,5 @@
 </script>
 
 <style scoped>
-  @import '../assets/css/nav-left-side.css';
+  @import '../../assets/css/nav-left-side.css';
 </style>

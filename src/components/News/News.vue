@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import UserService from '../services/user.service';
+  import UserService from '../../services/user.service';
 
   export default {
     name: 'Home',
@@ -33,5 +33,5 @@
 </script>
 
 <style scoped>
-  @import '../assets/css/main.css';
+  @import '../../assets/css/main.css';
 </style>

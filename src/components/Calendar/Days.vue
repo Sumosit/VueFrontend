@@ -21,8 +21,6 @@
                @mouseleave="buttonHover = true">
     {{day.id}}
     {{checkNotes()}}
-    <!--    {{isNote}}-->
-    <!--    {{thisDay}}-->
   </router-link>
 </template>
 
@@ -44,7 +42,7 @@
         notes: [],
       }
     },
-    async mounted() {
+    mounted() {
       this.checkDate();
       this.checkWeekends();
     },
@@ -57,7 +55,7 @@
         }
       },
       checkWeekends() {
-        if (getWeekends(this.day.id, this.day.month)) {
+        if (getWeekends(Number.parseInt(this.day.id), Number.parseInt(this.day.month))) {
           this.weekend = true;
         }
       },

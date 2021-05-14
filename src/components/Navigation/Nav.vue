@@ -7,7 +7,7 @@
         <span>{{$store.state.auth.user.username}}</span>
       </router-link>
       <div class="right content-center notification" v-on:click="open_not = !open_not">
-        <img src="../assets/images/notification.png">
+        <img src="../../assets/images/notification.png">
         <div v-show="notificationLength > 0">{{notificationLength}}</div>
       </div>
     </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import Notification from "../components/Notification/Notification"
+  import Notification from "../Notification/Notification"
 
   export default {
     name: "Nav",
@@ -69,5 +69,5 @@
 </script>
 
 <style scoped>
-  @import '../assets/css/nav.css';
+  @import '../../assets/css/nav.css';
 </style>

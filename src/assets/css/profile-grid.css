@@ -124,22 +124,22 @@ img {
     word-break: break-word;
 }
 
-.upload-field {
-    cursor: pointer;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 4px;
-    font-size: 20px;
-}
+/*.upload-field {*/
+/*    cursor: pointer;*/
+/*    padding: 20px;*/
+/*    border: 1px solid black;*/
+/*    border-radius: 4px;*/
+/*    font-size: 20px;*/
+/*}*/
 
-.upload-btn {
-    cursor: pointer;
-    display: block;
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid black;
-}
+/*.upload-btn {*/
+/*    cursor: pointer;*/
+/*    display: block;*/
+/*    width: 400px;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*    border: 1px solid black;*/
+/*}*/
 
 .upload-error {
     color: #d50000;

@@ -74,7 +74,7 @@
 </template>
 
 <script>
-  import NavPullBtn from "../views/NavPullBtn";
+  import NavPullBtn from "./NavPullBtn";
 
   export default {
     name: "NavPull",
@@ -127,5 +127,5 @@
 </script>
 
 <style scoped>
-  @import '../assets/css/nav-pull.css';
+  @import '../../assets/css/nav-pull.css';
 </style>

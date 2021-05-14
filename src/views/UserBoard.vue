@@ -3,9 +3,9 @@
     <div class="main">
       <div
         :class="{
-      'wrapper-nav-ls': windowWidth > 960
+      'wrapper-nav-ls': windowWidth > 1400
     }">
-        <NavLeftSide v-show="windowWidth > 961"/>
+        <NavLeftSide v-show="windowWidth > 1400"/>
         <router-view v-if="show"/>
         <div v-else>
           User Page Forbidden
@@ -17,7 +17,7 @@
 
 <script>
   import UserService from '../services/user.service';
-  import NavLeftSide from "./NavLeftSide";
+  import NavLeftSide from "../components/Navigation/NavLeftSide";
 
   export default {
     name: 'User',

@@ -66,8 +66,8 @@
 <script>
   import SockJS from "sockjs-client";
   import Stomp from "webstomp-client";
-  import backendUrl from "../store/backendUrl";
-  import getTimestampDate from "../js/getTimestampDate";
+  import backendUrl from "../../store/backendUrl";
+  import getTimestampDate from "../../js/getTimestampDate";
 
   export default {
     name: "websocketdemo",
@@ -130,5 +130,5 @@
 </script>
 
 <style scoped>
-  @import '../assets/css/admin-news.css';
+  @import '../../assets/css/admin-news.css';
 </style>

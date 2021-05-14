@@ -11,7 +11,7 @@
       v-show="loading"
       :key="$route.params.day+$route.params.month+$route.params.year"
       :weekends="weekends"
-      style="padding: 8px"></router-view>
+      style="padding-bottom: 8px; padding-left: 8px; padding-right: 8px"></router-view>
     <div class="content-center"
          v-show="!loading">
       <LoadingLdsRipple/>

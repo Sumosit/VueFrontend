@@ -8,7 +8,9 @@
               id: index,
               month: $route.params.month,
               year: $route.params.year
-            }"/>
+            }"
+            :weekends="weekends"
+      />
     </div>
   </div>
 </template>
@@ -20,12 +22,12 @@
 
   export default {
     name: "Month",
+    props: ['weekends'],
     components: {
       Days
     },
     data() {
-      return {
-      }
+      return {}
     },
     methods: {
       getDaysCount() {

@@ -6,14 +6,14 @@
                  class="month-title">{{month.id}}, {{month.name}}
     </router-link>
     <div class="days-wrapper">
-      <Days :weekends="weekends"
-            v-for="index in getDaysCount()"
+      <Days v-for="index in getDaysCount()"
             :key="index"
             :day="{
              id: index,
              month: month.id,
              year: month.year
-             }"/>
+             }"
+            :weekends="weekends"/>
     </div>
   </div>
 </template>

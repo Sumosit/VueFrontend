@@ -82,7 +82,6 @@
         } else if (this.$route.params.year && !this.$route.params.month && !this.$route.params.day) {
           return this.link + tempYearPOne;
         }
-        this.emitToParent();
       },
       previous() {
         let tempYearMOne = Number.parseInt(this.$route.params.year) - 1;
@@ -91,18 +90,20 @@
 
         if (this.$route.params.year && this.$route.params.month && this.$route.params.day) {
           if (tempDayMOne === 0) {
-            if (tempMonthMOne === 0) {
-              return this.$route.params.link + tempYearMOne + "/12/" + this.getDaysCount(tempYearMOne, 12);
-            } else {
-              return this.link + this.$route.params.year + "/" + tempMonthMOne + "/" + this.getDaysCount(this.$route.params.year, tempMonthMOne);
+            if (tempDayMOne === 0) {
+              return this.link+tempYearMOne+"/12/"+this.getDaysCount(tempYearMOne, 12);
             }
-          } else {
-            return this.link + this.$route.params.year + "/" + this.$route.params.month + "/" + tempDayMOne;
+            return this.link+this.$route.params.year+"/"+tempMonthMOne+"/"+this.getDaysCount(this.$route.params.year, tempMonthMOne)
           }
+          return this.link+this.$route.params.year+"/"+this.$route.params.month+"/"+tempDayMOne;
+        } else if (this.$route.params.year && this.$route.params.month && !this.$route.params.day) {
+          if (tempMonthMOne === 0) {
+            return this.link+tempYearMOne+"/"+12;
+          }
+          return this.link + this.$route.params.year + "/" + tempMonthMOne;
         } else if (this.$route.params.year && !this.$route.params.month && !this.$route.params.day) {
-          return this.link + tempYearMOne;
+          return this.link+tempYearMOne;
         }
-        this.emitToParent();
       },
       currentDate() {
         return "/user/calendar/" +

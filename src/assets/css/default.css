@@ -34,6 +34,10 @@ html,body{
     width: 100%;
 }
 
+.no-display {
+    display: none;
+}
+
 .button {
     color: black;
     display: table;

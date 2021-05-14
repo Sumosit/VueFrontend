@@ -1,14 +1,14 @@
 <template>
   <div class="news-all">
     <div class="news"
-         v-show="loading"
+         v-show="loading && $store.getters.allNews"
          v-for="(item, index) in $store.getters.allNews"
          :key="index">
       <div class="news-title-field">
         <div class="news-title-author-avatar">
           <img v-if="item.author.fileDB"
                :src="backendUrl + 'files/' + item.author.fileDB.id">
-          <img v-else src="../assets/images/user.svg">
+          <img v-else src="../../assets/images/user.svg">
         </div>
         <div class="news-title">
           {{item.title}}
@@ -18,6 +18,9 @@
       <div class="news-content-field">
         <p style="white-space: pre-line" v-html="item.content"></p>
       </div>
+    </div>
+    <div v-if="!$store.getters.allNews" class="news content-center">
+      No News
     </div>
     <div class="content-center"
          v-show="!loading">
@@ -29,8 +32,8 @@
 <script>
   import SockJS from "sockjs-client";
   import Stomp from "webstomp-client";
-  import backendUrl from "../store/backendUrl";
-  import LoadingLdsRipple from "./Loading/LoadingLdsRipple"
+  import backendUrl from "../../store/backendUrl";
+  import LoadingLdsRipple from "../Loading/LoadingLdsRipple"
 
   export default {
     name: "websocketdemo",
@@ -93,5 +96,5 @@
 </script>
 
 <style scoped>
-  @import '../assets/css/news.css';
+  @import '../../assets/css/news.css';
 </style>

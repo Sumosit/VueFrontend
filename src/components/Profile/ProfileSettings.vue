@@ -17,9 +17,9 @@
     <div class="documents-wrapper">
       <div class="document">
         <div class="content-center">
-          <img v-if="!getUserExtra().passport" src="../assets/images/no.svg">
+          <img v-if="!getUserExtra().passport" src="../../assets/images/no.svg">
           <a v-if="getUserExtra().passport" class="yes" :href="backendUrl+'files/'+getUserExtra().passport.id">
-            <img src="../assets/images/yes.svg">
+            <img src="../../assets/images/yes.svg">
           </a>
         </div>
         <span v-if="!getUserExtra().passport"
@@ -46,9 +46,9 @@
       </div>
       <div class="document">
         <div class="content-center">
-          <img v-if="!getUserExtra().diploma" src="../assets/images/no.svg">
+          <img v-if="!getUserExtra().diploma" src="../../assets/images/no.svg">
           <a v-if="getUserExtra().diploma" class="yes" :href="backendUrl+'files/'+getUserExtra().diploma.id">
-            <img src="../assets/images/yes.svg">
+            <img src="../../assets/images/yes.svg">
           </a>
         </div>
         <span v-if="!getUserExtra().diploma"
@@ -75,10 +75,10 @@
       </div>
       <div class="document">
         <div class="content-center">
-          <img v-if="!getUserExtra().medicalVerification" src="../assets/images/no.svg">
+          <img v-if="!getUserExtra().medicalVerification" src="../../assets/images/no.svg">
           <a v-if="getUserExtra().medicalVerification" class="yes"
              :href="backendUrl+'files/'+getUserExtra().medicalVerification.id">
-            <img src="../assets/images/yes.svg">
+            <img src="../../assets/images/yes.svg">
           </a>
         </div>
         <span v-if="!getUserExtra().medicalVerification"
@@ -105,9 +105,9 @@
       </div>
       <div class="document">
         <div class="content-center">
-          <img v-if="!getUserExtra().conviction" src="../assets/images/no.svg">
+          <img v-if="!getUserExtra().conviction" src="../../assets/images/no.svg">
           <a v-if="getUserExtra().conviction" class="yes" :href="backendUrl+'files/'+getUserExtra().conviction.id">
-            <img src="../assets/images/yes.svg">
+            <img src="../../assets/images/yes.svg">
           </a>
         </div>
         <span v-if="!getUserExtra().conviction"
@@ -134,10 +134,10 @@
       </div>
       <div class="document">
         <div class="content-center">
-          <img v-if="!getUserExtra().employmentContract" src="../assets/images/no.svg">
+          <img v-if="!getUserExtra().employmentContract" src="../../assets/images/no.svg">
           <a v-if="getUserExtra().employmentContract" class="yes"
              :href="backendUrl+'files/'+getUserExtra().employmentContract.id">
-            <img src="../assets/images/yes.svg">
+            <img src="../../assets/images/yes.svg">
           </a>
         </div>
         <span v-if="!getUserExtra().employmentContract"
@@ -168,8 +168,8 @@
 
 <script>
   import axios from 'axios';
-  import authHeader from "../services/auth-header";
-  import backendUrl from "../store/backendUrl";
+  import authHeader from "../../services/auth-header";
+  import backendUrl from "../../store/backendUrl";
 
   export default {
     name: "ProfileSettings",

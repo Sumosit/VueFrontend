@@ -12,12 +12,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
-    padding: 5px;
+    padding: 1px;
     background-color: #ededed;
 }
 
 .months-wrapper > div {
-    margin-top: 10px;
+    margin-top: 0px;
     /*border: 1px solid black;*/
 }
 

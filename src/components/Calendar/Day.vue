@@ -34,9 +34,6 @@
     },
     data() {
       return {
-        // year: Number.parseInt(this.$route.params.year),
-        // month: Number.parseInt(this.$route.params.month),
-        // day: Number.parseInt(this.$route.params.day),
         showAddNotesField: false,
         showNotesList: true
       }

@@ -10,7 +10,7 @@
           <div class="rec-pi-avatar">
             <img v-if="item.sender.fileDB"
                  :src="backendUrl + 'files/' + item.sender.fileDB.id">
-            <img v-else src="../assets/images/user.svg">
+            <img v-else src="../../assets/images/user.svg">
           </div>
           <div class="message-rec">
             <p v-html="item.message"></p>
@@ -29,7 +29,7 @@
                       'rec-pi-avatar': changeView === true}">
             <img v-if="$store.state.auth.user.fileDB"
                  :src="backendUrl + 'files/' + $store.state.auth.user.fileDB.id">
-            <img v-else src="../assets/images/user.svg">
+            <img v-else src="../../assets/images/user.svg">
           </div>
           <div v-if="changeView === true"
                class="message-rec">
@@ -74,11 +74,11 @@
 <script>
   import SockJS from "sockjs-client";
   import Stomp from "webstomp-client";
-  import backendUrl from "../store/backendUrl";
+  import backendUrl from "../../store/backendUrl";
   import axios from "axios";
-  import authHeader from "../services/auth-header";
-  import getTimestampDate from "../js/getTimestampDate";
-  import LoadingLdsRipple from "./Loading/LoadingLdsRipple"
+  import authHeader from "../../services/auth-header";
+  import getTimestampDate from "../../js/getTimestampDate";
+  import LoadingLdsRipple from "../Loading/LoadingLdsRipple"
 
   export default {
     props: ['changeView'],
@@ -206,6 +206,6 @@
   };</script>
 
 <style scoped>
-  @import '../assets/css/chat-with.css';
+  @import '../../assets/css/chat-with.css';
 
 </style>
