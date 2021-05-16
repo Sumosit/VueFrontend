@@ -3,6 +3,7 @@
     background-color: #050004;
     color: #f6f6f6;
 }
+
 .ad-input > label {
     margin-top: 5px;
     display: block;
@@ -14,10 +15,12 @@
 .ad-input > input, .ad-input > textarea {
     margin-top: 3px;
 }
+
 .ad-input > input {
     padding: 5px;
     width: 800px;
 }
+
 .ad-input > textarea {
     width: 100%;
     min-height: 100px;

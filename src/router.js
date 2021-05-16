@@ -31,146 +31,146 @@ import AdminSalary from "./components/Salary/AdminSalary";
 Vue.use(Router);
 
 export const router = new Router({
-  mode: 'history',
-  routes: [
-    {
-      path: '/',
-      component: Home,
-      children: [
+    mode: 'history',
+    routes: [
         {
-          path: '/chat',
-          component: Chat,
+            path: '/',
+            component: Home,
+            children: [
+                {
+                    path: '/chat',
+                    component: Chat,
+                },
+                {
+                    path: '/login',
+                    component: Login
+                },
+                {
+                    path: '/register',
+                    component: Register
+                },
+                {
+                    path: '/news',
+                    component: News,
+                    children: [
+                        {
+                            path: '/',
+                            component: WebsocketNews,
+                        },
+                    ]
+                },
+            ]
         },
         {
-          path: '/login',
-          component: Login
+            path: '/admin',
+            name: 'admin',
+            // lazy-loaded
+            component: AdminBoard,
+            children: [
+                {
+                    path: 'salaries/give',
+                    component: () => import('./views/AdminGiveSalaries.vue'),
+                },
+                {
+                    path: 'news',
+                    component: AdminWebsocketNews,
+                },
+                {
+                    path: 'tasks',
+                    component: AdminTasks
+                },
+                {
+                    path: 'storage',
+                    component: AdminGlobalStorage
+                }, ,
+                {
+                    path: 'salary',
+                    component: AdminSalary
+                },
+            ]
         },
         {
-          path: '/register',
-          component: Register
+            path: '/mod',
+            name: 'moderator',
+            // lazy-loaded
+            component: BoardModerator,
+            children: [
+                {
+                    path: '/moderator/test',
+                    component: TestModerator,
+                }
+            ]
         },
         {
-          path: '/news',
-          component: News,
-          children: [
-            {
-              path: '/',
-              component: WebsocketNews,
-            },
-          ]
-        },
-      ]
-    },
-    {
-      path: '/admin',
-      name: 'admin',
-      // lazy-loaded
-      component: AdminBoard,
-      children: [
-        {
-          path: 'salaries/give',
-          component: () => import('./views/AdminGiveSalaries.vue'),
-        },
-        {
-          path: 'news',
-          component: AdminWebsocketNews,
-        },
-        {
-          path: 'tasks',
-          component: AdminTasks
-        },
-        {
-          path: 'storage',
-          component: AdminGlobalStorage
-        },,
-        {
-          path: 'salary',
-          component: AdminSalary
-        },
-      ]
-    },
-    {
-      path: '/mod',
-      name: 'moderator',
-      // lazy-loaded
-      component: BoardModerator,
-      children: [
-        {
-          path: '/moderator/test',
-          component: TestModerator,
+            path: '/user',
+            name: 'user',
+            component: UserBoard,
+            children: [
+                {
+                    path: 'salary',
+                    component: Salary,
+                },
+                {
+                    path: 'tasks',
+                    component: Tasks,
+                },
+                {
+                    path: 'memory/:memoryId',
+                    component: Memory
+                },
+                {
+                    path: '/user/profile/:userId',
+                    component: Profile,
+                    children: [
+                        {
+                            path: '/user/profile/:userId/settings',
+                            component: ProfileSettings
+                        },
+                        {
+                            path: '/user/profile/:userId/info',
+                            component: ProfileInfo
+                        }
+                    ]
+                },
+                {
+                    path: '/user/hri',
+                    component: () => HRI
+                },
+                {
+                    path: '/user/workers',
+                    component: Workers
+                },
+                {
+                    path: '/user/chat',
+                    component: Chat,
+                },
+                {
+                    path: '/user/chat/:chatId/:recipientId',
+                    component: Chat,
+                },
+                {
+                    path: '/user/chat/with/:chatId/:recipientId',
+                    component: ChatWith
+                },
+                {
+                    path: '/user/calendar',
+                    component: Calendar,
+                    children: [
+                        {
+                            path: '/user/calendar/:year',
+                            component: Years,
+                        },
+                        {
+                            path: '/user/calendar/:year/:month',
+                            component: Month,
+                        },
+                        {
+                            path: '/user/calendar/:year/:month/:day',
+                            component: Day,
+                        },
+                    ]
+                }
+            ]
         }
-      ]
-    },
-    {
-      path: '/user',
-      name: 'user',
-      component: UserBoard,
-      children: [
-        {
-          path: 'salary',
-          component: Salary,
-        },
-        {
-          path: 'tasks',
-          component: Tasks,
-        },
-        {
-          path: 'memory/:memoryId',
-          component: Memory
-        },
-        {
-          path: '/user/profile',
-          component: Profile,
-          children: [
-            {
-              path: '/user/profile/settings',
-              component: ProfileSettings
-            },
-            {
-              path: '/user/profile/info',
-              component: ProfileInfo
-            }
-          ]
-        },
-        {
-          path: '/user/hri',
-          component: () => HRI
-        },
-        {
-          path: '/user/workers',
-          component: Workers
-        },
-        {
-          path: '/user/chat',
-          component: Chat,
-        },
-        {
-          path: '/user/chat/:chatId/:recipientId',
-          component: Chat,
-        },
-        {
-          path: '/user/chat/with/:chatId/:recipientId',
-          component: ChatWith
-        },
-        {
-          path:'/user/calendar',
-          component: Calendar,
-          children: [
-            {
-              path: '/user/calendar/:year',
-              component: Years,
-            },
-            {
-              path:'/user/calendar/:year/:month',
-              component: Month,
-            },
-            {
-              path:'/user/calendar/:year/:month/:day',
-              component: Day,
-            },
-          ]
-        }
-      ]
-    }
-  ]
+    ]
 });

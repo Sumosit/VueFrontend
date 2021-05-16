@@ -1,37 +1,37 @@
 <template>
-  <div class="main">
-    <div>
-      <router-view/>
+    <div class="main">
+        <div>
+            <router-view/>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-  import UserService from '../../services/user.service';
+    import UserService from '../../services/user.service';
 
-  export default {
-    name: 'Home',
-    data() {
-      return {
-        content: ''
-      };
-    },
-    mounted() {
-      UserService.getPublicContent().then(
-          response => {
-            this.content = response.data;
-          },
-          error => {
-            this.content =
-                (error.response && error.response.data) ||
-                error.message ||
-                error.toString();
-          }
-      );
-    }
-  };
+    export default {
+        name: 'Home',
+        data() {
+            return {
+                content: ''
+            };
+        },
+        mounted() {
+            UserService.getPublicContent().then(
+                response => {
+                    this.content = response.data;
+                },
+                error => {
+                    this.content =
+                        (error.response && error.response.data) ||
+                        error.message ||
+                        error.toString();
+                }
+            );
+        }
+    };
 </script>
 
 <style scoped>
-  @import '../../assets/css/main.css';
+    @import '../../assets/css/main.css';
 </style>

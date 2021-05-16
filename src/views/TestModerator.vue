@@ -1,17 +1,17 @@
 <template>
-  <div>
     <div>
-      Moderator Test
+        <div>
+            Moderator Test
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-  import UserService from "../services/user.service";
+    import UserService from "../services/user.service";
 
-  export default {
-    name: "ModeratorTest"
-  }
+    export default {
+        name: "ModeratorTest"
+    }
 </script>
 
 <style scoped>

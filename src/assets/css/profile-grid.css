@@ -33,6 +33,7 @@
     border-radius: 5px;
     background-color: white;
 }
+
 .edit-profile-info {
     position: relative;
     width: 30px;
@@ -154,6 +155,7 @@ img {
     background-color: #f6f6f6;
     color: black;
 }
+
 .profile-nav > div {
     cursor: pointer;
     height: 100%;

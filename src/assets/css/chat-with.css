@@ -2,6 +2,7 @@ body {
     overflow-x: hidden;
     /*overflow-y: hidden;*/
 }
+
 .mf-history {
     max-height: 775px;
     min-height: 590px;
@@ -10,20 +11,25 @@ body {
     padding: 30px;
     margin-bottom: 20px;
 }
+
 .form-mf-message {
 }
+
 .mf-message {
     position: absolute;
     width: 100%;
     bottom: 0;
 }
+
 .mf-message > .label-send > button {
     display: none;
 }
+
 .mf-message > .label-text {
     position: relative;
     padding: 0px 5px;
 }
+
 .chat-message {
     position: relative;
     width: 96%;
@@ -33,16 +39,19 @@ body {
     bottom: 0;
     border: 1px solid black;
 }
+
 .recipient {
     position: relative;
     min-height: 50px;
     text-align: left;
 }
+
 .sender {
     position: relative;
     min-height: 50px;
     text-align: right;
 }
+
 @media (min-width: 300px) {
     .wrapper-chat-with-sen {
         margin-top: 20px;
@@ -51,6 +60,7 @@ body {
         grid-template-areas: "sen-pi-avatar message";
         grid-gap: 5px;
     }
+
     .wrapper-chat-with-rec {
         margin-top: 20px;
         display: grid;
@@ -59,6 +69,7 @@ body {
         grid-gap: 5px;
     }
 }
+
 .rec-pi-avatar {
     position: relative;
     left: 0;
@@ -74,6 +85,7 @@ body {
     height: 50px;
     border-radius: 5px;
 }
+
 .message-sen, .message-rec {
     background-color: #464646;
     border-radius: 10px;
@@ -85,5 +97,6 @@ body {
     font-family: Arial, sans-serif;
     color: #f6f6f6;
 }
-.message-sen > span, .message-rec > span  {
+
+.message-sen > span, .message-rec > span {
 }

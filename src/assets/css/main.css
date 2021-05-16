@@ -1,7 +1,8 @@
 html, body {
     overflow-y: auto;
 }
-*{
+
+* {
 }
 
 /*.main-nav {*/
@@ -27,6 +28,7 @@ html, body {
     /*padding: 10px 10px;*/
     /*color: #656565;*/
 }
+
 .main > div {
     padding: 0px 0;
 }

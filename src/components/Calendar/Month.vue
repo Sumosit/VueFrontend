@@ -2,14 +2,14 @@
   <div>
     <span class="month-title">{{$route.params.month}}, {{getMonthName()}}, {{$route.params.year}}</span>
     <div class="days-wrapper">
-      <Days v-for="index in getDaysCount()"
-            :key="index"
-            :day="{
+      <Days :day="{
               id: index,
               month: $route.params.month,
               year: $route.params.year
             }"
+            :key="index"
             :weekends="weekends"
+            v-for="index in getDaysCount()"
       />
     </div>
   </div>

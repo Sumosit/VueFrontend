@@ -25,6 +25,7 @@
     padding: 20px;
     border-bottom: 1px solid black;
 }
+
 .a-u-search-field > input {
     width: 100%;
     height: 30px;
@@ -77,6 +78,7 @@
     font-family: Arial, sans-serif;
     font-size: 30px;
 }
+
 .admin-users-open > img {
     width: 20px;
 }
@@ -89,38 +91,46 @@
 .a-t-title > input, .a-t-date {
     height: 30px;
 }
+
 .a-t-title > input {
     padding: 6px;
     width: 400px;
 }
+
 .a-t-date {
     margin-left: 5px;
     margin-top: 2px;
 }
+
 .a-t-date > .dm-date {
     height: 30px;
     width: 80px;
     padding-left: 4px;
     border-right: none;
 }
+
 .a-t-date > .dm-time {
     height: 30px;
     width: 70px;
     padding-left: 7px;
 }
+
 .a-t-description {
     margin-top: 5px;
     min-width: 100%;
     min-height: 120px;
 }
+
 .a-t-users-count {
     margin-top: 5px;
     font-family: Arial, sans-serif;
     font-size: 18px;
 }
+
 .a-t-files {
     margin-top: 5px;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */

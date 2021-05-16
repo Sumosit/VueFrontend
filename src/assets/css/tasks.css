@@ -19,6 +19,7 @@
         grid-gap: 10px;
     }
 }
+
 @media only screen and (min-width: 1600px) {
     .tasks-grid-container {
         margin-top: 10px;
@@ -37,17 +38,20 @@
     font-size: 30px;
     overflow: hidden;
 }
+
 .tasks-grid-item > a {
     display: flex;
     text-align: center;
     justify-content: center;
 }
+
 .tasks-grid-item > .filename {
     margin-top: 10px;
     text-align: center;
     font-size: 14px;
     overflow: hidden;
 }
+
 .admin-storage-grid-container > .tasks-grid-item > a > img {
     position: relative;
     display: block;

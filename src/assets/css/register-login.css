@@ -13,6 +13,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .reg-field {
     position: absolute;
     width: 380px;
@@ -22,6 +23,7 @@ body {
     border-radius: 5px;
     background-color: #f6f6f6;
 }
+
 .reg-field > label {
     display: flex;
     width: 100%;
@@ -31,6 +33,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .reg-field > .title {
     height: 100px;
     display: flex;
@@ -40,6 +43,7 @@ body {
     font-size: 20px;
     color: black;
 }
+
 .reg-field > label > input {
     width: 80%;
     padding: 10px;
@@ -47,13 +51,16 @@ body {
     border-radius: 5px;
     font-size: 20px;
 }
+
 .reg-btn-field {
     width: 100%;
     height: auto;
 }
+
 .reg-btn-field > .reg-btn {
     /*margin-left: 280px;*/
 }
+
 .alert-danger {
     margin-top: 10px;
     padding: 10px;
@@ -61,6 +68,7 @@ body {
     background-color: #f8d7da;
     color: #721c24;
 }
+
 .alert-success {
     margin-top: 10px;
     padding: 10px;
@@ -68,6 +76,7 @@ body {
     background-color: rgba(40, 40, 40, 0.7);
     color: #ff2621;
 }
+
 .reg-field > label > input {
     background: #f6f6f6;
     border: 1px solid black;

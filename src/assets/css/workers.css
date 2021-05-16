@@ -12,6 +12,7 @@
     border: none;
     border-radius: 5px;
 }
+
 @media (min-width: 487px) {
     .workers-wrapper {
         display: grid;
@@ -20,6 +21,7 @@
         grid-gap: 0;
     }
 }
+
 .workers-wrapper {
     margin-top: 5px;
 }
@@ -69,6 +71,7 @@
     padding: 10px;
     background-color: #f6f6f6;
 }
+
 .workers-btn-search {
     background: black url(../images/search-icon.svg) no-repeat right center;
     height: 32px;

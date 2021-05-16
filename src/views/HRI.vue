@@ -1,13 +1,13 @@
 <template>
-  <div>
-    qwe
-  </div>
+    <div>
+        qwe
+    </div>
 </template>
 
 <script>
-  export default {
-    name: "HRI"
-  }
+    export default {
+        name: "HRI"
+    }
 </script>
 
 <style scoped>

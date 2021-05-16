@@ -1,6 +1,7 @@
 .main {
     padding: 5px;
 }
+
 .news {
     margin-left: auto;
     margin-right: auto;
@@ -11,25 +12,30 @@
     color: black;
     margin-bottom: 5px;
 }
+
 @media only screen and (min-width: 1600px) {
     .news {
         width: 50%;
     }
 }
+
 .news-title-field {
     display: flex;
     /*background-color: red;*/
 }
+
 .news-title-author-avatar {
     display: flex;
     justify-content: center;
     align-items: center;
     /*background-color: yellow;*/
 }
+
 .news-title-author-avatar > img {
     width: 50px;
     border-radius: 10px;
 }
+
 .news-title {
     width: 100%;
     padding: 5px;
@@ -38,10 +44,12 @@
     font-size: 20px;
     /*background-color: blue;*/
 }
+
 .news-title > p {
     font-weight: normal;
     margin: 0;
 }
+
 .news-content-field {
     font-family: Arial, sans-serif;
     margin-top: 10px;

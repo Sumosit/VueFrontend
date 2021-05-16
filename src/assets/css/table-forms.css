@@ -1,8 +1,10 @@
 table {
     width: 100%
 }
+
 table > tr {
 }
+
 th {
     max-width: 300px;
     word-break: break-word;
@@ -11,9 +13,11 @@ th {
     font-family: Arial, sans-serif;
     font-size: 14px;
 }
+
 .year {
     max-width: 100px;
 }
+
 input {
     width: 80%;
 }
@@ -21,10 +25,12 @@ input {
 .list-enter-active, .list-leave-active {
     transition: all 1s;
 }
-.list-enter, .list-leave-to{
+
+.list-enter, .list-leave-to {
     opacity: 0;
     transform: translateX(30px);
 }
+
 .list-move {
     transition: transform 1s;
 }

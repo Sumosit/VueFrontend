@@ -38,10 +38,12 @@
 
 [class*="btn-nav-pull"]:hover {
 }
+
 a {
     color: white;
     text-decoration: none;
 }
+
 .nav-titles {
     display: block;
     margin-top: 20px;
@@ -51,31 +53,38 @@ a {
     font-size: 36px;
     color: white;
 }
+
 .nav-bar-username {
     margin-top: 0px;
     padding: 10px 5px;
     border-bottom: 2px solid #ff4c51;
 }
+
 .link-username {
     color: #ff4c51;
 }
+
 .nav-bar {
     margin-top: 10px;
     padding: 5px 5px;
     /*border-bottom: 2px solid #ffffff;*/
 }
+
 .nav-bar:hover, .nav-bar-username:hover {
     transition: all 0.3s;
     background-color: #5a5a5a;
 }
+
 .nav-bar:active, .nav-bar-username:active {
     transition: all 0.3s;
     background-color: rgba(0, 0, 0, 0);
 }
+
 .nav-bar-over, .nav-bar-username-over {
     transition: all 0.3s;
     background: #adadad;
 }
+
 .nav-bar-leave, .nav-bar-username-leave {
     transition: all 0.3s;
     background: #414141;

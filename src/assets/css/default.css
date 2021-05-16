@@ -6,12 +6,14 @@ body {
     background-size: cover;
     background-color: #656565;
 }
-html,body{
+
+html, body {
     padding: 0;
     margin: 0;
     height: 100%;
     overflow-x: hidden;
 }
+
 * {
     box-sizing: border-box;
 }
@@ -64,6 +66,7 @@ html,body{
     color: #f6f6f6;
     background-color: #191919;
 }
+
 .button-leave {
     transition: all 0.5s;
     color: black;
@@ -120,6 +123,7 @@ input {
     transition: all 0.5s;
     color: black;
 }
+
 .backgroundColor-paddingAll5-font {
     padding: 5px;
     background-color: #0e0e10;
@@ -129,6 +133,7 @@ input {
 .cursor-pointer {
     cursor: pointer;
 }
+
 .inline-flex {
     display: inline-flex;
 }
@@ -139,6 +144,7 @@ input, textarea {
     color: black;
     border: 1px solid black;
 }
+
 ::placeholder {
     color: #636363;
 }

@@ -8,9 +8,11 @@
 .memory-interface {
 
 }
+
 .memory-interface > div {
     display: inline-flex;
 }
+
 .m-i-plus {
     height: 30px;
     width: 30px;

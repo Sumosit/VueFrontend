@@ -7,10 +7,12 @@
     outline: black dashed 1px;
     background-color: #f6f6f6;
 }
+
 .upload-field > span {
     font-family: Arial, sans-serif;
     font-size: 20px;
 }
+
 .upload-input-file {
     display: block;
     position: absolute;

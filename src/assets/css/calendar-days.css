@@ -3,7 +3,7 @@
     font-family: Arial, sans-serif;
 }
 
-.day-btn:hover, .day-btn-current-date:hover{
+.day-btn:hover, .day-btn-current-date:hover {
     transition: all 0.5s;
     background-color: #f6f6f6;
     color: black;
