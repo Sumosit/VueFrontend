@@ -20,8 +20,8 @@
             </div>
             <span class="upload-files-list"
                   v-for="(file, index) in filesToUpload">
-        {{file.name}}
-      </span>
+                {{file.name}}
+            </span>
             <button @click="addFilesToMemory()" class="upload-btn">Upload</button>
         </div>
         <div class="memories-list"
@@ -133,6 +133,8 @@
                         memoryId: this.$route.params.memoryId
                     });
                     // console.log(res);
+                    this.files = [];
+                    this.filesToUpload = this.files;
                 }).catch(err => {
                     console.log(err.response);
                 });

@@ -4,7 +4,7 @@
       'wrapper-nav-ls': windowWidth > 1400
     }"
              class="main">
-            <NavLeftSide v-show="windowWidth > 1401"/>
+            <NavLeftSide v-show="windowWidth > 1400"/>
             <router-view v-if="show"/>
             <div v-else>
                 Admin Page Forbidden

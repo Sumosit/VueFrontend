@@ -9,6 +9,7 @@ import {calendar} from './calendar/calendar'
 import {tasks} from './tasks/tasks'
 import {notification} from './notification/notification'
 import {salary} from './salary/salary'
+import {chat} from './chat/chat'
 
 Vue.use(Vuex);
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
         calendar,
         tasks,
         notification,
-        salary
+        salary,
+        chat
     }
 });

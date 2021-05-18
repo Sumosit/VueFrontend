@@ -1,0 +1,26 @@
+.admin-plan > div {
+    padding: 8px;
+    background-color: #f6f6f6;
+    color: black;
+}
+
+.form-alarm {
+    width: 40%;
+}
+
+.form-alarm > input {
+    padding: 8px;
+    width: 100%;
+    font-size: 24px;
+}
+
+.form-alarm > button {
+    cursor: pointer;
+    width: 100%;
+    background-color: #7d0500;
+    color: #f6f6f6;
+    font-size: 24px;
+
+}.form-alarm > button:hover {
+    background-color: #a30700;
+}

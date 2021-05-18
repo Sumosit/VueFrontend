@@ -10,8 +10,8 @@
                     <img src="../../assets/images/user.svg" v-else>
                 </div>
                 <div class="not-info">
-                    <div class="not-type">{{not.type.slice(0, 18)}}</div>
-                    <div class="not-message">{{not.message.slice(0, 18)}}</div>
+                    <div class="not-type">{{not.type}}</div>
+                    <div class="not-message">{{not.message}}</div>
                 </div>
             </router-link>
         </div>
@@ -28,7 +28,6 @@
 
     export default {
         name: "Notification",
-        props: ['notificationLength'],
         data() {
             return {
                 received_messages: [],
@@ -36,61 +35,7 @@
             }
         },
         async mounted() {
-            this.connect();
-            await this.$store.dispatch('fetchNotification', this.$store.state.auth.user.id)
-                .then(() => {
-                    this.received_messages = this.$store.getters.getNotification;
-                    this.notificationLength = this.$store.getters.getNotification.length;
-                    this.emitToParent();
-                });
-        },
-        methods: {
-            connect() {
-                this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
-                this.stompClient = Stomp.over(this.socket);
-
-                this.stompClient.connect(
-                    {},
-                    frame => {
-                        this.connected = true;
-                        // console.log(frame);
-                        this.stompClient.subscribe("/topic/notification/" + this.$store.state.auth.user.id,
-                            async tick => {
-                                // console.log(tick);
-                                let message = JSON.parse(tick.body);
-                                this.received_messages.push(message);
-                                this.$store.commit('pushNotification', message);
-                                this.notificationLength = this.received_messages.length;
-                                this.emitToParent();
-                                var audio = new Audio(juntos);
-                                audio.volume = 0.2;
-                                audio.play();
-                                if (message.type.includes("New task")) {
-                                    await this.$store.dispatch("fetchTasksBiUserId", this.$store.state.auth.user.id);
-                                }
-                                if (message.type.includes("New salary")) {
-                                    await this.$store.dispatch("fetchSalaries", this.$store.state.auth.user.id);
-                                }
-                            });
-                    },
-                    error => {
-                        // console.log(error);
-                        this.connected = false;
-                    }
-                );
-            },
-            disconnect() {
-                if (this.stompClient) {
-                    this.stompClient.disconnect();
-                }
-                this.connected = false;
-            },
-            tickleConnection() {
-                this.connected ? this.disconnect() : this.connect();
-            },
-            emitToParent() {
-                this.$emit('childToParent', this.$store.getters.getNotification.length);
-            },
+            this.received_messages = this.$store.getters.getNotification;
         },
         computed: {
             sortedNotifications: function () {

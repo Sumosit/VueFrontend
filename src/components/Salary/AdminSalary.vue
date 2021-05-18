@@ -116,7 +116,6 @@
         },
         mounted() {
             this.$store.dispatch("fetchUsers");
-            this.connect();
         },
         watch: {
             salary: function () {
@@ -129,35 +128,6 @@
             }
         },
         methods: {
-            connect() {
-                this.chatId = this.$route.params.chatId;
-                this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
-                this.stompClient = Stomp.over(this.socket);
-
-                this.stompClient.connect(
-                    {},
-                    frame => {
-                        this.connected = true;
-                        // console.log(frame);
-                        this.stompClient.subscribe("/topic/salary/" + this.$store.state.auth.user.id, tick => {
-                            // console.log(tick);;
-                        });
-                    },
-                    error => {
-                        // console.log(error);
-                        this.connected = false;
-                    }
-                );
-            },
-            disconnect() {
-                if (this.stompClient) {
-                    this.stompClient.disconnect();
-                }
-                this.connected = false;
-            },
-            tickleConnection() {
-                this.connected ? this.disconnect() : this.connect();
-            },
             getUsersFilter() {
                 let users = this.$store.getters.getUsers;
                 return users.filter(c => this.getUsernameNameSurname(c.username, c.name, c.surname).toLowerCase().indexOf(this.search) > -1);
@@ -173,6 +143,8 @@
                 }
             },
             sendSalaries() {
+                this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
+                this.stompClient = Stomp.over(this.socket);
                 let fd = new FormData();
                 let usersId = [];
                 for (var i = 0; i < this.selected.length; i++) {
@@ -202,12 +174,12 @@
                         let msg_notification = {
                             id: null,
                             type: "New salary from ",
-                            message: this.title,
+                            message: "more info",
                             linkToChat: "/user/salary",
                             fromUserId: this.$store.state.auth.user.id,
                             userId: usersId[i]
                         };
-                        console.log(msg_notification);
+                        // console.log(msg_notification);
                         this.stompClient.send("/app/notification/" + usersId[i], JSON.stringify(msg_notification), {});
                     }
                     // console.log(res);

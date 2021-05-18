@@ -1,7 +1,7 @@
 .salary {
     padding: 8px;
-    background-color: #050004;
-    color: #f6f6f6;
+    background-color: #f6f6f6;
+    color: black;
     font-family: Arial, sans-serif;
 }
 
@@ -13,13 +13,19 @@
 }
 
 .salary-head > th {
+    background-color: #f6f6f6;
+    color: black;
     padding: 5px;
     font-family: Arial, sans-serif;
     font-size: 20px;
+    border: 1px solid black;
 }
 
 .salary-body > tr > td {
+    background-color: #f6f6f6;
+    color: black;
     padding: 5px;
+    border: 1px solid black;
 }
 
 .salary > table {

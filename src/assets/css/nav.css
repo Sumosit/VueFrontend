@@ -1,5 +1,5 @@
 nav {
-    z-index: 8888;
+    z-index: 7777;
     position: fixed;
     height: 50px;
     width: 100%;
@@ -39,14 +39,14 @@ nav {
 }
 
 .nav-username {
-    width: 50px;
+    min-width: 50px;
+    padding: 10px;
     border-radius: 50%;
     background: #f6f6f6;
 }
 
 .nav-username:hover {
     transition: 0.5s all;
-    width: 50px;
     border-radius: 50%;
     background: #bcbcbc;
     /*color: #f6f6f6;*/

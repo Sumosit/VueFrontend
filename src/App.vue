@@ -1,13 +1,26 @@
 <template>
     <div id="app">
+        <div class="alarm-field content-center">
+            <ul class="alarm-ul">
+                <li>
+                    <Alarm :alarm="alarm"
+                           :key="index"
+                           v-for="(alarm, index) in $store.getters.getAlarms"
+                    />
+                </li>
+            </ul>
+        </div>
         <AfkBackground v-show="!afkBackground"/>
         <div v-show="afkBackground">
             <NavPull/>
             <Nav/>
         </div>
         <div v-show="afkBackground">
-            <router-view :class="{'main-nav': windowWidth > 958,
-      'main-nav-pull': windowWidth <= 958}"/>
+            <router-view
+                    :class="{
+                'main-nav': windowWidth > 958,
+                'main-nav-pull': windowWidth <= 958
+            }"/>
         </div>
     </div>
 </template>
@@ -16,28 +29,34 @@
     import Nav from './components/Navigation/Nav';
     import NavPull from './components/Navigation/NavPull';
     import AfkBackground from './components/AfkBackground';
+    import Alarm from './components/Notification/Alarm';
     import SockJS from "sockjs-client";
     import Stomp from "webstomp-client";
     import backendUrl from "./store/backendUrl";
     import axios from "axios";
+    import juntos from './assets/audio/Zvuk_urona_v_Maynkraft_(ringon.site).mp3';
+    import alarm from './assets/audio/mixkit-interface-hint-notification-911.wav';
 
     export default {
+        components: {
+            Nav, NavPull,
+            AfkBackground,
+            Alarm
+        },
         data() {
             return {
                 windowWidth: 0,
                 afkBackground: true,
-                received_notification: [],
             }
         },
         created() {
             window.addEventListener('resize', this.updateWidth);
         },
-        mounted() {
-            this.connect;
-        },
-        components: {
-            Nav, NavPull,
-            AfkBackground
+        async mounted() {
+            this.connect();
+            this.connectToAlarms();
+            await this.$store.dispatch('fetchNotification', this.$store.state.auth.user.id);
+            await this.$store.dispatch("fetchUser", this.$store.state.auth.user.id);
         },
         onIdle() {
             this.afkBackground = false
@@ -70,35 +89,61 @@
                 this.$store.dispatch('auth/logout');
                 this.$router.push('/login');
             },
-            send() {
-                // console.log("Send message:" + this.send_message);
-                if (this.stompClient && this.stompClient.connected) {
-                    const msg = {
-                        message: this.send_message,
-                        chatId: this.$route.params.chatId,
-                        userId: this.$store.state.auth.user.id,
-                        sendDate: new Date().getTime()
-                    };
-                    // console.log(JSON.stringify(msg));
-                    this.stompClient.send("/app/notification/" + this.$store.state.auth.user.id, JSON.stringify(msg), {});
-                }
-            },
-            connect() {
+            connectToAlarms() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
+
                 this.stompClient.connect(
                     {},
                     frame => {
                         this.connected = true;
                         // console.log(frame);
-                        this.stompClient.subscribe("/topic/notification" + this.$store.state.auth.user.id, async tick => {
-                            // console.log(tick);
-                            let message = JSON.parse(tick.body);
-                            this.received_messages.push(message);
-                        });
+                        this.stompClient.subscribe("/topic/alarms",
+                            async tick => {
+                                let message = JSON.parse(tick.body);
+                                console.log(message);
+                                this.$store.commit('pushAlarms', message);
+                                var audio = new Audio(alarm);
+                                audio.volume = 0.2;
+                                audio.muted;
+                                audio.play();
+                            });
                     },
                     error => {
-                        console.log(error);
+                        // console.log(error);
+                        this.connected = false;
+                    }
+                );
+
+            },
+            connect() {
+                this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
+                this.stompClient = Stomp.over(this.socket);
+
+                this.stompClient.connect(
+                    {},
+                    frame => {
+                        this.connected = true;
+                        // console.log(frame);
+                        this.stompClient.subscribe("/topic/notification/" + this.$store.state.auth.user.id,
+                            async tick => {
+                                // console.log(tick);
+                                let message = JSON.parse(tick.body);
+                                this.$store.commit('pushNotification', message);
+                                var audio = new Audio(juntos);
+                                if (message.type.includes("New task")) {
+                                    await this.$store.dispatch("fetchTasksBiUserId", this.$store.state.auth.user.id);
+                                }
+                                if (message.type.includes("New salary")) {
+                                    await this.$store.dispatch("fetchSalaries", this.$store.state.auth.user.id);
+                                }
+                                audio.volume = 0.2;
+                                audio.muted;
+                                audio.play();
+                            });
+                    },
+                    error => {
+                        // console.log(error);
                         this.connected = false;
                     }
                 );

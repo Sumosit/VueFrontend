@@ -95,7 +95,6 @@
         },
         mounted() {
             this.$store.dispatch("fetchUsers");
-            this.connect();
         },
         watch: {
             date: function (val) {
@@ -114,35 +113,6 @@
             }
         },
         methods: {
-            connect() {
-                this.chatId = this.$route.params.chatId;
-                this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
-                this.stompClient = Stomp.over(this.socket);
-
-                this.stompClient.connect(
-                    {},
-                    frame => {
-                        this.connected = true;
-                        // console.log(frame);
-                        this.stompClient.subscribe("/topic/tasks/" + this.$store.state.auth.user.id, tick => {
-                            // console.log(tick);
-                        });
-                    },
-                    error => {
-                        // console.log(error);
-                        this.connected = false;
-                    }
-                );
-            },
-            disconnect() {
-                if (this.stompClient) {
-                    this.stompClient.disconnect();
-                }
-                this.connected = false;
-            },
-            tickleConnection() {
-                this.connected ? this.disconnect() : this.connect();
-            },
             getUsersFilter() {
                 let users = this.$store.getters.getUsers;
                 return users.filter(c => this.getUsernameNameSurname(c.username, c.name, c.surname).toLowerCase().indexOf(this.search) > -1);
@@ -158,6 +128,9 @@
                 }
             },
             sendTasks() {
+                this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
+                this.stompClient = Stomp.over(this.socket);
+
                 let fd = new FormData();
                 let usersId = [];
                 for (var i = 0; i < this.selected.length; i++) {

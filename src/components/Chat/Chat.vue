@@ -83,9 +83,6 @@
                 let chatId = this.sortedChatId;
                 return chatId.filter(c => (c.sender.username + c.sender.name + c.sender.surname + c.recipient.username + c.recipient.name + c.recipient.surname).toLowerCase().indexOf(this.search) > -1);
             },
-            // getUsernameNameSurname(username, name, surname) {
-            //   return username + name + surname;
-            // },
         },
         computed: {
             getChat() {

@@ -1,0 +1,30 @@
+.alarm {
+    /*display: block;*/
+    /*height: 50px;*/
+    padding: 20px;
+    background-color: rgba(0,0,0,0.9);
+    color: #f6f6f6;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    margin-top: 1px;
+}
+
+.alarm-ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.alarm-ul > li {
+    width: 200px;
+}
+
+.alarm-field {
+    position: absolute;
+    z-index: 8888;
+    width: 200px;
+    right: 10px;
+    overflow-y: hidden;
+    /*background-color: yellow;*/
+}

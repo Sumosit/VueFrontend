@@ -1,0 +1,87 @@
+
+.yes {
+    width: 100%;
+}
+
+.profile-settings {
+    padding: 1px 8px;
+    background: #f6f6f6;
+    color: black;
+    font-family: Arial, sans-serif;
+}
+
+.name-surname-btn {
+    display: block;
+}
+
+.name-surname {
+
+}
+
+.name-surname > div {
+    padding: 5px;
+}
+
+.name-surname > div > label {
+    display: inline-block;
+    width: 100px;
+    padding-right: 5px;
+    text-align: right;
+}
+
+​
+
+@media (min-width: 1700px) {
+    .documents-wrapper {
+        margin-top: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+    }
+}
+
+@media (max-width: 1699px) {
+    .documents-wrapper {
+        margin-top: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+    }
+}
+
+.documents-wrapper > .document {
+    position: relative;
+    word-break: break-word;
+    padding: 15px;
+    background: #dddddd;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.document > span {
+    margin-top: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 100%;
+}
+
+.document > div {
+    margin-top: 5px;
+}
+
+.no-display {
+    display: none;
+}
+
+.document > label {
+    cursor: pointer;
+    margin-top: 5px;
+    color: #a00000;
+}
+
+.document > label:hover {
+    color: #d20000;
+}
+
+.doc-download > a {
+    color: black;
+}

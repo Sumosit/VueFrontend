@@ -52,6 +52,9 @@
                         <router-link to="/user/salary">Salary</router-link>
                     </div>
                     <div class="nav-bar" v-if="isAdmin">
+                        <router-link to="/admin/plan">Admin plan</router-link>
+                    </div>
+                    <div class="nav-bar" v-if="isAdmin">
                         <router-link to="/admin/news">Admin news</router-link>
                     </div>
                     <div class="nav-bar" v-if="isAdmin">

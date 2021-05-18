@@ -56,15 +56,17 @@
         async mounted() {
             this.connect();
             await this.$store.dispatch("fetchNews");
-            this.received_messages = this.$store.getters.allNews
-                .then(setTimeout(() => {
-                    this.loading = true;
-                }, 1000));
+            this.received_messages = this.$store.getters.allNews;
+            setTimeout(() => {
+                this.loading = true;
+            }, 1000)
         },
         methods: {
             connect() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
+                this.stompClient.debug = () => {};
+
                 this.stompClient.connect(
                     {},
                     frame => {

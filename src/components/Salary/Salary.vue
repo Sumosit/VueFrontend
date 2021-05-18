@@ -17,7 +17,7 @@
                 </thead>
                 <tbody class="salary-body">
                 <tr>
-                    <td>Начислены</td>
+                    <td><strong>Начислены</strong></td>
                 </tr>
                 <tr>
                     <td>Оклад по дням</td>
@@ -34,7 +34,7 @@
                     <td>{{salary.salary}}</td>
                 </tr>
                 <tr>
-                    <td>Удержаны</td>
+                    <td><strong>Удержаны</strong></td>
                 </tr>
                 <tr>
                     <td>ИПН начисленный</td>
@@ -58,14 +58,7 @@
                     <td>{{salary.vosms}}</td>
                 </tr>
                 <tr>
-                    <td>Всего удержано</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>{{salary.withheld}}</td>
-                </tr>
-                <tr>
-                    <td>Налоговые вычеты</td>
+                    <td><strong>Налоговые вычеты</strong></td>
                 </tr>
                 <tr>
                     <td>Всего удержано</td>
@@ -111,6 +104,7 @@
                 </tr>
                 </tbody>
             </table>
+            <hr style="border: 1px solid black">
         </div>
     </div>
 </template>

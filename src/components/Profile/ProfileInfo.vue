@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="profile-image"
-             v-show="!currentUser.fileDB || editProfilePhoto">
+             v-show="!currentUser.fileDB && editProfilePhoto && Number.parseInt($route.params.userId) === Number.parseInt(currentUser.id)">
             <div class="upload-field content-center">
                 <span v-show="!dragover">Choose files</span>
                 <span v-show="dragover">Drag files here</span>
@@ -50,6 +50,9 @@
     export default {
         name: 'ProfileInfo',
         props: ['userProfile'],
+        components: {
+            ButtonDiv
+        },
         data() {
             return {
                 selectedFile: null,
@@ -64,8 +67,8 @@
                 dragover: false
             }
         },
-        components: {
-            ButtonDiv
+        created() {
+            document.title = "Profile info";
         },
         mounted() {
             if (!this.currentUser) {
