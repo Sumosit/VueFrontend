@@ -41,7 +41,7 @@
                     };
                     this.stompClient.send("/app/alarms", JSON.stringify(message), {});
 
-                }), 200);
+                }), 1000);
 
                 // do stuff that requires a connection, like establish subscriptions
             }
