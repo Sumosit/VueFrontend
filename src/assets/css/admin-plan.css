@@ -1,11 +1,26 @@
-.admin-plan > div {
+.admin-plan {
     padding: 8px;
     background-color: #f6f6f6;
     color: black;
 }
 
+.admin-plan-form {
+    display: inline-flex;
+}
+
+.admin-plan-form > button, .admin-plan-form > input {
+    margin: 0;
+    height: 30px;
+}
+
+.admin-plan-form > button {
+    margin-left: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
 .form-alarm {
-    width: 40%;
+    width: 400px;
 }
 
 .form-alarm > input {

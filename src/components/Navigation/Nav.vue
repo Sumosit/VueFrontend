@@ -4,11 +4,11 @@
             <router-link class="right content-center cursor-pointer nav-username" tag="div"
                          to="/user/profile/info"
                          v-if="isUser">
-                <span v-if="!$store.getters.getUser.name && !$store.getters.getUser.surname">
+                <span v-if="!$store.state.auth.user.name && !$store.state.auth.user.surname">
                     {{$store.state.auth.user.username}}
                 </span>
-                <span v-else>
-                    {{$store.getters.getUser.name}} {{$store.getters.getUser.surname}}
+                <span v-else-if="!$store.state.auth.user.name && !$store.state.auth.user.surname">
+                    {{$store.state.auth.user.name}} {{$store.state.auth.user.surname}}
                 </span>
             </router-link>
             <div class="right content-center notification" v-on:click="open_not = !open_not">

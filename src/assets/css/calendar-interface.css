@@ -3,6 +3,10 @@
     position: relative;
     width: 100%;
     color: #f6f6f6;
+
+    -webkit-box-shadow: 0px 2px 13px 0px rgba(34, 60, 80, 0.29);
+    -moz-box-shadow: 0px 2px 13px 0px rgba(34, 60, 80, 0.29);
+    box-shadow: 0px 2px 13px 0px rgba(34, 60, 80, 0.29);
 }
 
 #calendar-interface > a {

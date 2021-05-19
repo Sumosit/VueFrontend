@@ -14,38 +14,33 @@
     display: block;
 }
 
-.name-surname {
-
-}
-
 .name-surname > div {
-    padding: 5px;
+    margin-top: 5px;
+    /*padding: 5px;*/
 }
 
 .name-surname > div > label {
     display: inline-block;
-    width: 100px;
+    width: 120px;
     padding-right: 5px;
     text-align: right;
 }
 
-​
-
-@media (min-width: 1700px) {
-    .documents-wrapper {
-        margin-top: 5px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-gap: 10px;
-    }
-}
-
-@media (max-width: 1699px) {
+@media only screen and (max-width: 1599px) {
     .documents-wrapper {
         margin-top: 5px;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-gap: 10px;
+        grid-gap: 20px;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .documents-wrapper {
+        margin-top: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 15px;
     }
 }
 
@@ -56,6 +51,10 @@
     background: #dddddd;
     border: 1px solid black;
     border-radius: 5px;
+
+    -webkit-box-shadow: 12px 13px 10px -1px rgba(34, 60, 80, 0.6);
+    -moz-box-shadow: 12px 13px 10px -1px rgba(34, 60, 80, 0.6);
+    box-shadow: 12px 13px 10px -1px rgba(34, 60, 80, 0.6);
 }
 
 .document > span {

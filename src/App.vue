@@ -53,10 +53,12 @@
             window.addEventListener('resize', this.updateWidth);
         },
         async mounted() {
-            this.connect();
-            this.connectToAlarms();
-            await this.$store.dispatch('fetchNotification', this.$store.state.auth.user.id);
-            await this.$store.dispatch("fetchUser", this.$store.state.auth.user.id);
+            if (this.$store.state.auth.user.id) {
+                this.connect();
+                this.connectToAlarms();
+                await this.$store.dispatch('fetchNotification', this.$store.state.auth.user.id);
+                await this.$store.dispatch("fetchUser", this.$store.state.auth.user.id);
+            }
         },
         onIdle() {
             this.afkBackground = false

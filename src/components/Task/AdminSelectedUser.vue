@@ -1,18 +1,27 @@
 <template>
-    <div
-            :class="{'user-click': hover}"
-            class="a-u-user"
-            v-on:click="hover = !hover">
-        {{user.id}}.
-        <span v-if="!user.name || !user.surname">{{user.username}}</span>
-        <span v-else>{{user.name}} {{user.surname}}</span>
+    <div>
+        <div :class="{'user-click': hover}"
+             class="a-u-user"
+             v-if="user"
+             v-on:click="hover = !hover">
+            {{user.id}}.
+            <span v-if="!user.name || !user.surname">{{user.username}}</span>
+            <span v-else>{{user.name}} {{user.surname}}</span>
+        </div>
+        <div :class="{'user-click': hover}"
+             class="a-u-user"
+             v-if="group"
+             v-on:click="hover = !hover">
+            {{group.id}}.
+            <span>{{group.name}}</span>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
         name: "AdminSelectedUser",
-        props: ['user'],
+        props: ['user', 'group'],
         data() {
             return {
                 hover: false

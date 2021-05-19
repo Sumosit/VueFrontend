@@ -21,6 +21,25 @@
 .admin-users {
 }
 
+.a-u-users-type {
+    padding: 5px;
+    border-bottom: 1px solid black;
+    display: flex;
+}
+
+.a-u-users-type > div {
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 3px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.a-u-users-type > div:hover {
+    background-color: #535353;
+    color: #e4e4e4;
+}
+
 .a-u-search-field {
     padding: 20px;
     border-bottom: 1px solid black;
@@ -38,7 +57,7 @@
 .a-u-user-list-field {
     position: relative;
     padding: 10px;
-    height: 427px;
+    height: 390px;
     overflow-y: auto;
 }
 

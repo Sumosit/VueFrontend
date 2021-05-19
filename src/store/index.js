@@ -10,6 +10,7 @@ import {tasks} from './tasks/tasks'
 import {notification} from './notification/notification'
 import {salary} from './salary/salary'
 import {chat} from './chat/chat'
+import {plan} from './plan/plan'
 
 Vue.use(Vuex);
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
         tasks,
         notification,
         salary,
-        chat
+        chat,
+        plan
     }
 });

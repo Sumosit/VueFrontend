@@ -1,0 +1,10 @@
+.table-name-surname {
+    width: 25%;
+}
+
+table {
+
+}
+tbody > tr {
+    cursor: pointer;
+}

@@ -9,10 +9,26 @@ export const user = {
         news: [],
         users: [],
         chat: [],
+        groupsByUserId: [],
         userExtra: Object,
         user: Object
     },
     actions: {
+        async fetchGroupsByUserId(ctx, user_id) {
+            await fetch(backendUrl() + 'api/user/group/all/' + user_id,
+                {
+                    headers: authHeader()
+                })
+                .then(response => response.json())
+                .then(json => {
+                    setTimeout(() => {
+                        const groupsByUserId = json;
+                        // console.log(userExtra);
+                        ctx.commit('updateUserGroups', groupsByUserId);
+                        return groupsByUserId;
+                    }, 1000)
+                });
+        },
         async fetchUserExtra(ctx, user_id) {
             await fetch(backendUrl() + 'api/user/userExtra/' + user_id,
                 {
@@ -124,6 +140,9 @@ export const user = {
         }
     },
     mutations: {
+        updateUserGroups(state, payload) {
+            state.groupsByUserId = payload;
+        },
         updateAllFiles(state, payload) {
             state.allFiles = payload;
         },
@@ -152,6 +171,9 @@ export const user = {
         }
     },
     getters: {
+        getGroupsByUserId(state) {
+            return state.groupsByUserId;
+        },
         getAllFiles(state) {
             return state.allFiles;
         },

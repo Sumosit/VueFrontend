@@ -173,7 +173,7 @@
                 }
 
                 return this.$store.getters.getUserExtra.documents.sort(compare);
-            }
+            },
         }
 
     }

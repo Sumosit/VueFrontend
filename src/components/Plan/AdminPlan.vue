@@ -1,11 +1,21 @@
 <template>
-    <div class="admin-plan">
-        <div class="content-center">
-            <div class="form-alarm">
-                <input type="text" v-model="alarmMessage">
-                <button @click="sendAlarm()">Alarm</button>
+    <div>
+        <div class="calendar-interface-field">
+            <div class="calendar-interface" id="calendar-interface">
+                <router-link to="/admin/plan/alarm">
+                    <div class="c-i-text content-center">
+                        <span>Alarm</span>
+                    </div>
+                </router-link>
+                <router-link to="/admin/plan/groups">
+                    <div class="c-i-text content-center">
+                        <span>Groups</span>
+                    </div>
+                </router-link>
             </div>
         </div>
+        <router-view :mainStompClient="this.stompClient"
+                     class="admin-plan"></router-view>
     </div>
 </template>
 
@@ -19,36 +29,20 @@
     export default {
         name: "AdminPlan",
         data() {
-            return {
-                alarmMessage: ''
-            }
+            return {}
         },
         created() {
             document.title = "Admin plan";
         },
         mounted() {
+            this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
+            this.stompClient = Stomp.over(this.socket);
             this.$store.dispatch("fetchUsers");
-        },
-        methods: {
-            sendAlarm() {
-                this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
-                this.stompClient = Stomp.over(this.socket);
-                this.stompClient.debug = () => {};
-                setTimeout((() => {
-                    let message = {
-                        message: this.alarmMessage,
-                        authorName: this.$store.getters.getUser.username,
-                    };
-                    this.stompClient.send("/app/alarms", JSON.stringify(message), {});
-
-                }), 1000);
-
-                // do stuff that requires a connection, like establish subscriptions
-            }
         }
     }
 </script>
 
 <style scoped>
     @import '../../assets/css/admin-plan.css';
+    @import '../../assets/css/calendar-interface.css';
 </style>

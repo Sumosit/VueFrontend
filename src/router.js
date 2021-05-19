@@ -28,6 +28,10 @@ import Tasks from "./components/Task/Tasks"
 import Salary from "./components/Salary/Salary";
 import AdminSalary from "./components/Salary/AdminSalary";
 import AdminPlan from "./components/Plan/AdminPlan";
+import AdminAlarm from "./components/Plan/AdminAlarm";
+import AdminGroups from "./components/Plan/AdminGroups";
+import GroupInfo from "./components/Plan/GroupInfo";
+import UserGroups from "./components/Profile/UserGroups";
 
 Vue.use(Router);
 
@@ -90,7 +94,17 @@ export const router = new Router({
                 },
                 {
                     path: 'plan',
-                    component: AdminPlan
+                    component: AdminPlan,
+                    children: [
+                        {
+                            path: 'alarm',
+                            component: AdminAlarm
+                        },
+                        {
+                            path: 'groups',
+                            component: AdminGroups
+                        }
+                    ]
                 }
             ]
         },
@@ -102,7 +116,7 @@ export const router = new Router({
             children: [
                 {
                     path: '/moderator/test',
-                    component: TestModerator,
+                    component: TestModerator
                 }
             ]
         },
@@ -112,8 +126,16 @@ export const router = new Router({
             component: UserBoard,
             children: [
                 {
+                    path: 'user-groups/:userId',
+                    component: UserGroups
+                },
+                {
+                    path: 'group-info/:groupId',
+                    component: GroupInfo
+                },
+                {
                     path: 'salary',
-                    component: Salary,
+                    component: Salary
                 },
                 {
                     path: 'tasks',
@@ -147,11 +169,11 @@ export const router = new Router({
                 },
                 {
                     path: '/user/chat',
-                    component: Chat,
+                    component: Chat
                 },
                 {
                     path: '/user/chat/:chatId/:recipientId',
-                    component: Chat,
+                    component: Chat
                 },
                 {
                     path: '/user/chat/with/:chatId/:recipientId',
@@ -163,15 +185,15 @@ export const router = new Router({
                     children: [
                         {
                             path: '/user/calendar/:year',
-                            component: Years,
+                            component: Years
                         },
                         {
                             path: '/user/calendar/:year/:month',
-                            component: Month,
+                            component: Month
                         },
                         {
                             path: '/user/calendar/:year/:month/:day',
-                            component: Day,
+                            component: Day
                         },
                     ]
                 }

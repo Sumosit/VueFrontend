@@ -34,7 +34,7 @@ export const notification = {
             state.alarms = payload;
         },
         pushAlarms(state, payload) {
-            state.alarms.push(payload);
+            state.alarms.unshift(payload);
         }
     },
     getters: {
