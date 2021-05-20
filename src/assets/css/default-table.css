@@ -1,0 +1,14 @@
+
+tr {
+    font-family: Arial, sans-serif;
+    background-color: #f6f6f6;
+}
+
+tr:hover {
+    background-color: #b7b7b7;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}

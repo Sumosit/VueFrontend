@@ -3,7 +3,7 @@
 }
 
 .admin-groups-head > th {
-    background-color: #f6f6f6;
+    /*background-color: #f6f6f6;*/
     color: black;
     padding: 5px;
     font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
     border: 1px solid black;
 }
 .admin-groups-body > tr > td {
-    background-color: #f6f6f6;
+    /*background-color: #f6f6f6;*/
     color: black;
     padding: 5px;
     border: 1px solid black;

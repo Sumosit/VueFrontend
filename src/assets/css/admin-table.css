@@ -14,7 +14,6 @@ th {
     position: sticky;
     top: 30px;
     font-size: 30px;
-    background-color: #111111;
 }
 
 td {
@@ -23,16 +22,16 @@ td {
     overflow: hidden;
 }
 
-tr {
-    font-family: Arial, sans-serif;
-    color: #ebebeb;
-    background-color: #111111;
-}
+/*tr {*/
+/*    font-family: Arial, sans-serif;*/
+/*    color: #ebebeb;*/
+/*    !*background-color: #111111;*!*/
+/*}*/
 
-tr:hover {
-    transition: 0.2s;
-    background-color: #5a5a5a;
-}
+/*tr:hover {*/
+/*    transition: 0.2s;*/
+/*    background-color: #5a5a5a;*/
+/*}*/
 
 .table-users-info {
     text-align: center;

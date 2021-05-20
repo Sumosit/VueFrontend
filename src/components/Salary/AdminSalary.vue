@@ -1,5 +1,7 @@
 <template>
     <div>
+<!--        {{selected}}-->
+<!--        {{selectedGroups}}-->
         <div class="admin-tasks">
             <label class="a-t-title">
                 <input
@@ -32,7 +34,7 @@
                         v-model="month">
             </label>
             <div class="a-t-users-count">
-                <span class="">Selected users count: {{selected.length}}</span>
+                <span class="">Selected users count: {{selected.length + selectedGroups.length}}</span>
                 <button @click="sendSalaries()">Send salary</button>
             </div>
             {{opv}}
@@ -41,38 +43,9 @@
             {{ipn}}
             {{withheld}}
         </div>
-        <div v-on:click="open = !open"
-             v-show="!open">
-            <div class="admin-users-open content-center">
-                <img src="../../assets/images/iconmonstr-plus-2.svg"/>
-            </div>
-        </div>
-        <div v-show="open">
-            <div>
-                <div class="admin-users">
-                    <div class="a-u-interface">
-                        <div
-                                class="content-center a-u-i-btn"
-                                v-on:click="open = !open">
-                            <img src="../../assets/images/iconmonstr-minus-2.svg"/>
-                        </div>
-                    </div>
-                    <div class="a-u-search-field content-center">
-                        <input placeholder="search user" type="text" v-model="search">
-                    </div>
-                    <div class="a-u-user-list-field">
-                        <div class="a-u-user-list">
-                            <div v-for="(user, index) in getUsersFilter()"
-                                 v-on:click="addToSelected(user)">
-                                <AdminSelectedUser
-                                        :user="user"
-                                        v-if="user.id !== $store.state.auth.user.id"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <AdminSelectedField :open="open"
+                            v-on:childToParent="onChildClick"
+                            v-on:groupsToParent="onChildSelectedGroupsClick"/>
     </div>
 </template>
 
@@ -80,7 +53,7 @@
     import axios from 'axios';
     import authHeader from "../../services/auth-header";
     import backendUrl from "../../store/backendUrl";
-    import AdminSelectedUser from "../Task/AdminSelectedUser";
+    import AdminSelectedField from "../Task/AdminSelectedField";
     import getTimestampDate from "../../js/getTimestampDate";
     import SockJS from "sockjs-client";
     import Stomp from "webstomp-client";
@@ -90,12 +63,12 @@
     export default {
         name: "AdminSalary",
         components: {
-            AdminSelectedUser
+            AdminSelectedField
         },
         data() {
             return {
+                selectedGroups: [],
                 selected: [],
-                selectedLength: 0,
                 search: '',
                 open: true,
                 salary: 233000,
@@ -114,8 +87,9 @@
         created() {
             document.title = "Admin salary";
         },
-        mounted() {
-            this.$store.dispatch("fetchUsers");
+        async mounted() {
+            await this.$store.dispatch("fetchUsers");
+            await this.$store.dispatch("fetchGroups");
         },
         watch: {
             salary: function () {
@@ -128,28 +102,30 @@
             }
         },
         methods: {
-            getUsersFilter() {
-                let users = this.$store.getters.getUsers;
-                return users.filter(c => this.getUsernameNameSurname(c.username, c.name, c.surname).toLowerCase().indexOf(this.search) > -1);
+            onChildClick(value) {
+                this.selected = value
             },
-            getUsernameNameSurname(username, name, surname) {
-                return username + name + surname;
+            onChildSelectedGroupsClick(value) {
+                this.selectedGroups = value
             },
-            addToSelected(userrid) {
-                if (this.selected.find((user) => user.id === userrid.id)) {
-                    this.selected.splice(this.selected.indexOf(userrid), 1)
-                } else {
-                    this.selected.push(userrid);
-                }
+            arrayUnique(arr) {
+                return arr.filter((e, i, a) => a.indexOf(e) === i)
             },
             sendSalaries() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
+                this.stompClient.debug = () => {
+                };
                 let fd = new FormData();
                 let usersId = [];
                 for (var i = 0; i < this.selected.length; i++) {
                     usersId.push(this.selected[i].id);
                 }
+                for (var i = 0; i < this.selectedGroups.length; i++) {
+                    usersId.push(this.selectedGroups[i]);
+                }
+
+                usersId = this.arrayUnique(usersId);
                 fd.append("period", getTimestampDate());
                 fd.append("days", this.days);
                 fd.append("hours", this.hours);

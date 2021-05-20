@@ -32,6 +32,8 @@ import AdminAlarm from "./components/Plan/AdminAlarm";
 import AdminGroups from "./components/Plan/AdminGroups";
 import GroupInfo from "./components/Plan/GroupInfo";
 import UserGroups from "./components/Profile/UserGroups";
+import Plans from "./components/Plan/Plans";
+import PlanInfo from "./components/Plan/PlanInfo";
 
 Vue.use(Router);
 
@@ -103,7 +105,11 @@ export const router = new Router({
                         {
                             path: 'groups',
                             component: AdminGroups
-                        }
+                        },
+                        {
+                            path: 'plans',
+                            component: Plans
+                        },
                     ]
                 }
             ]
@@ -132,6 +138,10 @@ export const router = new Router({
                 {
                     path: 'group-info/:groupId',
                     component: GroupInfo
+                },
+                {
+                    path: 'plans-info/:plansId',
+                    component: PlanInfo
                 },
                 {
                     path: 'salary',

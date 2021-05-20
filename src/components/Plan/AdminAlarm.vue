@@ -26,17 +26,17 @@
             document.title = "Admin plan | Alarm";
         },
         mounted() {
-            this.stompClient = this.mainStompClient;
+            this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
+            this.stompClient = Stomp.over(this.socket);
             this.$store.dispatch("fetchUsers");
         },
         methods: {
             sendAlarm() {
-                this.stompClient.debug = () => {
-                };
                 let message = {
                     message: this.alarmMessage,
                     authorName: this.$store.getters.getUser.username,
                 };
+                this.stompClient.debug = () => {};
                 this.stompClient.send("/app/alarms", JSON.stringify(message), {});
             }
         }

@@ -13,7 +13,8 @@
         <div v-if="isAdmin">
             <button class="clearfix content-center" v-on:click="open = !open">Add users</button>
             <div style="margin-top: 5px">Selected users count: {{selected.length}}</div>
-            <button v-on:click="saveUsers" class="clearfix content-center" v-if="selected.length > 0">Save users</button>
+            <button class="clearfix content-center" v-if="selected.length > 0" v-on:click="saveUsers">Save users
+            </button>
         </div>
         <table v-if="group.users.length > 0">
             <thead>
@@ -22,14 +23,17 @@
                 <th class="table-name-surname">Name</th>
                 <th class="table-name-surname">Surname</th>
                 <th>Profession</th>
+                <th></th>
             </tr>
             </thead>
             <tbody class="admin-groups-body"
                    v-for="(user, index) in group.users">
-            <router-link :to="'/user/profile/'+user.id+'/info'" tag="tr">
-                <td>
+            <tr>
+                <router-link :to="'/user/profile/'+user.id+'/info'"
+                             class="cursor-pointer"
+                             tag="td">
                     <span>{{user.username}}</span>
-                </td>
+                </router-link>
                 <td>
                     <span>{{user.name}}</span>
                 </td>
@@ -39,7 +43,14 @@
                 <td>
                     <span>{{user.profession}}</span>
                 </td>
-            </router-link>
+                <td>
+                    <div class="content-center">
+                        <img class="width25 height-auto clearfix cursor-pointer"
+                             src="../../assets/images/icons8-delete.svg"
+                             v-on:click="deleteUserFromGroup(user.id)">
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
         <div v-else>
@@ -114,6 +125,18 @@
                     {
                         headers: authHeader()
                     })).data;
+            },
+            deleteUserFromGroup(userId) {
+                let fd = new FormData();
+                fd.append("groupId", this.group.id);
+                fd.append("userId", userId);
+                axios.post(backendUrl() + "api/admin/group/delete/user", fd, {
+                    headers: authHeader()
+                }).then(async res => {
+                    this.getGroup();
+                }).catch(err => {
+                    console.log(err.response);
+                });
             },
             saveGroupName() {
                 let fd = new FormData();

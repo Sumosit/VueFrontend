@@ -161,7 +161,7 @@
                 this.chatId = this.$route.params.chatId;
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
-                // this.stompClient.debug = () => {};
+                this.stompClient.debug = () => {};
 
                 this.stompClient.connect(
                     {},

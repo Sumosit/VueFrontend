@@ -34,6 +34,9 @@
                         <router-link to="/user/workers">Workers</router-link>
                     </div>
                     <div class="nav-bar" v-if="loggedIn">
+                        <router-link :to="'/user/user-groups/'+$store.state.auth.user.id">Groups</router-link>
+                    </div>
+                    <div class="nav-bar" v-if="loggedIn">
                         <router-link to="/user/chat">Chat</router-link>
                     </div>
                     <div class="nav-bar" v-if="loggedIn">

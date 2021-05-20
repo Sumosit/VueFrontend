@@ -2,7 +2,7 @@
     <div class="admin-plan">
         <div class="admin-plan-form">
             <input type="text" v-model="groupName">
-            <button @click="createGroup()" class="content-center">Create Group</button>
+            <button @click="createGroup()" class="content-center">Create group</button>
         </div>
         <hr>
         <table>
@@ -29,10 +29,11 @@
     import axios from 'axios';
     import authHeader from "../../services/auth-header";
     import backendUrl from "../../store/backendUrl";
+    import SockJS from "sockjs-client";
+    import Stomp from "webstomp-client";
 
     export default {
         name: "AdminGroups",
-        props: ['mainStompClient'],
         data() {
             return {
                 groupName: ''
@@ -42,6 +43,8 @@
             document.title = "Admin plan | Groups"
         },
         async mounted() {
+            this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
+            this.stompClient = Stomp.over(this.socket);
             await this.$store.dispatch('fetchGroups');
             await this.$store.dispatch('fetchUser', this.$store.state.auth.user.id);
         },

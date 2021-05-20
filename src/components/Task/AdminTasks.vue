@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!--        {{selected}}-->
-        <!--        {{selectedGroups}}-->
+<!--                {{selected}}-->
+<!--                {{selectedGroups}}-->
         <!--        {{getUsersFromSelectedGroups()}}-->
         <div class="admin-tasks">
             <div class="a-t">
@@ -32,57 +32,9 @@
                 <button @click="sendTasks()">Upload</button>
             </div>
         </div>
-        <div v-on:click="open = !open"
-             v-show="!open">
-            <div class="admin-users-open content-center">
-                <img src="../../assets/images/iconmonstr-plus-2.svg"/>
-            </div>
-        </div>
-        <div v-show="open">
-            <div>
-                <div class="admin-users">
-                    <div class="a-u-interface">
-                        <div
-                                class="content-center a-u-i-btn"
-                                v-on:click="open = !open">
-                            <img src="../../assets/images/iconmonstr-minus-2.svg"/>
-                        </div>
-                    </div>
-                    <div class="a-u-search-field content-center">
-                        <input placeholder="search user" type="text" v-model="search">
-                    </div>
-                    <div class="a-u-users-type content-left">
-                        <div v-on:click="usersButton = !usersButton">
-                            users
-                        </div>
-                        <div v-on:click="groupsButton = !groupsButton">
-                            groups
-                        </div>
-                    </div>
-                    <div class="a-u-user-list-field">
-                        <div class="a-u-user-list">
-                            <div v-if="usersButton">
-                                <div class="content-center">Users</div>
-                                <div v-for="(user, index) in getUsersFilter()"
-                                     v-on:click="addToSelected(user)">
-                                    <AdminSelectedUser
-                                            :user="user"
-                                            v-if="user.id !== $store.state.auth.user.id"/>
-                                </div>
-                            </div>
-                            <div v-if="groupsButton">
-                                <div class="content-center">Groups</div>
-                                <div v-for="(group, index) in $store.getters.getGroups"
-                                     v-on:click="addToSelectedGroups(group)">
-                                    <AdminSelectedUser
-                                            :group="group"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <AdminSelectedField :open="open"
+        v-on:childToParent="onChildClick"
+        v-on:groupsToParent="onChildSelectedGroupsClick"/>
     </div>
 </template>
 
@@ -90,7 +42,6 @@
     import axios from 'axios';
     import authHeader from "../../services/auth-header";
     import backendUrl from "../../store/backendUrl";
-    import AdminSelectedUser from "../Task/AdminSelectedUser";
     import AdminSelectedField from "../Task/AdminSelectedField";
     import getTimestampDate from "../../js/getTimestampDate";
     import SockJS from "sockjs-client";
@@ -99,7 +50,6 @@
     export default {
         name: "AdminTasks",
         components: {
-            AdminSelectedUser,
             AdminSelectedField
         },
         data() {
@@ -141,37 +91,11 @@
             }
         },
         methods: {
-            getUsersFilter() {
-                let users = this.$store.getters.getUsers;
-                return users.filter(c => this.getUsernameNameSurname(c.username, c.name, c.surname).toLowerCase().indexOf(this.search) > -1);
+            onChildClick (value) {
+                this.selected = value
             },
-            getUsernameNameSurname(username, name, surname) {
-                return username + name + surname;
-            },
-            addToSelected(userrid) {
-                if (this.selected.find((user) => user.id === userrid.id)) {
-                    this.selected.splice(this.selected.indexOf(userrid), 1)
-                } else {
-                    this.selected.push(userrid);
-                }
-            },
-            addToSelectedGroups(group_id) {
-                if (this.selectedGroups.find((group) => group.id === group_id.id)) {
-                    this.selectedGroups.splice(this.selectedGroups.indexOf(group_id), 1)
-                } else {
-                    this.selectedGroups.push(group_id);
-                }
-            },
-            getUsersFromSelectedGroups() {
-                if (this.selectedGroups.length > 0) {
-                    let usersId = [];
-                    for (let i = 0; i < this.selectedGroups.length; i++) {
-                        for (let j = 0; j < this.selectedGroups[i].users.length; j++) {
-                            usersId.push(this.selectedGroups[i].users[j].id);
-                        }
-                    }
-                    return usersId;
-                }
+            onChildSelectedGroupsClick (value) {
+                this.selectedGroups = value
             },
             arrayUnique(arr) {
                 return arr.filter((e, i, a) => a.indexOf(e) === i)
@@ -179,16 +103,15 @@
             sendTasks() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
+                this.stompClient.debug = () => {};
 
                 let fd = new FormData();
                 let usersId = [];
                 for (var i = 0; i < this.selected.length; i++) {
                     usersId.push(this.selected[i].id);
                 }
-                if (this.getUsersFromSelectedGroups()) {
-                    for (var i = 0; i < this.getUsersFromSelectedGroups().length; i++) {
-                        usersId.push(this.getUsersFromSelectedGroups()[i]);
-                    }
+                for (var i = 0; i < this.selectedGroups.length; i++) {
+                    usersId.push(this.selectedGroups[i]);
                 }
 
                 usersId = this.arrayUnique(usersId);
@@ -196,7 +119,6 @@
                 for (var i = 0; i < this.files.length; i++) {
                     let file = this.files[i];
                     fd.append('files', file);
-                    // console.log(file)
                 }
                 fd.append("title", this.title);
                 fd.append("description", this.description);

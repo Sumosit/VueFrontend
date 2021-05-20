@@ -12,10 +12,14 @@
                         <span>Groups</span>
                     </div>
                 </router-link>
+                <router-link to="/admin/plan/plans">
+                    <div class="c-i-text content-center">
+                        <span>Plans</span>
+                    </div>
+                </router-link>
             </div>
         </div>
-        <router-view :mainStompClient="this.stompClient"
-                     class="admin-plan"></router-view>
+        <router-view class="admin-plan"></router-view>
     </div>
 </template>
 
@@ -29,15 +33,16 @@
     export default {
         name: "AdminPlan",
         data() {
-            return {}
+            return {
+            }
         },
         created() {
             document.title = "Admin plan";
         },
-        mounted() {
+        async mounted() {
             this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
             this.stompClient = Stomp.over(this.socket);
-            this.$store.dispatch("fetchUsers");
+            await this.$store.dispatch("fetchUsers");
         }
     }
 </script>

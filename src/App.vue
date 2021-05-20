@@ -94,6 +94,7 @@
             connectToAlarms() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
+                this.stompClient.debug = () => {};
 
                 this.stompClient.connect(
                     {},
@@ -121,6 +122,7 @@
             connect() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
+                this.stompClient.debug = () => {};
 
                 this.stompClient.connect(
                     {},
@@ -166,4 +168,9 @@
 <style scoped>
     @import './assets/css/default.css';
     @import './assets/css/default-upload.css';
+    @import './assets/css/default-fonts.css';
+    @import './assets/css/default-margin.css';
+    @import './assets/css/default-table.css';
+    @import './assets/css/default-width.css';
+    @import './assets/css/default-position.css';
 </style>
