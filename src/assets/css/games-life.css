@@ -1,0 +1,66 @@
+.game-field {
+    display: block;
+    padding: 8px;
+    background-color: #f6f6f6;
+    font-family: Arial, sans-serif;
+}
+
+@media only screen and (max-width: 1599px) {
+    .life-container {
+        display: grid;
+        grid-template-columns:
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto;
+        /*overflow-y: hidden;*/
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .life-container {
+        display: grid;
+        grid-template-columns:
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto
+                auto auto auto auto auto;
+        margin-top: 10px;
+        /*overflow-y: hidden;*/
+    }
+}
+
+.life-item {
+    user-select: none;
+    /*margin: 1px;*/
+    margin-right: 1px;
+    margin-bottom: 1px;
+    width: 1.7vw;
+    height: 1.7vw;
+    cursor: pointer;
+    /*overflow: hidden;*/
+    text-align: center;
+    background-color: black;
+    outline: 1px solid #7d0500;
+}
+.life-on {
+    background-color: #7d0500;
+}
+.life-off {
+    /*color: #f6f6f6;*/
+    background-color: #f6f6f6;
+}
+
+

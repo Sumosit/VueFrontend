@@ -1,0 +1,13 @@
+.add-button {
+    cursor: pointer;
+    display: inline-flex;
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+    user-select: none;
+}
+
+.add-button-filled {
+    background-color: green;
+    color: #f6f6f6;
+}

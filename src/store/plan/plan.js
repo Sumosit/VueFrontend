@@ -4,7 +4,9 @@ import authHeader from "../../services/auth-header";
 export const plan = {
     state: {
         groups: [],
-        plans: []
+        plans: [],
+        planIds: [],
+        planProgress: 0
     },
     actions: {
         async fetchPlans(ctx) {
@@ -45,6 +47,12 @@ export const plan = {
         updatePlans(state, payload) {
             state.plans = payload;
         },
+        updatePlanIds(state, payload) {
+            state.plans.push(payload);
+        },
+        updatePlanProgress(state, payload) {
+            state.planProgress = payload;
+        }
     },
     getters: {
         getGroups(state) {
@@ -52,6 +60,12 @@ export const plan = {
         },
         getPlans(state) {
             return state.plans;
+        },
+        getPlanIds(state) {
+            return state.plans;
+        },
+        getPlanProgress(state) {
+            return state.planProgress;
         }
     }
 };

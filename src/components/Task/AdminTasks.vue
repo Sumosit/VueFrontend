@@ -9,11 +9,21 @@
                        placeholder="Task title"
                        type="text"
                        v-model="title">
-                <label class="a-t-date"> Deadline
-                    <input alt="yyyy-mm-dd" class="dm-date" maxlength="10" placeholder="yyyy-mm-dd" type="text"
-                           v-model="date">
-                    <input alt="hh:mm:dd" class="dm-time" maxlength="8" placeholder="hh:mm:ss" type="text"
-                           v-model="time">
+                <label class="a-t-date"> Deadline date
+                    <input alt="year" class="dm-year text-align-center" maxlength="4" placeholder="yyyy" type="text"
+                           v-model="year">
+                    <input alt="month" class="dm-date text-align-center" maxlength="2" placeholder="mm" type="text"
+                           v-model="month">
+                    <input alt="day" class="dm-date text-align-center" maxlength="2" placeholder="dd" type="text"
+                           v-model="day">
+                </label>
+                <label class="a-t-date"> Deadline time
+                    <input alt="hours" class="dm-date text-align-center" maxlength="2" placeholder="hh" type="text"
+                           v-model="hours">
+                    <input alt="minutes" class="dm-date text-align-center" maxlength="2" placeholder="mm" type="text"
+                           v-model="minutes">
+                    <input alt="seconds" class="dm-date text-align-center" maxlength="2" placeholder="ss" type="text"
+                           v-model="seconds">
                 </label>
             </div>
             <div class="a-t">
@@ -63,8 +73,12 @@
                 title: '',
                 description: '',
                 open: true,
-                date: '1999-12-12',
-                time: '01:01:01'
+                year: '',
+                month: '',
+                day: '',
+                hours: '',
+                minutes: '',
+                seconds: ''
             }
         },
         created() {
@@ -123,7 +137,12 @@
                 fd.append("title", this.title);
                 fd.append("description", this.description);
                 fd.append("sendDate", getTimestampDate());
-                fd.append("deadline", this.date + ' ' + this.time);
+                fd.append("deadline_year", this.year);
+                fd.append("deadline_month", this.month);
+                fd.append("deadline_day", this.day);
+                fd.append("deadline_hours", this.hours);
+                fd.append("deadline_minutes", this.minutes);
+                fd.append("deadline_seconds", this.seconds);
                 fd.append("userId", this.$store.state.auth.user.id);
                 fd.append("usersId", usersId);
                 // console.log(this.selected);

@@ -39,6 +39,9 @@
                 planName: '',
             }
         },
+        created() {
+            document.title = "Admin plan | Plans";
+        },
         async mounted() {
             await this.$store.dispatch('fetchPlans');
         },

@@ -8,3 +8,11 @@
 .display-flex {
     display: flex;
 }
+
+.display-inline-flex {
+    display: inline-flex;
+}
+
+.text-align-center {
+    text-align: center;
+}

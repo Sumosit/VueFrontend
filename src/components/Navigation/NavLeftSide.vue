@@ -124,7 +124,11 @@
                 this.$router.push('/login');
             }
         },
-        methods: {}
+        methods: {
+            checkGame() {
+                // console.log(this.$route.path.includes("games"))
+                return this.$route.path.includes("games");
+            },}
     }
 </script>
 

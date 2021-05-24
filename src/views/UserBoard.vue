@@ -4,7 +4,7 @@
             <div
                     :class="{
       'wrapper-nav-ls': windowWidth > 1400
-    }">
+            }">
                 <NavLeftSide v-show="windowWidth > 1400"/>
                 <router-view v-if="show"/>
                 <div v-else>
@@ -48,6 +48,12 @@
                         error.toString();
                 }
             );
+        },
+        methods: {
+            checkGame() {
+                console.log(this.$route.path.includes("games"))
+                return this.$route.path.includes("games");
+            },
         }
     };
 </script>

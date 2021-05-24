@@ -34,6 +34,7 @@ import GroupInfo from "./components/Plan/GroupInfo";
 import UserGroups from "./components/Profile/UserGroups";
 import Plans from "./components/Plan/Plans";
 import PlanInfo from "./components/Plan/PlanInfo";
+import Life from "./components/games/Life";
 
 Vue.use(Router);
 
@@ -131,6 +132,10 @@ export const router = new Router({
             name: 'user',
             component: UserBoard,
             children: [
+                {
+                    path: 'games/life',
+                    component: Life
+                },
                 {
                     path: 'user-groups/:userId',
                     component: UserGroups

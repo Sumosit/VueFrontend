@@ -10,10 +10,28 @@
                 <button v-on:click="savePlanName">Save name</button>
             </div>
         </div>
+        <div class="name-surname-btn" v-if="isAdmin">
+            <button v-on:click="editMode = !editMode">Enable/Disable admin mode</button>
+        </div>
+        <div class="progress-barr">
+            <div :key="plan.completed" class="progress"
+                 v-bind:style="{
+                'width': plan.completed+'%'
+            }">
+
+            </div>
+        </div>
+        <div>
+            <PlanList :editMode="editMode"
+                      :key="plan.id"
+                      :planId="$route.params.plansId"
+                      v-on:CellToLife="onChangeStatusClick"
+                      class="plan-list"/>
+        </div>
         <div v-if="isAdmin">
             <button class="clearfix content-center" v-on:click="open = !open">Add users</button>
             <div style="margin-top: 5px">Selected users count: {{selected.length + selectedGroups.length}}</div>
-            <button class="clearfix content-center" v-if="selected.length + selectedGroups.length> 0"
+            <button class="clearfix content-center" v-if="selected.length > 0 || qq.length > 0"
                     v-on:click="saveUsersAndGroups">Save users
             </button>
         </div>
@@ -64,19 +82,17 @@
             <span class="clearfix content-center">No groups</span>
         </div>
         <ul v-if="plan.groups.length > 0">
-            <!--            <router-link :to="'/user/group-info/'+group.id"-->
-            <!--                         class="font-size18 cursor-pointer" tag="li"-->
-            <!--                         v-for="(group, index) in plan.groups">-->
             <li class="li-style-dot display-flex" v-for="(group, index) in plan.groups">
-                <router-link :to="'/user/group-info/'+group.id" class="cursor-pointer"
-                             tag="div">
-                    {{group.name}}
-                </router-link>
+
                 <div>
                     <img class="cursor-pointer width25 margin-left5px height-auto clearfix"
                          src="../../assets/images/icons8-delete.svg"
                          v-on:click="deleteGroupFromPlan(group.id)">
                 </div>
+                <router-link :to="'/user/group-info/'+group.id" class="cursor-pointer content-center"
+                             tag="div">
+                    {{group.name}}
+                </router-link>
             </li>
             <!--            </router-link>-->
         </ul>
@@ -93,11 +109,15 @@
     import axios from "axios";
     import authHeader from "../../services/auth-header";
     import AdminSelectedField from "../Task/AdminSelectedField";
+    import PlanList from "../Plan/PlanList";
+    import PlanListInfo from "../Plan/PlanListInfo";
 
     export default {
         name: "PlansInfo",
         components: {
-            AdminSelectedField
+            AdminSelectedField,
+            PlanList,
+            PlanListInfo
         },
         data() {
             return {
@@ -107,6 +127,8 @@
                 search: '',
                 plan: Object,
                 open: false,
+                editMode: false,
+                tick: 0,
             }
         },
         created() {
@@ -118,6 +140,10 @@
             await this.getPlan();
         },
         methods: {
+            async onChangeStatusClick(value) {
+                await this.getPlan();
+                this.$emit('CellToLife', 1);
+            },
             onChildOpenClick(value) {
                 this.open = value
             },
@@ -214,4 +240,5 @@
 </script>
 
 <style scoped>
+    @import '../../assets/css/plan-list.css';
 </style>

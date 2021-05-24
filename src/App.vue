@@ -51,6 +51,8 @@
         },
         created() {
             window.addEventListener('resize', this.updateWidth);
+            setInterval(this.getNow, 1000);
+            // setInterval(this.updateTasks(), 10000);
         },
         async mounted() {
             if (this.$store.state.auth.user.id) {
@@ -94,7 +96,8 @@
             connectToAlarms() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
-                this.stompClient.debug = () => {};
+                this.stompClient.debug = () => {
+                };
 
                 this.stompClient.connect(
                     {},
@@ -122,7 +125,8 @@
             connect() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
-                this.stompClient.debug = () => {};
+                this.stompClient.debug = () => {
+                };
 
                 this.stompClient.connect(
                     {},
@@ -162,7 +166,8 @@
                 this.connected ? this.disconnect() : this.connect();
             }
         }
-    };
+    }
+    ;
 </script>
 
 <style scoped>
@@ -173,4 +178,7 @@
     @import './assets/css/default-table.css';
     @import './assets/css/default-width.css';
     @import './assets/css/default-position.css';
+    @import './assets/css/default-buttons.css';
+    @import './assets/css/default-ul-li.css';
+    @import './assets/css/default-progress-bar.css';
 </style>

@@ -1,8 +1,8 @@
-ul {
-    margin: 5px 0 0;
-    padding: 0;
-    list-style-type: none;
-}
+/*ul {*/
+/*    margin: 5px 0 0;*/
+/*    padding: 0;*/
+/*    list-style-type: none;*/
+/*}*/
 
 li {
 }
@@ -20,4 +20,14 @@ li {
 }
 .li-style-dot {
     list-style: circle;
+}
+.ul-style-none {
+    margin-top: 5px;
+    list-style-type: none;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 30px;
+}
+
+.ul-style-none > li {
 }

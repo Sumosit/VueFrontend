@@ -39,3 +39,8 @@
 }.form-alarm > button:hover {
     background-color: #a30700;
 }
+
+
+.plan-completed {
+    color: green;
+}

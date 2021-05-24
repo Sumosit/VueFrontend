@@ -108,6 +108,7 @@
 }
 
 .a-t-title > input, .a-t-date {
+    display: block;
     height: 30px;
 }
 
@@ -121,11 +122,17 @@
     margin-top: 2px;
 }
 
-.a-t-date > .dm-date {
+.a-t-date > .dm-year {
     height: 30px;
-    width: 80px;
+    width: 42px;
     padding-left: 4px;
-    border-right: none;
+}
+
+.a-t-date > .dm-date {
+    margin-left: 1px;
+    height: 30px;
+    width: 35px;
+    padding-left: 4px;
 }
 
 .a-t-date > .dm-time {

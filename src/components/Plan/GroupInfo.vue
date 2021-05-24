@@ -128,7 +128,7 @@
             },
             deleteUserFromGroup(userId) {
                 let fd = new FormData();
-                fd.append("groupId", this.group.id);
+                fd.append("groupnpmId", this.group.id);
                 fd.append("userId", userId);
                 axios.post(backendUrl() + "api/admin/group/delete/user", fd, {
                     headers: authHeader()
