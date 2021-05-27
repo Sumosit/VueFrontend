@@ -40,6 +40,16 @@ body {
     border: 1px solid black;
 }
 
+.chat-message-file {
+    opacity: 1;
+    position: relative;
+    width: 96%;
+    min-height: 45px;
+    background-color: #f6f6f6;
+    bottom: 5px;
+    border: 1px solid black;
+}
+
 .recipient {
     position: relative;
     min-height: 50px;

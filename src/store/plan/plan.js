@@ -6,9 +6,25 @@ export const plan = {
         groups: [],
         plans: [],
         planIds: [],
-        planProgress: 0
+        planProgress: 0,
+        planIdToUpdate: 0,
+        planListTick: 0
     },
     actions: {
+        async fetchPlansByUserId(ctx, userId) {
+            await fetch(backendUrl() + 'api/user/plans/all/'+userId,
+                {
+                    headers: authHeader()
+                })
+                .then(response => response.json())
+                .then(json => {
+                    setTimeout(() => {
+                        const plans = json;
+                        ctx.commit('updatePlans', plans);
+                        return plans;
+                    }, 1000)
+                });
+        },
         async fetchPlans(ctx) {
             await fetch(backendUrl() + 'api/user/plans/all',
                 {
@@ -52,6 +68,12 @@ export const plan = {
         },
         updatePlanProgress(state, payload) {
             state.planProgress = payload;
+        },
+        updatePlanIdToUpdate(state, payload) {
+            state.planIdToUpdate += payload;
+        },
+        updatePlanListTick(state, payload) {
+            state.planListTick += payload;
         }
     },
     getters: {
@@ -66,6 +88,12 @@ export const plan = {
         },
         getPlanProgress(state) {
             return state.planProgress;
+        },
+        getPlanIdToUpdate(state) {
+            return state.planIdToUpdate;
+        },
+        getPlanListTick(state) {
+            return state.planListTick;
         }
     }
 };

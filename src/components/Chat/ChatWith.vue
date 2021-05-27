@@ -1,8 +1,7 @@
 <template>
     <div>
-        <div
-                class="mf-history"
-                v-show="loading">
+        <div class="mf-history"
+             v-show="loading">
             <div v-for="(item, index) in received_messages">
                 <div
                         class="recipient wrapper-chat-with-rec"
@@ -39,18 +38,20 @@
             </div>
             <div id="bottom"></div>
         </div>
-        <form
-                class="form-mf-message"
-                v-show="loading">
+        {{filesSize}}
+        <form @dragenter.prevent.stop="targetFile = true"
+              @dragover.prevent.stop="targetFile = true"
+              class="form-mf-message">
             <div class="mf-message">
                 <div
                         class="label-text">
-          <textarea
-                  @keydown.enter.exact.prevent
-                  @keydown.enter.shift.exact="newline"
-                  @keyup.enter.exact="send"
-                  class="chat-message"
-                  v-model="send_message"></textarea>
+                    <div style="display: inline-block" @click="targetFile = !targetFile">qwe</div>
+          <textarea @keydown.enter.exact.prevent
+                    @keydown.enter.shift.exact="newline"
+                    @keyup.enter.exact="send"
+                    class="chat-message"
+                    v-if="loading && (!targetFile)"
+                    v-model="send_message"></textarea>
                 </div>
                 <label class="label-send"
                        for="send">
@@ -61,6 +62,16 @@
                             type="submit"
                     >
                     </button>
+                </label>
+                <label @dragleave.prevent.stop="targetFile=false"
+                       @drop.prevent.stop="targetFile=false"
+                       class="label-send"
+                       for="files"
+                       style="padding: 5px"
+                       v-show="targetFile || filesSize">
+                    <input @change="handleFileUploads" class="chat-message-file"
+                           id="files" multiple ref="files"
+                           type="file">
                 </label>
             </div>
         </form>
@@ -95,7 +106,9 @@
                 chatId: '',
                 r_m: '',
                 loading: false,
-                chatIdObj: Object
+                chatIdObj: Object,
+                targetFile: false,
+                filesSize: 0
             };
         },
         async mounted() {
@@ -111,17 +124,19 @@
                 });
             this.loading = true;
             this.received_messages = this.sortedChatMessages;
-            // console.log(this.r_m.data);
-
-            var container = document.querySelector(".mf-history");
-            var scrollHeight = container.scrollHeight;
-            container.scrollTop = scrollHeight;
-            this.scrollToEnd();
+            // var container = document.querySelector(".mf-history");
+            // var scrollHeight = container.scrollHeight;
+            // container.scrollTop = scrollHeight;
+            // this.scrollToEnd();
         },
         updated() {
-            this.scrollToEnd();
+            // this.scrollToEnd();
         },
         methods: {
+            handleFileUploads() {
+                this.files = this.$refs.files.files;
+                this.filesSize = this.files.length;
+            },
             scrollToEnd() {
                 var container = document.querySelector(".mf-history");
                 var scrollHeight = container.scrollHeight;
@@ -161,7 +176,8 @@
                 this.chatId = this.$route.params.chatId;
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
-                this.stompClient.debug = () => {};
+                this.stompClient.debug = () => {
+                };
 
                 this.stompClient.connect(
                     {},

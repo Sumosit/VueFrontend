@@ -2,7 +2,7 @@
     <div class="salary">
         <div v-for="(salary, index) in sortedSalaries">
             <div>Месяц начисления: {{salary.month}}</div>
-            <div>Расчётный список за {{salary.period}}</div>
+            <div>Расчётный список за {{salary.period.replace("T", " ").slice(0, 19)}}</div>
             <div>Работник: {{salary.user.username}}</div>
             <div>Начислено дохода: {{salary.salary}} тенге</div>
             <table class="salary-table">

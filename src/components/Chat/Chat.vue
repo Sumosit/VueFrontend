@@ -9,7 +9,7 @@
                  v-on:click="changeView = !changeView">
         </div>
         <div class="c-wrapper">
-            <div class="c-id2-list">
+            <div class="c-id2-list" :key="$store.getters.getChatTick">
                 <div :class="{'current-chat': Number.parseInt($route.params.recipientId) === chat.recipient.id}"
                      :key="index"
                      v-for="(chat, index) in getChatIdFilter()"
@@ -19,6 +19,8 @@
                             <img :src="backendUrl + 'files/' + chat.recipient.fileDB.id"
                                  v-if="chat.recipient.fileDB && (chat.recipient.id !== $store.state.auth.user.id)">
                             <img src="../../assets/images/user.svg" v-else>
+                            <span style="position: absolute; bottom: 15px; font-family: Arial, sans-serif"
+                            class="content-center">{{getCountNotCheckedMessages(chat)}}</span>
                         </div>
                         <div class="pi-info">
                             <div class="c-profile-info"
@@ -83,6 +85,18 @@
                 let chatId = this.sortedChatId;
                 return chatId.filter(c => (c.sender.username + c.sender.name + c.sender.surname + c.recipient.username + c.recipient.name + c.recipient.surname).toLowerCase().indexOf(this.search) > -1);
             },
+            getCountNotCheckedMessages(chat) {
+                if (chat.id === Number.parseInt(this.$route.params.chatId)) {
+                    return 0
+                }
+                let count = 0;
+                for (let i = 0; i < chat.chatMessageSet.length; i++) {
+                    if (chat.chatMessageSet[i].checked === "False") {
+                        count++;
+                    }
+                }
+                return count;
+            }
         },
         computed: {
             getChat() {
@@ -98,6 +112,12 @@
                 }
 
                 return this.$store.getters.allChat.sort(compare);
+            },
+        },
+        watch: {
+            "$route.params.chatId": async function () {
+                await this.$store.dispatch('fetchChat');
+                this.$store.commit('updateChatTick', 1);
             },
         }
     }

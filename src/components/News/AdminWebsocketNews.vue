@@ -81,7 +81,6 @@
         },
         methods: {
             send() {
-                // console.log("Send message:" + this.send_title);
                 if (this.stompClient && this.stompClient.connected) {
                     const msg = {
                         authorId: this.$store.state.auth.user.id,
@@ -96,6 +95,7 @@
             connect() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
+                this.stompClient.debug = () => {};
                 this.stompClient.connect(
                     {},
                     frame => {

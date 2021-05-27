@@ -46,17 +46,17 @@ a {
 
 .nav-titles {
     display: block;
-    margin-top: 20px;
+    margin-top: 50px;
     margin-left: 10px;
     padding: 20px;
     font-family: Arial, sans-serif;
-    font-size: 36px;
+    font-size: 30px;
     color: white;
 }
 
 .nav-bar-username {
     margin-top: 0px;
-    padding: 10px 5px;
+    padding: 5px 5px;
     border-bottom: 2px solid #ff4c51;
 }
 
@@ -65,7 +65,7 @@ a {
 }
 
 .nav-bar {
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 5px 5px;
     /*border-bottom: 2px solid #ffffff;*/
 }

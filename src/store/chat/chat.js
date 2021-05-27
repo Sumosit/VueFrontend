@@ -3,7 +3,8 @@ import authHeader from "../../services/auth-header";
 
 export const chat = {
     state: {
-        chat_messages: []
+        chat_messages: [],
+        chatTick: 0
     },
     actions: {
         async fetchChatMessagesByChatId(ctx, chatId) {
@@ -25,11 +26,17 @@ export const chat = {
     mutations: {
         updateChatMessages(state, payload) {
             state.chat_messages = payload;
+        },
+        updateChatTick(state, payload) {
+            state.chatTick += payload;
         }
     },
     getters: {
         getChatMessages(state) {
             return state.chat_messages;
+        },
+        getChatTick(state) {
+            return state.chatTick;
         }
     }
 };

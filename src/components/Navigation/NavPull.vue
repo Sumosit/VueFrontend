@@ -52,6 +52,9 @@
                         <router-link to="/user/tasks">Tasks</router-link>
                     </div>
                     <div class="nav-bar" v-if="isUser">
+                        <router-link to="/user/plans">Plans</router-link>
+                    </div>
+                    <div class="nav-bar" v-if="isUser">
                         <router-link to="/user/salary">Salary</router-link>
                     </div>
                     <div class="nav-bar" v-if="isAdmin">

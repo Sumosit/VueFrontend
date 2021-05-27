@@ -16,16 +16,15 @@
         <div class="progress-barr">
             <div :key="plan.completed" class="progress"
                  v-bind:style="{
-                'width': plan.completed+'%'
+                'width': plan.completed+'%',
+                'content-center': plan.completed > 5
             }">
-
+                {{plan.completed}}%
             </div>
         </div>
         <div>
             <PlanList :editMode="editMode"
-                      :key="plan.id"
-                      :planId="$route.params.plansId"
-                      v-on:CellToLife="onChangeStatusClick"
+                      :planId="$route.params.planId"
                       class="plan-list"/>
         </div>
         <div v-if="isAdmin">
@@ -108,6 +107,8 @@
     import backendUrl from "../../store/backendUrl";
     import axios from "axios";
     import authHeader from "../../services/auth-header";
+    import SockJS from "sockjs-client";
+    import Stomp from "webstomp-client";
     import AdminSelectedField from "../Task/AdminSelectedField";
     import PlanList from "../Plan/PlanList";
     import PlanListInfo from "../Plan/PlanListInfo";
@@ -128,7 +129,6 @@
                 plan: Object,
                 open: false,
                 editMode: false,
-                tick: 0,
             }
         },
         created() {
@@ -138,11 +138,47 @@
             await this.$store.dispatch('fetchUser', this.$store.state.auth.user.id);
             await this.$store.dispatch('fetchUsers');
             await this.getPlan();
+            await this.connectToWebSocketPlans();
         },
         methods: {
+            connectToWebSocketPlans() {
+                this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
+                this.stompClient = Stomp.over(this.socket);
+                this.stompClient.debug = () => {
+                };
+
+                this.stompClient.connect(
+                    {},
+                    frame => {
+                        // console.log(frame);
+                        this.stompClient.subscribe("/topic/plans/" + this.$route.params.planId,
+                            async tick => {
+                                if (JSON.parse(tick.body) === 2) {
+                                    this.$store.commit('updatePlanListTick', 1);
+                                }
+                                if (JSON.parse(tick.body) === 1) {
+                                    this.$store.commit('updatePlanIdToUpdate', 1);
+                                }
+
+                                await this.getPlan();
+                            });
+                    },
+                    error => {
+                        console.log(error);
+                    }
+                );
+            },
             async onChangeStatusClick(value) {
                 await this.getPlan();
+                this.$store.commit('updatePlanListTick', 1);
+                this.sendToWebSocketPlans();
                 this.$emit('CellToLife', 1);
+            },
+            sendToWebSocketPlans() {
+                if (this.stompClient && this.stompClient.connected) {
+                    this.stompClient.send("/app/plans/" + this.$route.params.planId,
+                        JSON.stringify(this.$store.getters.getPlanIdToUpdate), {});
+                }
             },
             onChildOpenClick(value) {
                 this.open = value
@@ -160,11 +196,10 @@
                 return arr.filter((e, i, a) => a.indexOf(e) === i)
             },
             async getPlan() {
-                this.plan = (await axios.get(backendUrl() + 'api/user/plans/one/' + this.$route.params.plansId,
+                this.plan = (await axios.get(backendUrl() + 'api/user/plans/one/' + this.$route.params.planId,
                     {
                         headers: authHeader()
                     })).data;
-                console.log(this.plan)
             },
             deleteUserFromPlan(userId) {
                 let fd = new FormData();
@@ -214,11 +249,9 @@
                 for (var i = 0; i < this.qq.length; i++) {
                     groupsId.push(this.qq[i].id);
                 }
-                fd.append('plansId', this.$route.params.plansId);
+                fd.append('plansId', this.$route.params.planId);
                 fd.append('usersId', usersId);
                 fd.append('groupsId', groupsId);
-                console.log("123" + this.qq[0]);
-                console.log(this.qq);
 
                 axios.post(backendUrl() + 'api/admin/plans/add/users/groups', fd, {
                     headers: authHeader()
@@ -235,7 +268,7 @@
                     return this.$store.state.auth.user.roles.includes('ROLE_ADMIN')
                 }
             },
-        }
+        },
     }
 </script>
 
