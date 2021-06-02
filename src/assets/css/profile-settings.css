@@ -1,10 +1,13 @@
+.shadow {
+    filter: drop-shadow(0 0rem 1rem rgba(255, 255, 255, 1));
+}
 
 .yes {
     width: 100%;
 }
 
 .profile-settings {
-    padding: 1px 8px;
+    padding: 1px 8px 8px;
     background: #f6f6f6;
     color: black;
     font-family: Arial, sans-serif;
@@ -52,9 +55,13 @@
     border: 1px solid black;
     border-radius: 5px;
 
-    -webkit-box-shadow: 12px 13px 10px -1px rgba(34, 60, 80, 0.6);
-    -moz-box-shadow: 12px 13px 10px -1px rgba(34, 60, 80, 0.6);
-    box-shadow: 12px 13px 10px -1px rgba(34, 60, 80, 0.6);
+    -webkit-box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.47);
+    -moz-box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.47);
+    box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.47);
+}
+
+.document:hover {
+    background-color: #b7b7b7;
 }
 
 .document > span {

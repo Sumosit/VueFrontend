@@ -30,7 +30,13 @@
                     <div class="a-u-user-list-field">
                         <div class="a-u-user-list">
                             <div v-if="usersButton">
-                                <div class="content-center">Users</div>
+                                <div class="content-center"
+                                     style="
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                                border-top: 1px solid black;
+                                border-bottom: 1px solid black">Users
+                                </div>
                                 <div v-for="(user, index) in getUsersFilter()"
                                      v-on:click="addToSelected(user)">
                                     <AdminSelectedUser
@@ -38,7 +44,13 @@
                                 </div>
                             </div>
                             <div v-if="groupsButton">
-                                <div class="content-center">Groups</div>
+                                <div class="content-center"
+                                     style="
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                                border-top: 1px solid black;
+                                border-bottom: 1px solid black">Groups
+                                </div>
                                 <div v-for="(group, index) in getGroupsFilter()"
                                      v-on:click="addToSelectedGroups(group)">
                                     <AdminSelectedUser

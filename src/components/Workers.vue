@@ -7,14 +7,18 @@
              v-for="(user, index) in filteredList"
              v-show="user.id !== $store.state.auth.user.id && loading">
             <div class="workers-wrapper">
-                <div class="workers-profile-image"
-                     v-if="user.fileDB">
+                <router-link :to="'/user/profile/'+user.id+'/info'"
+                             class="workers-profile-image cursor-pointer"
+                             tag="div"
+                             v-if="user.fileDB">
                     <img :src="backendUrl + 'files/' + user.fileDB.id">
-                </div>
-                <div class="workers-profile-image"
-                     v-else>
+                </router-link>
+                <router-link :to="'/user/profile/'+user.id+'/info'"
+                             class="workers-profile-image cursor-pointer"
+                             tag="div"
+                             v-else>
                     <img src="../assets/images/user.svg">
-                </div>
+                </router-link>
                 <div class="workers-profile-info">
                     <span class="username">{{user.username}}</span>
                     <span class="email">{{user.email}}</span>

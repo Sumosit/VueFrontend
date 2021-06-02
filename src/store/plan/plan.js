@@ -8,7 +8,8 @@ export const plan = {
         planIds: [],
         planProgress: 0,
         planIdToUpdate: 0,
-        planListTick: 0
+        planListTick: 0,
+        startProgress: 0
     },
     actions: {
         async fetchPlansByUserId(ctx, userId) {
@@ -74,6 +75,9 @@ export const plan = {
         },
         updatePlanListTick(state, payload) {
             state.planListTick += payload;
+        },
+        updateStartProgress(state, payload) {
+            state.startProgress = payload;
         }
     },
     getters: {
@@ -94,6 +98,9 @@ export const plan = {
         },
         getPlanListTick(state) {
             return state.planListTick;
+        },
+        getStartProgress(state) {
+            return state.startProgress;
         }
     }
 };

@@ -1,47 +1,47 @@
 <template>
     <div>
-<!--        {{selected}}-->
-<!--        {{selectedGroups}}-->
         <div class="admin-tasks">
-            <label class="a-t-title">
-                <input
-                        placeholder="Money"
-                        type="number"
-                        v-model="salary">
-            </label>
-            <label class="a-t-title">
-                <input
-                        placeholder="Money"
-                        type="number"
-                        v-model="debt">
-            </label>
-            <label class="a-t-title">
-                <input
-                        placeholder="Money"
-                        type="number"
-                        v-model="hours">
-            </label>
-            <label class="a-t-title">
-                <input
-                        placeholder="Money"
-                        type="number"
-                        v-model="days">
-            </label>
-            <label class="a-t-title">
-                <input
-                        placeholder="Money"
-                        type="text"
-                        v-model="month">
-            </label>
+            <div class="name-surname">
+                <div>
+                    <label for="salary">Salary</label>
+                    <input id="salary"
+                           type="number"
+                           v-model="salary"/>
+                </div>
+                <div>
+                    <label for="debt">Debt</label>
+                    <input id="debt"
+                           type="number"
+                           v-model="debt"/>
+                </div>
+                <div>
+                    <label for="hours">Hours</label>
+                    <input id="hours"
+                           type="number"
+                           v-model="hours"/>
+                </div>
+                <div>
+                    <label for="days">Days</label>
+                    <input id="days"
+                           type="number"
+                           v-model="days"/>
+                </div>
+                <div>
+                    <label for="month">Month</label>
+                    <input id="month"
+                           type="number"
+                           v-model="month"/>
+                </div>
+            </div>
             <div class="a-t-users-count">
                 <span class="">Selected users count: {{selected.length + selectedGroups.length}}</span>
                 <button @click="sendSalaries()">Send salary</button>
             </div>
-            {{opv}}
-            {{vosms}}
-            {{total_nalog}}
-            {{ipn}}
-            {{withheld}}
+            <div style="margin-top: 5px">Opv: {{opv}}</div>
+            <div style="margin-top: 5px">Vosms: {{vosms}}</div>
+            <div style="margin-top: 5px">Total taxes: {{total_nalog}}</div>
+            <div style="margin-top: 5px">IPN: {{ipn}}</div>
+            <div style="margin-top: 5px">Witheld: {{withheld}}</div>
         </div>
         <AdminSelectedField :open="open"
                             v-on:childToParent="onChildClick"
@@ -90,9 +90,20 @@
         async mounted() {
             await this.$store.dispatch("fetchUsers");
             await this.$store.dispatch("fetchGroups");
+            this.calculate();
         },
         watch: {
             salary: function () {
+                this.opv = (this.salary * 10) / 100;
+                this.vosms = (this.salary * 2) / 100;
+                this.total_nalog = this.opv + this.vosms + this.oneMzp;
+                this.ipn = ((this.salary - this.total_nalog) * 10) / 100;
+                this.withheld = this.opv + this.vosms + this.ipn;
+                this.month = new Date().getDate() + " " + getMonth(5).name;
+            }
+        },
+        computed: {
+            calculate() {
                 this.opv = (this.salary * 10) / 100;
                 this.vosms = (this.salary * 2) / 100;
                 this.total_nalog = this.opv + this.vosms + this.oneMzp;
@@ -111,11 +122,11 @@
             arrayUnique(arr) {
                 return arr.filter((e, i, a) => a.indexOf(e) === i)
             },
-                sendSalaries() {
-                    this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
-                    this.stompClient = Stomp.over(this.socket);
-                    this.stompClient.debug = () => {
-                    };
+            sendSalaries() {
+                this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
+                this.stompClient = Stomp.over(this.socket);
+                // this.stompClient.debug = () => {
+                // };
                 let fd = new FormData();
                 let usersId = [];
                 for (var i = 0; i < this.selected.length; i++) {
@@ -124,7 +135,6 @@
                 for (var i = 0; i < this.selectedGroups.length; i++) {
                     usersId.push(this.selectedGroups[i]);
                 }
-
                 usersId = this.arrayUnique(usersId);
                 fd.append("period", getTimestampDate());
                 fd.append("days", this.days);
@@ -162,7 +172,6 @@
                 }).catch(err => {
                     console.log(err.response);
                 });
-
             }
         }
     }

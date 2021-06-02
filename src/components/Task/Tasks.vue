@@ -1,24 +1,27 @@
 <template>
     <div class="tasks">
-        <div class="task"
-             v-for="(task, index) in sortedTasks"
-             v-show="loading">
-            <div v-text="'Title: '+task.title"></div>
-            <div
-                    class="tasks-description"
-                    v-html="'Description: '+task.description"></div>
-            <div class="tasks-grid-container">
-                <div :key="index"
-                     class="tasks-grid-item"
-                     v-for="(file, index) in task.fileDBSet">
-                    <a :href="backendUrl+'files/'+file.id">
-                        <img :src="docxIcon">
-                    </a>
-                    <div class="filename"><span v-text="file.name"></span></div>
+        <transition-group name="card">
+            <div class="task"
+                 v-for="(task, index) in sortedTasks"
+                 :key="task.id"
+                 v-show="loading">
+                <div v-text="'Title: '+task.title"></div>
+                <div
+                        class="tasks-description"
+                        v-html="'Description: '+task.description"></div>
+                <div class="tasks-grid-container">
+                    <div :key="index"
+                         class="tasks-grid-item"
+                         v-for="(file, index) in task.fileDBSet">
+                        <a :href="backendUrl+'files/'+file.id">
+                            <img :src="docxIcon">
+                        </a>
+                        <div class="filename"><span v-text="file.name"></span></div>
+                    </div>
                 </div>
+                <hr>
             </div>
-            <hr>
-        </div>
+        </transition-group>
         <div class="content-center"
              v-show="!loading">
             <LoadingLdsRipple/>

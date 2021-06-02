@@ -158,10 +158,10 @@
                 return this.$store.getters.getPlanIds.sort(compare);
             }
         },
-        watch: {
-            "$store.getters.getPlanIdToUpdate": async function () {
-                await this.getPlan();
-            },
+            watch: {
+                "$store.getters.getPlanIdToUpdate": async function () {
+                    await this.getPlan();
+                },
             "$store.getters.getPlanListTick": async function () {
                 await this.getPlan();
                 setTimeout(async () => {

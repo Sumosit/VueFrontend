@@ -13,7 +13,7 @@
         <div class="profile-image"
              v-show="!currentUser.fileDB && editProfilePhoto && Number.parseInt($route.params.userId) === Number.parseInt(currentUser.id)">
             <div class="upload-field content-center">
-                <span v-show="!dragover">Choose files</span>
+                <span v-show="!dragover"></span>
                 <span v-show="dragover">Drag files here</span>
                 <input @change="onFileChanged" @dragleave="dragover = false" @dragover="dragover = true"
                        class="upload-input-file"
@@ -63,7 +63,7 @@
                 buttonHover: false,
                 editProfilePhotoIcon,
                 uploadError: false,
-                uploadStatus: 'Выберите файл',
+                uploadStatus: 'Choose file',
                 dragover: false
             }
         },
@@ -80,12 +80,12 @@
             onFileChanged(event) {
                 this.selectedFile = event.target.files[0];
                 this.selectedFileSize = event.target.files[0].size;
-                this.uploadStatus = 'Файл выбран';
+                this.uploadStatus = 'Image selected';
             },
             onUpload() {
                 if (this.selectedFileSize > 1000000000) {
                     console.log("Error");
-                    this.uploadError = 'Размер файла слишком большой!';
+                    this.uploadError = 'File size is too large!';
                     return
                 }
                 const formData = new FormData();

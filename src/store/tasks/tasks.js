@@ -25,6 +25,9 @@ export const tasks = {
     mutations: {
         updateTasks(state, payload) {
             state.tasks = payload;
+        },
+        unshiftTasks(state, payload) {
+            state.tasks.unshift(payload);
         }
     },
     getters: {

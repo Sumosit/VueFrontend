@@ -11,7 +11,9 @@
             <div class="upload-field content-center">
                 <span v-show="!dragover">Choose files</span>
                 <span v-show="dragover">Drag files here</span>
-                <input @change="handleFileUploads" @dragleave="dragover = false" @dragover="dragover = true"
+                <input @change="handleFileUploads"
+                       @dragleave="dragover = false"
+                       @dragover="dragover = true"
                        class="upload-input-file"
                        id="files"
                        multiple

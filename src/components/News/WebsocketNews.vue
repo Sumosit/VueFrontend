@@ -1,24 +1,26 @@
 <template>
     <div class="news-all">
-        <div :key="index"
-             class="news"
-             v-for="(item, index) in $store.getters.allNews"
-             v-show="loading && $store.getters.allNews">
-            <div class="news-title-field">
-                <div class="news-title-author-avatar">
-                    <img :src="backendUrl + 'files/' + item.author.fileDB.id"
-                         v-if="item.author.fileDB">
-                    <img src="../../assets/images/user.svg" v-else>
+        <transition-group name="card">
+            <div :key="item.id"
+                 class="news"
+                 v-for="(item, index) in $store.getters.allNews"
+                 v-show="loading && $store.getters.allNews">
+                <div class="news-title-field">
+                    <div class="news-title-author-avatar">
+                        <img :src="backendUrl + 'files/' + item.author.fileDB.id"
+                             v-if="item.author.fileDB">
+                        <img src="../../assets/images/user.svg" v-else>
+                    </div>
+                    <div class="news-title">
+                        {{item.title}}
+                        <p>by {{item.author.username}}, {{item.date}}</p>
+                    </div>
                 </div>
-                <div class="news-title">
-                    {{item.title}}
-                    <p>by {{item.author.username}}, {{item.date}}</p>
+                <div class="news-content-field">
+                    <p style="white-space: pre-line" v-html="item.content"></p>
                 </div>
             </div>
-            <div class="news-content-field">
-                <p style="white-space: pre-line" v-html="item.content"></p>
-            </div>
-        </div>
+        </transition-group>
         <div class="news content-center" v-if="!$store.getters.allNews">
             No News
         </div>
@@ -54,18 +56,18 @@
             document.title = "News";
         },
         async mounted() {
-            this.connect();
-            await this.$store.dispatch("fetchNews");
-            this.received_messages = this.$store.getters.allNews;
-            setTimeout(() => {
-                this.loading = true;
-            }, 1000)
+            await this.$store.dispatch("fetchNews").then(
+                setTimeout(() => {
+                    this.connect();
+                    this.loading = true;
+                }, 1000));
         },
         methods: {
             connect() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
-                this.stompClient.debug = () => {};
+                this.stompClient.debug = () => {
+                };
 
                 this.stompClient.connect(
                     {},
@@ -75,7 +77,8 @@
                         this.stompClient.subscribe("/topic/news", async tick => {
                             // console.log(tick);
                             // this.received_messages.unshift(JSON.parse(tick.body));
-                            await this.$store.dispatch("fetchNews");
+                            this.$store.commit('unshiftNews', JSON.parse(tick.body));
+                            // await this.$store.dispatch("fetchNews");
                         });
                     },
                     error => {

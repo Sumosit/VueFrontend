@@ -73,12 +73,12 @@
                 title: '',
                 description: '',
                 open: true,
-                year: '',
-                month: '',
-                day: '',
-                hours: '',
-                minutes: '',
-                seconds: ''
+                year: '1999',
+                month: '10',
+                day: '21',
+                hours: '23',
+                minutes: '32',
+                seconds: '32'
             }
         },
         created() {

@@ -1,4 +1,5 @@
 .progress-barr {
+    position: relative;
     display: block;
     height: 30px;
     width: 100%;
@@ -6,7 +7,6 @@
 }
 
 .progress {
-    transition: all 1s linear;
     height: 100%;
     background-color: green;
     color: #e3e3e3;

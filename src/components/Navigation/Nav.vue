@@ -1,8 +1,8 @@
 <template>
     <nav>
         <div class="nav-field">
-            <router-link class="right content-center cursor-pointer nav-username" tag="div"
-                         to="/user/profile/info"
+            <router-link :to="'/user/profile/'+$store.state.auth.user.id+'/info'" class="right content-center cursor-pointer nav-username"
+                         tag="div"
                          v-if="isUser">
                 <span v-if="!$store.state.auth.user.name && !$store.state.auth.user.surname">
                     {{$store.state.auth.user.username}}

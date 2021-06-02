@@ -11,7 +11,8 @@ export const user = {
         chat: [],
         groupsByUserId: [],
         userExtra: Object,
-        user: Object
+        user: Object,
+        salaries: []
     },
     actions: {
         async fetchGroupsByUserId(ctx, user_id) {
@@ -133,8 +134,8 @@ export const user = {
                 .then(response => response.json())
                 .then(json => {
                     setTimeout(() => {
-                        const userSalaries = json;
-                        ctx.commit('updateUserSalaries', userSalaries);
+                        const salaries = json;
+                        ctx.commit('updateUserSalaries', salaries);
                     }, 1000)
                 });
         }
@@ -149,6 +150,9 @@ export const user = {
         updateUserExtra(state, userExtra) {
             state.userExtra = userExtra;
         },
+        pushUserExtraDocuments(state, payload) {
+            state.userExtra.documents.push(payload);
+        },
         updateChat(state, chat) {
             state.chat = chat;
         },
@@ -161,13 +165,22 @@ export const user = {
         updateNews(state, payload) {
             state.news = payload.reverse();
         },
+        unshiftNews(state, payload) {
+            state.news.unshift(payload);
+        },
+        pushNews(state, payload) {
+            state.news.push(payload);
+        },
         updateStorageFiles(state, payload) {
             state.storageFiles = payload;
         },
-        updateUserSalaries(state, userSalaries) {
-            this.state.auth.user.salaries = userSalaries.slice().sort(function (a, b) {
+        updateUserSalaries(state, salaries) {
+            state.salaries = salaries.slice().sort(function (a, b) {
                 return b.id - a.id;
             });
+        },
+        unshiftSalaries(state, payload) {
+            state.salaries.unshift(payload);
         }
     },
     getters: {

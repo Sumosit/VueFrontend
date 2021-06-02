@@ -7,6 +7,7 @@
     top: 0;
     background-color: rgba(17, 17, 17, 0.9);
     overflow-y: auto;
+    user-select: none;
 }
 
 .fade-enter-active {
@@ -50,7 +51,7 @@ a {
     margin-left: 10px;
     padding: 20px;
     font-family: Arial, sans-serif;
-    font-size: 30px;
+    font-size: 24px;
     color: white;
 }
 

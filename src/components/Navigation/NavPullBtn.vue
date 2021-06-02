@@ -74,16 +74,16 @@
 
     .strip {
         display: block;
-        width: 36px;
-        height: 7px;
+        width: 31px;
+        height: 6px;
         border-radius: 5px;
         background: black;
     }
 
     .strip-lighter {
         display: block;
-        width: 36px;
-        height: 7px;
+        width: 31px;
+        height: 6px;
         border-radius: 5px;
         background: #f6f6f6;
     }
@@ -98,8 +98,8 @@
         z-index: 9999;
         width: 36px;
         height: 30px;
-        top: 10px;
-        left: 10px;
+        top: 12px;
+        left: 12px;
         color: black;
     }
 </style>

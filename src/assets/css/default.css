@@ -5,6 +5,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-color: #656565;
+    /*background-color: white;*/
 }
 
 html, body {
@@ -13,7 +14,24 @@ html, body {
     height: 100%;
     overflow-x: hidden;
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: black;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: black;
+}
 * {
     box-sizing: border-box;
 }

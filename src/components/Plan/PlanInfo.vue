@@ -14,13 +14,11 @@
             <button v-on:click="editMode = !editMode">Enable/Disable admin mode</button>
         </div>
         <div class="progress-barr">
-            <div :key="plan.completed" class="progress"
-                 v-bind:style="{
-                'width': plan.completed+'%',
-                'content-center': plan.completed > 5
-            }">
-                {{plan.completed}}%
-            </div>
+            <progressBar
+                    :label="`yes`"
+                    :percentage="plan.completed"
+                    :key="plan.completed"
+            ></progressBar>
         </div>
         <div>
             <PlanList :editMode="editMode"
@@ -112,13 +110,15 @@
     import AdminSelectedField from "../Task/AdminSelectedField";
     import PlanList from "../Plan/PlanList";
     import PlanListInfo from "../Plan/PlanListInfo";
+    import progressBar from "../Plan/progressBar";
 
     export default {
         name: "PlansInfo",
         components: {
             AdminSelectedField,
             PlanList,
-            PlanListInfo
+            PlanListInfo,
+            progressBar
         },
         data() {
             return {
@@ -129,15 +129,16 @@
                 plan: Object,
                 open: false,
                 editMode: false,
+                'style-progress': {}
             }
         },
         created() {
             document.title = 'Plans info';
         },
         async mounted() {
+            await this.getPlan();
             await this.$store.dispatch('fetchUser', this.$store.state.auth.user.id);
             await this.$store.dispatch('fetchUsers');
-            await this.getPlan();
             await this.connectToWebSocketPlans();
         },
         methods: {
@@ -159,7 +160,6 @@
                                 if (JSON.parse(tick.body) === 1) {
                                     this.$store.commit('updatePlanIdToUpdate', 1);
                                 }
-
                                 await this.getPlan();
                             });
                     },

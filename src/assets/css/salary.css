@@ -7,9 +7,12 @@
 
 .salary > div {
     margin-top: 5px;
+    /*border-top-left-radius: 7px;*/
+    /*border-top-right-radius: 7px;*/
     display: block;
     font-family: Arial, sans-serif;
     font-size: 18px;
+    /*border: 1px solid #444444;*/
 }
 
 .salary-head > th {
@@ -18,14 +21,14 @@
     padding: 5px;
     font-family: Arial, sans-serif;
     font-size: 20px;
-    border: 1px solid black;
+    border: 1px solid #444444;
 }
 
 .salary-body > tr > td {
     background-color: #f6f6f6;
     color: black;
     padding: 5px;
-    border: 1px solid black;
+    border: 1px solid #444444;
 }
 
 .salary > table {

@@ -1,8 +1,8 @@
 nav {
-    z-index: 7777;
+    z-index: 5000;
     position: fixed;
     height: 50px;
-    width: 100%;
+    width: calc(100% - 10px);
     top: 0;
     left: 0;
     font-family: Arial, serif;
@@ -10,6 +10,7 @@ nav {
     color: #000000;
     background: #f6f6f6;
     display: flex;
+    user-select: none;
 }
 
 .nav-field {

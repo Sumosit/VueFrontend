@@ -7,8 +7,9 @@
                 <th>Plans users</th>
             </tr>
             </thead>
-            <tbody class="admin-groups-body">
-            <tr v-for="(plans, index) in $store.getters.getPlans">
+            <tbody class="admin-groups-body" name="list" is="transition-group">
+            <tr v-for="(plans, index) in $store.getters.getPlans"
+            :key="plans.id">
                 <router-link :to="'/user/plans-info/'+plans.id" tag="td">{{plans.name}}</router-link>
                 <td style="overflow: hidden; height: 35px;">
                     <!--                    <span v-if="plans.users">{{getGroupNames(plans.users)}}</span>-->

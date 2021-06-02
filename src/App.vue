@@ -125,9 +125,8 @@
             connect() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
-                this.stompClient.debug = () => {
-                };
-
+                // this.stompClient.debug = () => {
+                // };
                 this.stompClient.connect(
                     {},
                     frame => {
@@ -181,4 +180,6 @@
     @import './assets/css/default-buttons.css';
     @import './assets/css/default-ul-li.css';
     @import './assets/css/default-progress-bar.css';
+    @import './assets/css/default-animations.css';
+    @import './assets/css/default-pop-up-window.css';
 </style>

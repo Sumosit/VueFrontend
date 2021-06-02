@@ -1,38 +1,27 @@
 <template>
     <div class="admin-news">
-        <form>
-            <label for="connect">WebSocket connection:</label>
-            <button
-                    :disabled="connected === true"
-                    @click.prevent="connect"
-                    class="btn btn-default"
-                    id="connect"
-                    type="submit"
-            >Connect
-            </button>
-            <button
-                    :disabled="connected === false"
-                    @click.prevent="disconnect"
-                    class="btn btn-default"
-                    id="disconnect"
-                    type="submit"
-            >Disconnect
-            </button>
-        </form>
-        <form class="ad-input">
-            <label for="title">Title</label>
-            <input
-                    id="title"
-                    placeholder="Title"
-                    type="text"
-                    v-model="send_title"
-            >
-            <label for="content">Content</label>
-            <textarea
-                    id="content"
-                    placeholder="Content"
-                    v-model="send_content"
-            ></textarea>
+        <form class="name-surname"
+              style="padding: 8px; background: #f6f6f6;
+color: black">
+            <div>
+                <label for="title">Title</label>
+                <input
+                        style="width: 300px"
+                        id="title"
+                        placeholder="Title"
+                        type="text"
+                        v-model="send_title"
+                >
+            </div>
+            <div>
+                <label for="content">Content</label>
+                <textarea
+                        style="width: 700px; height: 200px"
+                        id="content"
+                        placeholder="Content"
+                        v-model="send_content"
+                ></textarea>
+            </div>
             <button
                     @click.prevent="send"
                     id="send"
@@ -40,26 +29,6 @@
             >Send
             </button>
         </form>
-        <table class="admin-news-table" id="conversation" style="
-    margin-top: 5px">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr
-                    :key="item"
-                    v-for="item in received_messages"
-            >
-                <td>{{ item.id }}</td>
-                <td>{{ item.title }}</td>
-                <td>{{ item.content }}</td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </template>
 
@@ -95,7 +64,8 @@
             connect() {
                 this.socket = new SockJS(backendUrl() + "gs-guide-websocket");
                 this.stompClient = Stomp.over(this.socket);
-                this.stompClient.debug = () => {};
+                this.stompClient.debug = () => {
+                };
                 this.stompClient.connect(
                     {},
                     frame => {
@@ -130,5 +100,5 @@
 </script>
 
 <style scoped>
-    @import '../../assets/css/admin-news.css';
+    @import '../../assets/css/admin-tasks.css';
 </style>

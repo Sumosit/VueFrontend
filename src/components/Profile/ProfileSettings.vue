@@ -32,13 +32,14 @@
         <!--                {{uploadStatus}}-->
         <!--                {{uploadError}}-->
         <div class="documents-wrapper">
-            <div class="document"
+            <div :key="document.id"
+                 class="document"
                  v-for="(document, index) in sortedDocuments">
                 <div class="content-center">
-                    <img src="../../assets/images/no.svg" v-if="!document.fileDB">
+                    <img class="shadow" src="../../assets/images/no.svg" v-if="!document.fileDB">
                     <a :href="backendUrl+'files/'+document.fileDB.id" class="yes"
                        v-if="document.fileDB">
-                        <img src="../../assets/images/yes.svg">
+                        <img class="shadow" src="../../assets/images/yes.svg">
                     </a>
                 </div>
                 <span class="content-center"
@@ -63,7 +64,30 @@
                     </a>
                 </div>
             </div>
+            <div class="content-center document">
+                <img src="../../assets/images/plus-document.svg"
+                     style="cursor: pointer"
+                @click="openDocumentForm = !openDocumentForm">
+                <a :href="backendUrl+'files/'" class="yes">
+                    <img src="../../assets/images/yes.svg">
+                </a>
+            </div>
         </div>
+        <form @submit.prevent="createNewDocumentField()" class="pop-up-window content-center" v-if="openDocumentForm">
+            <div>
+                <div>
+                    <input type="text" v-model="newDocumentName">
+                </div>
+                <div class="content-center">
+                    <input type="submit">
+                </div>
+            </div>
+            <div class="delete-btn" @click="openDocumentForm = false">
+                <div class="content-center">
+                    <img src="../../assets/images/no.svg">
+                </div>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -87,7 +111,9 @@
                 uploadError: '',
                 currentFile: '',
                 backendUrl: backendUrl(),
-                error: ''
+                error: '',
+                openDocumentForm: false,
+                newDocumentName: ''
             }
         },
         created() {
@@ -109,6 +135,19 @@
                 this.selectedFile = event.target.files[0];
                 this.selectedFileSize = event.target.files[0].size;
                 this.uploadStatus = 'File selected';
+            },
+            createNewDocumentField() {
+                let fd = new FormData();
+                fd.append("name", this.newDocumentName);
+                fd.append("userExtraId", this.$store.getters.getUserExtra.id);
+
+                axios.post(backendUrl() + "api/user/userExtra/new/document/save", fd, {
+                    headers: authHeader()
+                }).then(async res => {
+                    this.$store.commit('pushUserExtraDocuments', res.data);
+                }).catch(err => {
+                    console.log(err.response);
+                });
             },
             saveNameAndSurname() {
                 let fd = new FormData();
